@@ -1,2 +1,3 @@
-# uba-algo2
-Repo con material de la materia. 1c - 2023
+# Algoritmos y Estructuras de Datos II
+2023 - 1° cuatrimestre  
+Repo con teóricas, prácticas, resueltos de labo, talleres y TPs
