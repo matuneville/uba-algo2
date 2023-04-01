@@ -1,0 +1,6 @@
+C:/Users/nevil/Documents/GitHub/uba-algo2/Laboratorios/Labo01/AyED2-Labo01/cmake-build-debug/CMakeFiles/tests_algobot.dir
+C:/Users/nevil/Documents/GitHub/uba-algo2/Laboratorios/Labo01/AyED2-Labo01/cmake-build-debug/CMakeFiles/tests_ejercitacion.dir
+C:/Users/nevil/Documents/GitHub/uba-algo2/Laboratorios/Labo01/AyED2-Labo01/cmake-build-debug/CMakeFiles/gtest.dir
+C:/Users/nevil/Documents/GitHub/uba-algo2/Laboratorios/Labo01/AyED2-Labo01/cmake-build-debug/CMakeFiles/gtest_main.dir
+C:/Users/nevil/Documents/GitHub/uba-algo2/Laboratorios/Labo01/AyED2-Labo01/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/nevil/Documents/GitHub/uba-algo2/Laboratorios/Labo01/AyED2-Labo01/cmake-build-debug/CMakeFiles/rebuild_cache.dir
