@@ -4,11 +4,11 @@ using namespace std;
 
 using uint = unsigned int;
 
-// Ejercicio 1
+// ######################################## Ejercicio 1 ########################################
 
 class Rectangulo {
     public:
-        Rectangulo(uint alto, uint ancho);
+        Rectangulo(uint alto, uint ancho); // constructor
         uint alto();
         uint ancho();
         float area();
@@ -19,21 +19,42 @@ class Rectangulo {
 
 };
 
-Rectangulo::Rectangulo(uint alto, uint ancho) : /* Completar */ {};
+Rectangulo::Rectangulo(uint alto, uint ancho) : alto_(alto), ancho_(ancho){};
 
 uint Rectangulo::alto() {
-    // Completar
+    return alto_;
 }
 
-// Completar definición: ancho
+uint Rectangulo::ancho() {
+    return ancho_;
+}
 
-// Completar definición: area
+float Rectangulo::area() {
+    return (alto_ * ancho_);
+}
 
-// Ejercicio 2
+// ######################################## Ejercicio 2 ########################################
 
-// Clase Elipse
+class Elipse{
+public:
+    // constructor primero
+    Elipse (uint a, uint b) : _a(a), _b(b){};
 
-// Ejercicio 3
+    uint r_a(){
+        return _a;
+    }
+    uint r_b(){
+        return _b;
+    }
+    float area(){
+        return (3.14 * _a * _b);
+    }
+private:
+    uint _a;
+    uint _b;
+};
+
+// ######################################## Ejercicio 3 ########################################
 
 class Cuadrado {
     public:
@@ -48,26 +69,51 @@ class Cuadrado {
 Cuadrado::Cuadrado(uint lado): r_(lado, lado) {}
 
 uint Cuadrado::lado() {
-    // Completar
+    return r_.alto();
 }
 
 float Cuadrado::area() {
-    // Completar
+    return (r_.ancho() * r_.alto());
 }
 
-// Ejercicio 4
+// ######################################## Ejercicio 4 ########################################
 
-// Clase Circulo
+class Circulo{
+    private:
+        Elipse _c;
+    public:
+        Circulo(uint radio): _c(radio, radio){};
+        uint radio(){
+            return _c.r_a();
+        }
+        float area(){
+            return _c.r_a() * _c.r_a() * 3.14;
+        }
+};
 
 
-// Ejercicio 5
+// ######################################## Ejercicio 5 ########################################
 
 ostream& operator<<(ostream& os, Rectangulo r) {
-    os << "Rect(" << r.ancho() << ", " << r.alto() << ")";
+    os << "Rect(" << r.alto() << ", " << r.ancho() << ")";
     return os;
 }
 
 // ostream Elipse
 
-// Ejercicio 6
+ostream& operator<<(ostream& os, Elipse e){
+    os << "Elipse(" << e.r_a() << ", " << e.r_b() << ")";
+    return os;
+}
 
+// ######################################## Ejercicio 6 ########################################
+
+ostream& operator<<(ostream& os, Cuadrado c){
+    os << "Cuad(" << c.lado() << ")";
+    return os;
+}
+
+ostream& operator<<(ostream& os, Circulo c){
+    os << "Circ(" << c.radio() << ")";
+    return os;
+}
