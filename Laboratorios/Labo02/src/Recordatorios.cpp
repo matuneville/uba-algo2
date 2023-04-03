@@ -49,6 +49,7 @@ class Fecha {
 
 ostream& operator<<(ostream& os, Fecha f){
     os << f.dia() << "/" << f.mes();
+    return os;
 }
 
 
@@ -89,6 +90,7 @@ class Horario{
 
 ostream& operator<<(ostream& os, Horario h){
     os << h.hora() << ":"<< h.min();
+    return os;
 }
 
 
@@ -109,6 +111,7 @@ class Recordatorio{
 
 ostream& operator<<(ostream& os, Recordatorio r){
     os << r.mensaje() << " @ "<< r.fecha() << " "<< r.hora();
+    return os;
 }
 
 
@@ -137,13 +140,35 @@ void Agenda::incrementar_dia() {
 }
 
 list<Recordatorio> Agenda::recordatorios_de_hoy() {
-    list<Recordatorio> recordatoriosHoy;
+    vector<Recordatorio> recs, recsHoy;
     for(Recordatorio r : _records){
-        if (r.fecha() == _fechaHoy){
-            recordatoriosHoy.push_front(r);
+        recs.push_back(r);
+    }
+
+    for(Recordatorio r1 : recs) {
+        if (r1.fecha() == _fechaHoy) {
+            if (recsHoy.empty())
+                recsHoy.push_back(r1);
+            else {
+                int i = 0;
+                for (Recordatorio r2: recsHoy) {
+                    if (r1.hora().hora() < r2.hora().hora() or
+                        (r1.hora().hora() == r2.hora().hora() and r1.hora().min() <= r2.hora().min())) {
+                        i++;
+                    }
+                    recsHoy.insert(recsHoy.begin() + i, r1);
+                }
+            }
         }
     }
-    return recordatoriosHoy;
+    list<Recordatorio> recsHoyLista;
+    for (Recordatorio r : recsHoy)
+        recsHoyLista.push_front(r);
+
+    // hice un choclazo de funcion para poder operar con vectores pues
+    // para operar con listas hay que usar interators y pointers (creo)
+
+    return recsHoyLista;
 }
 
 Fecha Agenda::hoy(){
@@ -151,8 +176,7 @@ Fecha Agenda::hoy(){
 }
 
 ostream& operator<<(ostream& os, Agenda ag){
-    os << ag.hoy() << endl;
-    os << "=====" << endl;
+    os << ag.hoy() << "\n=====" << endl;
     for (Recordatorio r : ag.recordatorios_de_hoy()){
          os << r << endl;
     }
