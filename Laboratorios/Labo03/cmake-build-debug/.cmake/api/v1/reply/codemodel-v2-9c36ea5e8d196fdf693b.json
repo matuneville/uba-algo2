@@ -1,0 +1,105 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "solucion",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ej1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ej1-Debug-e3deccbd338a5bd9c3ee.json",
+					"name" : "ej1",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ej2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ej2-Debug-dcef6dd2c6fecde7d27d.json",
+					"name" : "ej2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ej3::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ej3-Debug-dcd2d98abef5a4bf7092.json",
+					"name" : "ej3",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "gtest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gtest-Debug-deb1fc72ddbc4d7f62ca.json",
+					"name" : "gtest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "gtest_main::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gtest_main-Debug-65a81932df3d7f87ea30.json",
+					"name" : "gtest_main",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "solucion_testing::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-solucion_testing-Debug-5355591edf4e69b6ba65.json",
+					"name" : "solucion_testing",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/nevil/Documents/GitHub/uba-algo2/Laboratorios/Labo03/cmake-build-debug",
+		"source" : "C:/Users/nevil/Documents/GitHub/uba-algo2/Laboratorios/Labo03"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
