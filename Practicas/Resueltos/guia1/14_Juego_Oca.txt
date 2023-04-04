@@ -1,0 +1,45 @@
+Ejercicio 14       simbolos × ➔ ∀ ≡
+
+TAD TABLERO:
+    Generos:
+        Tablero 
+    Exporta:
+        Tablero, Observadores, Generadores
+
+    Observadores basicos
+        #baldosas:  tablero ➔ nat
+        avanza?:  tablero t × nat n ➔ bool                         {n <= #baldosas(t)}
+        #moverse:  tablero t × nat n ➔ nat                         {n <= #baldosas(t)}
+    
+    Generadores
+        crearTablero: nat ➔ tablero
+
+    Axiomas (∀ t: tablero)(∀ n: nat)
+        #baldosas(crearTablero(n)) ≡ n 
+        avanza?(crearTablero(n), m) ≡ avanza?(t, m)
+        #moverse(crearTablero(n), m) ≡ #moverse(t, m)
+
+FIN TAD
+
+
+TAD OCA:
+    Generos
+        Oca 
+    Exporta
+        Oca, Observadores, Generadores
+
+    Observadores basicos
+        tablero:  oca ➔ tablero
+        ganado?:  oca ➔ bool
+        posiciones:  oca o ➔ tupla{n,m}                            {0 <= n,m <= #baldosas(tablero(o))}
+
+    Generadores
+        crearJuego:  tablero ➔ oca
+        avanzar:  oca × nat n ➔ oca                                {1 <= n <= 6}
+
+    Otras operaciones
+        ganoJug1:  oca o ➔ bool                                    {not (ganoJug2(o))}
+        ganoJug2:  oca o ➔ bool                                    {not (ganoJug1(o))}
+        pasoCasilla?:  oca o × nat n ➔ bool                        {n < #baldosas(tablero(o))}
+
+FIN TAD
