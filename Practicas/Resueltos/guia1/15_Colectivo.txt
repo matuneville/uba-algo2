@@ -1,0 +1,26 @@
+Ejercicio 15       simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔
+
+TAD t:
+    Generos
+        t 
+    Exporta
+        t, Observadores, Generadores
+    Usa
+        .
+
+    Igualdad observacional
+        (∀ t1, t2: t)
+        (t1 =obs t2)  ⇔  ()
+
+    Observadores basicos
+        .
+    
+    Generadores
+        .
+
+    Axiomas
+        (∀ t: t)
+
+        .
+
+FIN TAD

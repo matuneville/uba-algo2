@@ -1,10 +1,16 @@
-Ejercicio 14       simbolos × ➔ ∀ ≡
+Ejercicio 14       simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔
 
 TAD TABLERO:
-    Generos:
-        Tablero 
-    Exporta:
-        Tablero, Observadores, Generadores
+    Generos
+        tablero 
+    Exporta
+        tablero, Observadores, Generadores
+    Usa
+        nat, bool
+
+    Igualdad observacional
+        (∀ t1, t2: tablero)(∀ n: nat)
+        (t1 =obs t2)  ⇔  (#baldosas(t1) = #baldosas(t2)  ∧  avanza?(t1, n) = avanza?(t2, n)  ∧  #moverse(t1, n) = #moverse(t2, n))
 
     Observadores basicos
         #baldosas:  tablero ➔ nat
@@ -14,7 +20,9 @@ TAD TABLERO:
     Generadores
         crearTablero: nat ➔ tablero
 
-    Axiomas (∀ t: tablero)(∀ n: nat)
+    Axiomas
+        (∀ t: tablero)(∀ n: nat)
+
         #baldosas(crearTablero(n)) ≡ n 
         avanza?(crearTablero(n), m) ≡ avanza?(t, m)
         #moverse(crearTablero(n), m) ≡ #moverse(t, m)
@@ -24,22 +32,71 @@ FIN TAD
 
 TAD OCA:
     Generos
-        Oca 
+        oca 
     Exporta
-        Oca, Observadores, Generadores
+        oca, Observadores, Generadores
+    Usa
+        nat, Tablero, bool, tupla
+
+    Igualdad observacional
+        (∀ o1, o2: oca)
+        (o1 =obs o2)  ⇔  (tablero(o1) = tablero(o2)  ∧  posiciones(o1) = posiciones(o2)  ∧  #turnos(o1) = #turnos(o2))
 
     Observadores basicos
         tablero:  oca ➔ tablero
-        ganado?:  oca ➔ bool
-        posiciones:  oca o ➔ tupla{n,m}                            {0 <= n,m <= #baldosas(tablero(o))}
+        posiciones:  oca o ➔ tupla{n,m}                            {0 <= n,  m <= #baldosas(tablero(o))}
+        #turnos: oca ➔ nat
 
     Generadores
         crearJuego:  tablero ➔ oca
         avanzar:  oca × nat n ➔ oca                                {1 <= n <= 6}
+        accionTablero: tablero t × nat n × oca ➔ oca               {n < #baldosas(t)}
 
     Otras operaciones
-        ganoJug1:  oca o ➔ bool                                    {not (ganoJug2(o))}
-        ganoJug2:  oca o ➔ bool                                    {not (ganoJug1(o))}
-        pasoCasilla?:  oca o × nat n ➔ bool                        {n < #baldosas(tablero(o))}
+        ganoJug1?:  oca o ➔ bool                                   {not (ganoJug2(o))}
+        ganoJug2?:  oca o ➔ bool                                   {not (ganoJug1(o))}
+        pasoCasilla?:  oca o × nat n × nat j ➔ bool                {n < #baldosas(tablero(o)),  j ∈ {1,2}}
+        turnoDeJ?: oca × nat j ➔ bool                              {j ∈ {1,2}}
+
+    Axiomas
+        (∀ o: oca)(∀ n,j: nat)(∀ t: tablero)
+
+        tablero(crearJuego(t)) ≡ t 
+        tablero(avanzar(o, n)) ≡ tablero(o)
+        tablero(accionTablero(t, n, o)) ≡ t
+
+        posiciones(crearJuego(t)) ≡ {0,0}
+        posiciones(avanzar(o, n)) ≡  if  turnoDeJ?(o, 1)  then {π1.posiciones(o) + n, π2.posiciones(o)}
+                                     else  {π1.posiciones(o), π2.posiciones(o) + n}
+                                     fi
+        posiciones(accionTablero(t, n, o)) ≡  if  avanza?(t, n) then
+                                                  if  turnoDeJ?(o,1)  then  {π1.posiciones(o) + #moverse(t, n), π2.posiciones(o)}
+                                                  else  {π1.posiciones(o), π2.posiciones(o) + #moverse(t, n)}
+                                                  fi
+                                              else
+                                                  if  turnoDeJ?(o,1)  then  {π1.posiciones(o) - #moverse(t, n), π2.posiciones(o)}
+                                                  else  {π1.posiciones(o), π2.posiciones(o) - #moverse(t, n)}
+                                                  fi
+                                              fi
+                                            
+        #turnos(crearJuego(t)) ≡ 0
+        #turnos(avanzar(o, n)) ≡ #turnos(o) + 1
+        #turnos(accionTablero(t, n, o)) ≡ #turnos(o)
+
+        ganoJug1?(o) ≡ if  π1.(posiciones(o)) >= #baldosas(tablero(o))  then  true
+                       else  false
+                       fi
+        ganoJug1?(o) ≡ if  π2.(posiciones(o)) >= #baldosas(tablero(o))  then  true
+                       else  false
+                       fi
+        pasoCasilla?(o, n, j) ≡ if  (j=1 ∧ π1.(posiciones(o)) > n)  then  true
+                                else
+                                    if  (j=2 ∧ π2.(posiciones(o)) > n)  then  true
+                                    else  false
+                                    fi
+                                fi
+        turnoDeJ?(o, j) ≡ if  (#turnos(o) mod 2) = 0  then 1
+                          else  0
+                          fi
 
 FIN TAD
