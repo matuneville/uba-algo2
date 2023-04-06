@@ -1,4 +1,16 @@
-Ejercicio 14       simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔
+Ejercicio 14       simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔ •
+
+Especifique el juego de la oca.
+Dos jugadores, alternadamente, se mueven por un camino de baldosas, numeradas ´estas 0, 1, 2, . . . avanzando
+en cada turno tantas baldosas como indique el dado tirado y realizando la acci´on que indica el tablero para la
+baldosa alcanzada. Van jugando de a uno por vez.
+El tablero indica que ambos jugadores comienzan en la baldosa cero, el n´umero de la baldosa en donde est´a la
+llegada (que debe ser distinto del de partida) y c´omo debe moverse un jugador cuando llega a una determinada
+baldosa: cu´antas baldosas avanzar o retroceder, o no hacer nada (en los dem´as casos). La acci´on correspondiente
+a una baldosa s´olo se toma si se llega a esa avanzando con el dado, no si se llega mediante la acci´on de otra
+baldosa. Gana el primer jugador que alcanza la llegada. Proveer tambi´en funciones para saber qu´e indic´o el dado
+en cada jugada para cada uno de los jugadores, y para saber si un jugador pas´o por una baldosa determinada.
+
 
 TAD TABLERO:
     Generos
@@ -18,14 +30,14 @@ TAD TABLERO:
         #moverse:  tablero t × nat n ➔ nat                         {n <= #baldosas(t)}
     
     Generadores
-        crearTablero: nat ➔ tablero
+        crearTablero: secu(tupla{bool, nat}) ➔ tablero
 
     Axiomas
-        (∀ t: tablero)(∀ n: nat)
+        (∀ t: tablero)(∀ n: nat)(∀ s: secu(tupla{bool, nat}))
 
-        #baldosas(crearTablero(n)) ≡ n 
-        avanza?(crearTablero(n), m) ≡ avanza?(t, m)
-        #moverse(crearTablero(n), m) ≡ #moverse(t, m)
+        #baldosas(crearTablero(s)) ≡  largo(s)
+        avanza?(crearTablero(s), n) ≡  π1.s[n]
+        #moverse(crearTablero(s), n) ≡  π2.s[n]
 
 FIN TAD
 
@@ -40,12 +52,11 @@ TAD OCA:
 
     Igualdad observacional
         (∀ o1, o2: oca)
-        (o1 =obs o2)  ⇔  (tablero(o1) = tablero(o2)  ∧  posiciones(o1) = posiciones(o2)  ∧  #turnos(o1) = #turnos(o2))
+        (o1 =obs o2)  ⇔  (tablero(o1) = tablero(o2)  ∧  historialDados(o1) = historialDados(o2))
 
     Observadores basicos
         tablero:  oca ➔ tablero
-        posiciones:  oca o ➔ tupla{n,m}                            {0 <= n,  m <= #baldosas(tablero(o))}
-        #turnos: oca ➔ nat
+        historialDados: oca ➔ secu(tupla{nat, nat})
 
     Generadores
         crearJuego:  tablero ➔ oca
@@ -53,50 +64,42 @@ TAD OCA:
         accionTablero: tablero t × nat n × oca ➔ oca               {n < #baldosas(t)}
 
     Otras operaciones
-        ganoJug1?:  oca o ➔ bool                                   {not (ganoJug2(o))}
-        ganoJug2?:  oca o ➔ bool                                   {not (ganoJug1(o))}
-        pasoCasilla?:  oca o × nat n × nat j ➔ bool                {n < #baldosas(tablero(o)),  j ∈ {1,2}}
-        turnoDeJ?: oca × nat j ➔ bool                              {j ∈ {1,2}}
+        pasoCasilla?:  oca o × nat n × nat j × secu(tupla{nat, nat}) ➔ bool         {n < #baldosas(tablero(o)),  j ∈ {1,2}}
+        turnoDeJ?: oca × nat j ➔ bool                                              {j ∈ {1,2}}
 
     Axiomas
-        (∀ o: oca)(∀ n,j: nat)(∀ t: tablero)
+        (∀ o: oca)(∀ n,j: nat)(∀ t: tablero)(∀ s: secu(tupla{nat,nat}))
 
-        tablero(crearJuego(t)) ≡ t 
+        tablero(crearJuego(t)) ≡ t
         tablero(avanzar(o, n)) ≡ tablero(o)
         tablero(accionTablero(t, n, o)) ≡ t
-
-        posiciones(crearJuego(t)) ≡ {0,0}
-        posiciones(avanzar(o, n)) ≡  if  turnoDeJ?(o, 1)  then {π1.posiciones(o) + n, π2.posiciones(o)}
-                                     else  {π1.posiciones(o), π2.posiciones(o) + n}
-                                     fi
-        posiciones(accionTablero(t, n, o)) ≡  if  avanza?(t, n) then
-                                                  if  turnoDeJ?(o,1)  then  {π1.posiciones(o) + #moverse(t, n), π2.posiciones(o)}
-                                                  else  {π1.posiciones(o), π2.posiciones(o) + #moverse(t, n)}
-                                                  fi
-                                              else
-                                                  if  turnoDeJ?(o,1)  then  {π1.posiciones(o) - #moverse(t, n), π2.posiciones(o)}
-                                                  else  {π1.posiciones(o), π2.posiciones(o) - #moverse(t, n)}
-                                                  fi
-                                              fi
                                             
-        #turnos(crearJuego(t)) ≡ 0
-        #turnos(avanzar(o, n)) ≡ #turnos(o) + 1
-        #turnos(accionTablero(t, n, o)) ≡ #turnos(o)
+        historialDados(crearJuego(t)) ≡ ()
+        historialDados(avanzar(o, n)) ≡ if  turnoDeJ?(o, 1)  then  {n, π2.ult(historialDados(o))} • historialDados(o)
+                                        else  {π1.ult(historialDados(o)), n} • historialDados(o)
+                                        fi
+        historialDados(accionTablero(t, n, o)) ≡ historialDados(o)
 
-        ganoJug1?(o) ≡ if  π1.(posiciones(o)) >= #baldosas(tablero(o))  then  true
-                       else  false
-                       fi
-        ganoJug1?(o) ≡ if  π2.(posiciones(o)) >= #baldosas(tablero(o))  then  true
-                       else  false
-                       fi
-        pasoCasilla?(o, n, j) ≡ if  (j=1 ∧ π1.(posiciones(o)) > n)  then  true
-                                else
-                                    if  (j=2 ∧ π2.(posiciones(o)) > n)  then  true
-                                    else  false
-                                    fi
-                                fi
-        turnoDeJ?(o, j) ≡ if  (#turnos(o) mod 2) = 0  then 1
-                          else  0
-                          fi
+        pasoCasilla?(o, n, j, casillasPasadas()) ≡  if j=1  then
+                                                        if  vacia?(casillasPasadas(o)) then false
+                                                        else
+                                                            if  n = π1.prim(historialDados(o)) then true
+                                                            else  pasoCasilla?(o, n, j, fin(casillasPasadas()))
+                                                            fi
+                                                        fi
+                                                    else
+                                                        if  vacia?(casillasPasadas(o)) then false
+                                                        else
+                                                            if  n = π2.prim(historialDados(o)) then true
+                                                            else  pasoCasilla?(o, n, j, fin(casillasPasadas()))
+                                                            fi
+                                                        fi
+                                                    fi
+
+        turnoDeJ?(o, j) ≡  if  (largo(historialDados(o)) mod 2 = 0)  then 1
+                           else  2
+                           fi
+        
+        casillasPasadas(o, historialDados(o)) ≡
 
 FIN TAD

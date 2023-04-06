@@ -1,0 +1,76 @@
+Ejercicio 17         simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔ • ◦
+
+Con el fin de garantizar que dos alumnos no se encuentren en el baño mientras estan realizando un parcial, se
+decidio implementar la siguiente politica. Cuando un alumno solicita ir al baño, este puede concurrir al mismo
+si ningun otro alumno esta en el baño. En caso contrario, este esperara cerca de la puerta. Un alumno que esta
+esperando cerca de la puerta puede decidir volver a sentarse en cualquier momento. Cuando un alumno regresa
+del baño, automaticamente va el primero de los alumnos que esta esperando cerca de la puerta. Con el fin de
+no hacer perder mucho tiempo a los alumnos esperando en la cola, si cuando vuelve la persona que estaba en el
+baño la fila tiene 5 o mas alumnos esperando, entonces todos juntos van al baño acompañados por un docente.
+Por otra parte, no se permite a un alumno ir mas de 3 veces al baño durante la realizacion del parcial.
+Modelar mediante TADs el problema descripto anteriormente, teniendo en cuenta que se desea conocer en
+todo momento el alumno que se encuentra en el baño.
+
+
+TAD BAÑO:
+    Generos
+        baño
+    Exporta
+        baño, Observadores, Generadores
+    Usa
+        nat, Secuencia, persona
+    Parámetros formales
+        Generos
+            persona
+
+    Igualdad observacional
+        (∀ b1, b2: baño)(∀ p: persona)
+        (b1 =obs b2)  ⇔  (alumnoEnBaño(b1) = alumnoEnBaño(b2)  ∧  filaBaño(b1) = filaBaño(b2)  ∧  vecesBaño(b1, p) = vecesBaño(b2, p))
+
+    Observadores basicos
+        alumnoEnBaño: baño b ➔ persona               {bañoOcupado?(b)}
+        filaBaño: baño ➔ secu(persona)
+        vecesBaño: baño × persona ➔ nat
+    
+    Generadores
+        ocuparBaño: persona ➔ baño                     {not bañoOcupado?(b)}
+        alumnoAFila: persona × baño b ➔ baño          {añoOcupado?(b)}
+        alumnoSaleFila: persona × baño b ➔ baño         {largo(filaBaño(b)) > 0}
+        acompañaProfe: baño b ➔ baño                     {largo(filaBaño(b)) > 4, not bañoOcupado?(b)}
+
+    Otras operaciones
+        bañoOcupado?: baño ➔ bool
+        puedeIrAlBaño?: baño × persona ➔ bool
+
+    Axiomas
+        (∀ b: baño)(∀ p, q: persona)
+
+        alumnoEnBaño(ocuparBaño(p)) ≡  p
+        alumnoEnBaño(alumnoAFila(p, b)) ≡  alumnoEnBaño(b)
+        alumnoEnBaño(alumnoSaleFila(p, b)) ≡  alumnoEnBaño(b)
+        alumnoEnBaño(acompañaProfe(b)) ≡  alumnoEnBaño(b)
+
+        filaBaño(ocuparBaño?(b)) ≡  filaBaño(b)
+        filaBaño(alumnoAFila(p, b)) ≡  filaBaño(p, b) ◦ p
+        filaBaño(alumnoSaleFila(p, b)) ≡ quitar(p, b)
+        filaBaño(acompañaProfe(b)) ≡ ()
+
+        vecesBaño(ocuparBaño(p), q) ≡  if  p = q  then 1 + vecesBaño(b, q)
+                                       else  vecesBaño(b, q)
+                                       fi 
+        vecesBaño(alumnoAFila(p, b), q) ≡  vecesBaño(b, q)
+        vecesBaño(alumnoSaleFila(p, b), q) ≡  vecesBaño(b, q)
+        vecesBaño(acompañaProfe(b), p) ≡  if  está?(p, filaBaño(b)) then 1 + vecesBaño(b, p)
+                                          else  vecesBaño(b, p)
+                                          fi
+
+        bañoOcupado(ocuparBaño(p)) ≡  true
+        bañoOcupado(alumnoAFila(p, b)) ≡  true
+        bañoOcupado(alumnoSaleFila(p, b)) ≡  true
+        bañoOcupado(acompañaProfe(b)) ≡  true
+
+        puedeIrAlBaño?(b, p) ≡  if vecesBaño(b, p) > 3  then false 
+                                else true
+                                fi
+
+FIN TAD

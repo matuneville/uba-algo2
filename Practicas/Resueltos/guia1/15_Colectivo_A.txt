@@ -1,0 +1,73 @@
+Ejercicio 15       simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔ •
+
+Un colectivo realiza un recorrido fijo (es decir, tiene una cantidad predefinida de paradas). El colectivo posee
+una cantidad fija de asientos, dispuestos en filas de dos. Cuando una persona se sube, se sienta en alguna de las
+butacas libres. Si no hubiera m´as asientos libres, se queda parada. Al bajarse, cosa que sucede cuando el colectivo
+llega a la parada indicada al subir, los asientos ocupados por los pasajeros son inmediatamente ocupados por
+algunas de las personas paradas. Es decir, habiendo asientos libres nunca hay pasajeros parados.
+
+
+TAD BUS:
+    Generos
+        bus
+    Exporta
+        bus, Observadores, Generadores, Otras operaciones
+    Usa
+        nat, secu, parada, bus
+
+    Igualdad observacional
+        (∀ b1, b2: bus)
+        (1b =obs b2)  ⇔  (recorrido(b1) = recorrido(b1) ∧ proximaParada(b1) = proximaParada(b2)  ∧
+                            #asientos(b1) = #asientos(b2) ∧ #pasajeros(b1) = pasajeros(b2))
+
+    Observadores basicos
+        recorrido: bus ➔ secu(parada)
+        proximaParada: bus ➔ parada
+        #asientos: bus ➔ nat
+        #pasajeros: bus ➔ nat
+    
+    Generadores
+        iniciaBus: nat n × secu(paradas) ➔ bus         {n mod 2 == 0, largo(s) >= 2} tomo la ultima parada como el final
+        subePasajero: bus ➔ bus                                    
+        bajaPasajero: bus ➔ bus                               {#pasajeros(b) > 0}
+        pasoParada: parada × secu(parada) × nat × nat ➔ bus      // los nat son gente q sube y q baja
+        
+    Otras operaciones
+        #asientosLibres: bus ➔ nat
+        #pasajerosParados: bus ➔ nat
+
+    Axiomas
+        (∀ b: bus)(∀ n: nat)(∀ s: nat)
+        recorrido(iniciaBus(n, s)) ≡  s 
+        recorrido(subePasajero(b)) ≡  recorrido(b)
+        recorrido(bajaPasajero(b)) ≡  recorrido(b)
+        recorrido(pasoParada(b, p, s, n)) ≡ recorrido(b)
+
+        proximaParada(iniciaBus(n, s)) ≡  prim(paradas(iniciaBus(n, s)))
+        proximaParada(subePasajero(b)) ≡  proximaParada(b)
+        proximaParada(bajaPasajero(b)) ≡  proximaParada(b)
+        proximaParada(pasoParada(p, s, n, m)) ≡  if prim(s) = p then prim(fin(s))
+                                              else proximaParada(pasoParada(p, fin(s), n, m))
+                                              fi
+
+        #asientos(iniciaBus(n, s)) ≡  n
+        #asientos(subePasajero(b)) ≡  #asientos(b)
+        #asientos(bajaPasajero(b)) ≡  #asientos(b)
+        #asientos(pasoParada(b, p, s, n, m)) ≡  #asientos(b)
+
+        #pasajeros(iniciaBus(n, s)) ≡  0
+        #pasajeros(subePasajero(b)) ≡  #pasajeros(b) + 1
+        #pasajeros(bajaPasajero(b)) ≡  #pasajeros(b) - 1
+        #pasajeros(pasoParada(b, p, s, n)) ≡  #pasajeros(b) + n - m
+
+        #asientosLibres(b) ≡  if  #pasajeros(b) >= #asientos  then 0
+                              else  #asientos(b) - #pasajeros(b)
+                              fi
+
+        #pasajerosParados(b) ≡  if  #pasajeros(b) <= #asientos  then 0
+                                else  #pasajeros(b) - #asientos(b)
+                                fi
+
+FIN TAD
+
+// TAD PARADA en una implementacion lo podria tomar como un nat

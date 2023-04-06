@@ -5,6 +5,9 @@ TAD t:
         t, Observadores, Generadores
     Usa
         .
+    Parámetros formales
+        Generos
+            .
 
     Igualdad observacional
         (∀ t1, t2: t)
@@ -14,6 +17,9 @@ TAD t:
         .
     
     Generadores
+        .
+
+    Otras operaciones
         .
 
     Axiomas
