@@ -25,18 +25,19 @@ TAD BAÑO:
 
     Igualdad observacional
         (∀ b1, b2: baño)(∀ p: persona)
-        (b1 =obs b2)  ⇔  (alumnoEnBaño(b1) = alumnoEnBaño(b2)  ∧  filaBaño(b1) = filaBaño(b2)  ∧  vecesBaño(b1, p) = vecesBaño(b2, p))
+        (b1 =obs b2)  ⇔  (alumnoEnBaño(b1) = alumnoEnBaño(b2)  ∧  filaBaño(b1) = filaBaño(b2)  ∧  
+                                vecesBaño(b1, p) = vecesBaño(b2, p))
 
     Observadores basicos
-        alumnoEnBaño: baño b ➔ persona               {bañoOcupado?(b)}
+        alumnoEnBaño: baño b ➔ persona                             {bañoOcupado?(b)}
         filaBaño: baño ➔ secu(persona)
         vecesBaño: baño × persona ➔ nat
     
     Generadores
-        ocuparBaño: persona ➔ baño                     {not bañoOcupado?(b)}
-        alumnoAFila: persona × baño b ➔ baño          {añoOcupado?(b)}
-        alumnoSaleFila: persona × baño b ➔ baño         {largo(filaBaño(b)) > 0}
-        acompañaProfe: baño b ➔ baño                     {largo(filaBaño(b)) > 4, not bañoOcupado?(b)}
+        ocuparBaño: persona × baño b ➔ baño                        {not bañoOcupado?(b)}
+        alumnoAFila: persona × baño b ➔ baño                       {añoOcupado?(b)}
+        alumnoSaleFila: persona × baño b ➔ baño                    {largo(filaBaño(b)) > 0}
+        acompañaProfe: baño b ➔ baño                               {largo(filaBaño(b)) > 4, not bañoOcupado?(b)}
 
     Otras operaciones
         bañoOcupado?: baño ➔ bool
@@ -45,17 +46,17 @@ TAD BAÑO:
     Axiomas
         (∀ b: baño)(∀ p, q: persona)
 
-        alumnoEnBaño(ocuparBaño(p)) ≡  p
+        alumnoEnBaño(ocuparBaño(p, b)) ≡  p
         alumnoEnBaño(alumnoAFila(p, b)) ≡  alumnoEnBaño(b)
         alumnoEnBaño(alumnoSaleFila(p, b)) ≡  alumnoEnBaño(b)
-        alumnoEnBaño(acompañaProfe(b)) ≡  alumnoEnBaño(b)
+        //  alumnoEnBaño(acompañaProfe(b)) ≡  alumnoEnBaño(b) // este no me cierra
 
-        filaBaño(ocuparBaño?(b)) ≡  filaBaño(b)
+        filaBaño(ocuparBaño(p, b)) ≡  filaBaño(b)
         filaBaño(alumnoAFila(p, b)) ≡  filaBaño(p, b) ◦ p
         filaBaño(alumnoSaleFila(p, b)) ≡ quitar(p, b)
         filaBaño(acompañaProfe(b)) ≡ ()
 
-        vecesBaño(ocuparBaño(p), q) ≡  if  p = q  then 1 + vecesBaño(b, q)
+        vecesBaño(ocuparBaño(p, b), q) ≡  if  p = q  then 1 + vecesBaño(b, q)
                                        else  vecesBaño(b, q)
                                        fi 
         vecesBaño(alumnoAFila(p, b), q) ≡  vecesBaño(b, q)
@@ -64,7 +65,7 @@ TAD BAÑO:
                                           else  vecesBaño(b, p)
                                           fi
 
-        bañoOcupado(ocuparBaño(p)) ≡  true
+        bañoOcupado(ocuparBaño(p, b)) ≡  true
         bañoOcupado(alumnoAFila(p, b)) ≡  true
         bañoOcupado(alumnoSaleFila(p, b)) ≡  true
         bañoOcupado(acompañaProfe(b)) ≡  true

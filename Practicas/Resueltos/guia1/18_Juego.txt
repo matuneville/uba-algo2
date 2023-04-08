@@ -1,0 +1,82 @@
+Ejercicio 18            simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔ • ◦
+
+Se desea modelar el juego de mesa que se describe a continuacion usando TADs. El mismo se juega sobre
+un tablero cuadrado de 64 × 64 posiciones. En este juego participan siempre 64 jugadores. El juego comienza
+cuando los jugadores se posicionan en el tablero: esto es, eligen una celda del tablero y una direccion (norte, sur,
+este, oeste). No se admiten dos jugadores posicionados en la misma celda. El puntaje inicial de cada jugador
+es 0.
+En cada turno del juego algun jugador avanza o cambia de direccion. Si avanza, se desplaza a la celda
+siguiente de acuerdo con la direccion que tiene el jugador. Si se encuentra posicionado en un extremo del tablero
+y tiene una direccion que lo lleva fuera del tablero, al avanzar se posiciona en el otro extremo del tablero (por
+ejemplo, si se encuentra en la celda mas al norte de la columna i y tiene direccion norte, al avanzar se desplaza
+a la celda mas al sur de la columna i). Si al desplazarse, un jugador llega a una celda que esta ocupada por
+otro jugador, este ultimo es eliminado y quien se movio gana todos los puntos que habıa acumulado el jugador
+eliminado mas un bonus de 1 punto. Si cambia de direccion, el jugador no se desplaza.
+En cada turno, se elige no determinısticamente el jugador que tiene derecho a moverse o cambiar de direccion.
+El juego termina cuando un jugador alcanza un puntaje que es superior a 32.
+Puede asumir que se encuentran definidos los tipos Posicion, Direccion y Tablero, con Tablero definido
+de la siguiente manera:
+
+TAD Jugador: podria ser un nat que va del 1 al 64 inclusive
+TAD DataJugadores: dicc(jugador, tupla{posicion, direccion, puntos})
+
+TAD JUEGO:
+    Generos
+        juego
+    Exporta
+        juego, Observadores, Generadores, Otras operaciones
+    Usa
+        Posicion, Direccion, Tablero, bool
+
+    Igualdad observacional
+        (∀ j1, j2: juego)
+        (j1 =obs j2)  ⇔  (jugadores(j1) = jugadores(j2))
+
+    Observadores basicos                        // el tablero al ser igual en todo juego, no lo observo
+        jugadores: juego ➔ dataJugadores
+    
+    Generadores                              ↓ esto es igual a dataJugadores ↓
+        inicioJuego: tablero × jugador j × dicc(jugador, tupla{posicion, direccion, puntos p}) ➔ juego            {p = 0}
+        cambioDireccion: tablero × jugador × dataJugadores × direccion ➔ juego
+        muevoJugador: tablero × jugador × dataJugadores ➔ juego
+
+    Otras operaciones
+        juegoGanado?: juego j × dataJugadores dat ➔ bool                               {dat = jugadores(j)} 
+        dameJugadorEn: tablero t × posicion pos × dataJugadores dat ➔ jugador          {hayJugadorEn?(t, pos, dat), dat = jugadores(j)}
+        hayJugadorEn?: tablero × posicion × dataJugadores➔ bool                        {dat = jugadores(j)}
+
+    Axiomas
+        (∀ t: tablero)(∀ dat: dataJugadores)(∀ j: jugador)
+
+        #####   aca, defino SgtePOS = siguiente(π1.obtener(j, dat), π2.obtener(j, dat), t)   #####
+
+        jugadores(inicioJuego(t, dat)) ≡  dat
+
+        jugadores(muevoJugador(t, j, dat)) ≡  if  hayJugadorEn?(t, SgtePOS, dat)
+                                                then definir(j,
+                                                            tupla{SgtePOS,  π2.obtener(j, dat),  π3.obtener(j, dat) + 1 + π3.(dameJugadorEn(t, SgtePOS))},
+                                                            dat)
+                                              else   definir(j,
+                                                            tupla{SgtePOS,  π2.obtener(j, dat),  π3.obtener(j, dat)},
+                                                            dat)
+                                            fi
+
+        jugadores(cambioDireccion(t, j, dat, dir)) ≡  definir(j, tupla{π1.obtener(j, dat), dir, π3.obtener(j, dat)})
+
+        juegoGanado?(j, dat) ≡  if  vacio?(claves(dat))  then  false
+                                else  
+                                    if π3.obtener(dameUno(claves(dat))) > 32  then  true
+                                    else  juegoGanado?((j, borrar(obtener(dameUno(claves(dat))))))
+
+        dameJugadorEn(t, pos, dat) ≡  if  π1.obtener(dameUno(claves(dat))) = pos  then  dameUno(claves(dat))
+                                      else  dameJugadorEn(t, pos, borrar(obtener(dameUno(claves(dat)))))
+                                      fi
+
+        hayJugadorEn?(t, pos, dat) ≡  if  vacio?(claves(dat))  then  false 
+                                      else 
+                                          if π1.obtener(dameUno(claves(dat))) = pos  then  true
+                                          else  hayJugadorEn?(t, pos, borrar(obtener(dameUno(claves(dat)))))
+                                          fi
+                                      fi
+
+FIN TAD

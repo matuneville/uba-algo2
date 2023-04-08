@@ -1,0 +1,101 @@
+Ejercicio 16                simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔ • ◦
+
+Un banco posee dos cajas y una unica cola. La caja A, atiende solo gente bien, mientras que la caja B atiende
+a los proles, siempre y cuando no haya en la cola gente bien, que tiene prioridad en esa caja. Por razones de
+seguridad las personas deben identificarse dando su numero de DNI al entrar al banco, momento en el cual se
+ponen en la cola. Pueden cansarse de esperar y retirarse antes de ser atendidas. Cuando los cajeros estan libres
+gritan “pase el que sigue”, momento en el que atienden al proximo de la cola segun el criterio de cada caja, que
+se retira sin dilaciones al terminar su transaccion.
+A los cajeros se les paga por cada operacion realizada, de manera que interesa saber a quienes atendio cada
+cajero, y por razones de seguridad, es necesario tener un control estricto de quienes entraron y salieron del
+banco
+
+TAD Cliente: es tupla{nat, bool}, el nat es el DNI y el bool es Bien = true, Prole = false
+
+TAD BANCO:
+    Generos
+        banco
+    Exporta
+        t, Observadores, Generadores
+    Usa
+        secu, cliente, bool
+
+    Igualdad observacional
+        (∀ b1, b2: banco)
+        (b1 =obs b2)  ⇔  (filaBanco(b1) = filaBanco(b2)  ∧  ocupadaCajaA?(b1) = ocupadaCajaA?(b2)  ∧ 
+                         ocupadaCajaB?(b1) = ocupadaCajaB?(b2)  ∧  clientesCajaA(b1) = clientesCajaA(b2)
+                                        ∧  clientesCajaA(b1) = clientesCajaA(b2))
+
+    Observadores basicos
+        filaBanco: banco ➔ secu(cliente)      
+        ocupadaCajaA?: banco ➔ bool
+        ocupadaCajaB?: banco ➔ bool
+        clientesCajaA: banco ➔ secu(cliente)       // ordenadas de izq a der mientras pasan los clientes
+        clientesCajaB: banco ➔ secu(cliente)
+    
+    Generadores
+        atenderClienteA: banco b × cliente c ➔ banco                   {c = proximoClienteA(b, filaBanco(b))}
+        atenderClienteB: banco b × cliente c ➔ banco                   {c = proximoClienteB(b, filaBanco(b))}
+        clienteAFila: banco × cliente ➔ banco
+        saleCliente: banco × cliente ➔ banco
+
+    Otras operaciones
+        proximoClienteA: banco × secu(cliente) s ➔ cliente         {s = filaBanco(b), largo(filaBanco(b)) > 0}
+        proximoClienteB: banco × secu(cliente) s ➔ cliente         {s = filaBanco(b), largo(filaBanco(b)) > 0}
+        hayClienteBien?: banco × secu(cliente) s ➔ bool            {s = filaBanco(b), largo(filaBanco(b)) > 0}
+
+    Axiomas
+        (∀ b: banco)(∀ c: cliente)
+        filaBanco(atenderClienteA(b, c)) ≡ if  vacia?(filaBanco(b)) then vacia
+                                           else quitar(filaBanco, c)
+                                           fi
+        filaBanco(atenderClienteB(b, c)) ≡ if  vacia?(filaBanco(b)) then vacia
+                                           else quitar(filaBanco, c)
+                                           fi
+        filaBanco(clienteAFila(b, c)) ≡ filaBanco(b) ◦ c
+        filaBanco(saleCliente(b, c)) ≡ if  está?(c, filaBanco(b)) then quitar(filaBanco(b), c)
+                                       else filaBanco(b)                                            
+                                       fi
+
+        ocupadaCajaA?(atenderClienteA(b, c)) ≡ true
+        ocupadaCajaA?(atenderClienteB(b, c)) ≡ ocupadaCajaA?(b)
+        ocupadaCajaA?(clienteAFila(b, c)) ≡ ocupadaCajaA?(b)
+        ocupadaCajaA?(saleCliente(b, c)) ≡ if  ult(clientesCajaA(b)) = c  then false
+                                           else ocupadaCajaA?(b)
+                                           fi
+
+        ocupadaCajaB?(atenderClienteA(b, c)) ≡ ocupadaCajaB?(b)
+        ocupadaCajaB?(atenderClienteB(b, c)) ≡ true
+        ocupadaCajaB?(clienteAFila(b, c)) ≡ ocupadaCajaB?(b)
+        ocupadaCajaB?(saleCliente(b, c)) ≡ if  ult(clientesCajaB(b)) = c  then false
+                                           else ocupadaCajaB?(b)
+                                           fi
+
+        clientesCajaA(atenderClienteA(b, c)) ≡ clientesCajaA(b) ◦ c
+        clientesCajaA(atenderClienteB(b, c)) ≡ clientesCajaA(b)
+        clientesCajaA(clienteAFila(b, c)) ≡ clientesCajaA(b)
+        clientesCajaA(saleCliente(b, c)) ≡ clientesCajaA(b)
+
+        clientesCajaB(atenderClienteA(b, c)) ≡ clientesCajaB(b)
+        clientesCajaB(atenderClienteB(b, c)) ≡ clientesCajaB(b) ◦ c
+        clientesCajaB(clienteAFila(b, c)) ≡ clientesCajaB(b)
+        clientesCajaB(saleCliente(b, c)) ≡ clientesCajaB(b)
+
+        proximoClienteA(b, s) ≡ if  π2.prim(s) then prim(s)
+                                else proximoClienteA(b, fin(s))
+                                fi
+
+        proximoClienteB(b, s) ≡ if  hayClienteBien?(b, s) then proximoClienteA(b, s)
+                                else  prim(s)
+                                fi
+
+        hayClienteBien?(b, s) ≡ if  vacia?(s) then false
+                                else  if  π2.prim(s)  then true
+                                      else hayClienteBien?(b, fin(s))
+                                      fi
+                                fi
+
+
+
+FIN TAD
+

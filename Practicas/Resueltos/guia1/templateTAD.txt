@@ -29,4 +29,4 @@ TAD t:
 
 FIN TAD
 
-simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔
+simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔ • ◦

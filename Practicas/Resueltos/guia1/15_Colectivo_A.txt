@@ -27,9 +27,9 @@ TAD BUS:
         #pasajeros: bus ➔ nat
     
     Generadores
-        iniciaBus: nat n × secu(paradas) ➔ bus         {n mod 2 == 0, largo(s) >= 2} tomo la ultima parada como el final
+        iniciaBus: nat n × secu(paradas) ➔ bus                     {n mod 2 == 0, largo(s) >= 2}
         subePasajero: bus ➔ bus                                    
-        bajaPasajero: bus ➔ bus                               {#pasajeros(b) > 0}
+        bajaPasajero: bus ➔ bus                                    {#pasajeros(b) > 0}
         pasoParada: parada × secu(parada) × nat × nat ➔ bus      // los nat son gente q sube y q baja
         
     Otras operaciones
