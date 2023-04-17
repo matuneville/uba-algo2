@@ -30,8 +30,12 @@ bool SistemaDeMensajes::registrado(int id) const{
     return (_conns[id] != nullptr);
 }
 
+string SistemaDeMensajes::ipJugador(int id) const {
+    return _conns[id]->ip();
+}
+
 Proxy* SistemaDeMensajes::obtenerProxy(int id){
-    Proxy* proxy = new Proxy(_conns[id]);
+    Proxy* proxy = new Proxy(&_conns[id]);
     _proxys.push_back(proxy);
     return proxy;
 }
