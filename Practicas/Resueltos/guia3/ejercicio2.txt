@@ -1,0 +1,8 @@
+Ejercicio 2 
+Se propone la siguiente estructura para representar a los polinomios que tienen a lo sumo grado n (ver TAD
+en Practica 1):
+polinomio se representa con estr
+donde estr es tupla(grado: nat, coef : array[0 . . . n] de nat)
+Se pide:
+a) Definir el invariante de representacion y la funcion de abstraccion.
+b) Escribir la interface completa y el algoritmo para la funcion evaluar.
