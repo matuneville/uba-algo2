@@ -17,7 +17,7 @@ Se pide:
 ```
 Rep: estr -> bool
 Rep(e) = true <=>
-            (e.grado = length(e.coef) - 1)  ∧  (e.coef[e.grado] != 0)
+            (e.grado = length(e.coef) - 1)  ∧  (e.coef[e.grado] != 0) 
 ```
 
 ### Funcion de abstraccion
