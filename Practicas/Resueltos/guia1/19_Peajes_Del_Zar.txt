@@ -1,0 +1,98 @@
+Ejercicio 19 (Peajes del Zar)
+
+La empresa Peajes Del Zar (PDZ) se encarga de administrar el peaje principal de la ruta 2. El peaje se
+conforma por un grupo de cabinas y un listado de precios que indica el monto a abonar de cada tipo de
+vehıculo. A medida que transcurre la jornada, autos de distinto tipo van llegando a las distintas cabinas (cada
+auto elige a que cabina dirigirse). Por otro lado, los empleados de cada cabina van atendiendo a cada vehıculo
+en orden de llegada, es decir, registran en el sistema un nuevo cobro.
+En ciertas situaciones, una fila correspondiente a alguna de las cabinas sobrepasa el lımite maximo de autos
+que pueden estar esperando a ser atendidos (el lımite de vehıculos que puede tener como maximo una fila lo
+determina la gerencia de la empresa cuando se inicia el sistema). Cuando esto ultimo ocurre se levantan todas
+las barreras, dejando pasar a la mitad de los autos de cada fila sin cobrarles. Otro requerimiento del cliente es
+poder consultar cuanto facturo cada una de las cabinas.
+Modelar con un TAD a la empresa PDZ teniendo en cuenta que ademas nos interesa saber dado un tipo de vehıculo,
+por cuales cabinas pasaron mas vehıculos de ese tipo. En este ultimo caso no importa si pasaron
+con la barrera en alto o abonaron la tarifa correspondiente, es decir, si preguntamos por donde pasaron mas
+vehıculos del tipo camion una respuesta posible serıa decir que por las cabinas uno y dos.
+
+TAD auto es string // el string es cada modelo de auto
+TAD cabina es nat
+TAD precio es nat
+TAD limite es nat
+
+colaVacia seria otraOperacion del TAD cola (extendida) que
+desencola la fila hasta llegar a vacia?(c) = true
+lo mismo con largo(c) que a medida que desencola suma +1
+hasta llegar a vacia?(c) = true
+
+TAD PDZ:
+    Generos
+        t 
+    Exporta
+        peaje, Observadores, Generadores
+    Usa
+        .
+    Parámetros formales
+        Generos
+            .
+
+    Igualdad observacional
+        (∀ t1, t2: t)
+        (t1 =obs t2)  ⇔  ()
+
+    Observadores basicos
+        #cabinas: peaje  ➔  nat
+        colaEnCabina: peaje × cabina  ➔  cola(auto)
+        precios: peaje  ➔  dicc(auto, precio)
+        limiteCola: peaje  ➔  limite
+        #autosQPasaronPor: peaje × cabina × auto ➔  nat
+    
+    Generadores
+        abroPeaje: conj(cabina) × dicc(auto, precio) × limite  ➔  peaje
+        nuevoAuto: auto × cabina × peaje  ➔  peaje
+        atenderAuto: cabina × peaje ➔  peaje
+
+    Otras operaciones
+        sumoAutosEnCola: cola(auto) × auto  ➔  nat
+
+    Axiomas
+        (∀p: peaje)(∀d: dicc(auto, precio))(∀c, q: cabina)(∀cc: conj(cabina))(∀a1, a2: auto)
+        #cabinas(abroPeaje(cc, d, l))  ≡  #(cc)
+        #cabinas(nuevoAuto(a1, c, p))  ≡  #(cc)
+        #cabinas(atenderAuto(c, p))  ≡  #(cc)
+
+        colaEnCabina(abroPeaje(cc, d, l))  ≡ <>
+        colaEnCabina(nuevoAuto(a1, c, p))  ≡ encolar(a1, colaEnCabina(p, c))
+        colaEnCabina(atenderAuto(c, p))  ≡  if  largo(colaEnCabina(p, c)) ≤ limiteCola(p)
+                                                then  desencolar(colaEnCabina(p, c))
+                                            else  colaVacia()
+                                            fi
+
+        precios(abroPeaje(cc, d, l))  ≡  d
+        precios(nuevoAuto(a1, c, p))  ≡  precios(p)
+        precios(atenderAuto(c, p))  ≡  precios(p)      
+
+        limiteCola(abroPeaje(cc, d, l))  ≡  l
+        limiteCola(nuevoAuto(a1, c, p))  ≡  limiteCola(p)
+        limiteCola(atenderAuto(c, p))  ≡  limiteCola(p)  
+
+        #autosQPasaronPor(abroPeaje(cc, d, l), q, a2)  ≡  0
+        #autosQPasaronPor(nuevoAuto(a1, c, p), q, a2)  ≡  #autosQPasaronPor(p, q, a2)
+        #autosQPasaronPor(atenderAuto(c, p), q, a2)  ≡  if  largo(colaEnCabina(p, c)) ≤ limiteCola(p)
+                                                          then  if  (c = q  ∧  proximo(colaEnCabina(p, c)) = a2)
+                                                                  then  #autosQPasaronPor(p, q, a2) + 1
+                                                                else  #autosQPasaronPor(p, q, a2)
+                                                                fi
+                                                        else  #autosQPasaronPor(p, q, a2) + #sumoAutosEnCola(colaEnCabina(p, c), a2)
+                                                        fi
+         
+        sumoAutoEnCola(cl, a1)  ≡   if  vacia?(cl)  then  0
+                                    else  
+                                        if  proximo(cl) = a1  then  1 + sumoAutoEnCola(desencolar(cl), a1)
+                                        else  sumoAutoEnCola(desencolar(cl), a1)
+                                        fi
+                                    fi
+
+FIN TAD
+
+simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤
