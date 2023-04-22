@@ -1,0 +1,97 @@
+[
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++    -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/gtest.dir/tests/gtest-1.8.1/gtest-all.cc.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/gtest-1.8.1/gtest-all.cc",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/gtest-1.8.1/gtest-all.cc"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++    -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/gtest_main.dir/tests/gtest-1.8.1/gtest_main.cc.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/gtest-1.8.1/gtest_main.cc",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/gtest-1.8.1/gtest_main.cc"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=1   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej1.dir/tests/test_geometria.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=2   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej2.dir/tests/test_geometria.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=3   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej3.dir/tests/test_geometria.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=4   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej4.dir/tests/test_geometria.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=5   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej5.dir/tests/test_geometria.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=6   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej6.dir/tests/test_geometria.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_geometria.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=7   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej7.dir/tests/test_recordatorios.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=8   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej8.dir/tests/test_recordatorios.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=9   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej9.dir/tests/test_recordatorios.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=10   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej10.dir/tests/test_recordatorios.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=11   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej11.dir/tests/test_recordatorios.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=12   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej12.dir/tests/test_recordatorios.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=13   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej13.dir/tests/test_recordatorios.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++ -DEJ=14   -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej14.dir/tests/test_recordatorios.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_recordatorios.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++    -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/ej15.dir/tests/test_juego.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_juego.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_juego.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++    -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/truco.dir/tests/test_truco.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_truco.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_truco.cpp"
+},
+{
+  "directory": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/build",
+  "command": "/usr/bin/g++    -pthread -std=gnu++11 -ggdb3 -g -g -std=gnu++11 -o CMakeFiles/libreta.dir/tests/test_libreta.cpp.o -c /home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_libreta.cpp",
+  "file": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo02/tests/test_libreta.cpp"
+}
+]
