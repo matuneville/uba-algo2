@@ -9,18 +9,21 @@ donde _estr_ es tupla(altura: nat, izq: puntero(estr), raiz : α, der : puntero(
 
 ### Invariante de Representacion
 Tiene que cumplir:
-1. 
+1. altura es el largo de la rama mas larga del arbol
+2. si no hay raiz entonces no hay izq y der
 ```
 Rep: estr ➔ bool
-Rep(e) ≡
+Rep(e) ≡ (*(e.raiz) = NULL  ⇒  e.izq = NULL ∧ e.der = NULL) ∧
+         (e.altura = max(izq.altura, der.altura)) ∧
+
 ```
 
 ### Funcion de abstraccion
 ```
-Abs: estr e ➔ t
-Abs(e) = t / 
+Abs: estr e ➔ Arbol Binario
+Abs(e) = ab : Arbol Binario / 
         
 
 ```
 
-simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ```
+simbolos × ➔ ⇒ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ```

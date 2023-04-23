@@ -93,3 +93,13 @@
 331	521	1682181563228622260	correrTests	a27b318b57d0cfb6
 1	1046	0	CMakeFiles/correrValgrind	d3acaa89bc895ef
 1	1046	0	/home/neville/GitHub/uba-algo2/Laboratorios/Labo05/cmake-build-debug/CMakeFiles/correrValgrind	d3acaa89bc895ef
+2	1544	0	CMakeFiles/correrValgrind	d3acaa89bc895ef
+2	1544	0	/home/neville/GitHub/uba-algo2/Laboratorios/Labo05/cmake-build-debug/CMakeFiles/correrValgrind	d3acaa89bc895ef
+2	359	1682262761871338264	CMakeFiles/correrTests.dir/src/Lista.cpp.o	c57fd270e20d5c47
+359	579	1682262762091352009	correrTests	a27b318b57d0cfb6
+580	1973	0	CMakeFiles/correrValgrind	d3acaa89bc895ef
+580	1973	0	/home/neville/GitHub/uba-algo2/Laboratorios/Labo05/cmake-build-debug/CMakeFiles/correrValgrind	d3acaa89bc895ef
+1	323	1682262771099921502	CMakeFiles/correrTests.dir/src/Lista.cpp.o	c57fd270e20d5c47
+323	518	1682262771291933774	correrTests	a27b318b57d0cfb6
+518	1826	0	CMakeFiles/correrValgrind	d3acaa89bc895ef
+518	1826	0	/home/neville/GitHub/uba-algo2/Laboratorios/Labo05/cmake-build-debug/CMakeFiles/correrValgrind	d3acaa89bc895ef

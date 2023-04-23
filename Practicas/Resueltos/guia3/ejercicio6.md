@@ -45,18 +45,18 @@ Tengo que ver:
 4. El grupoMasNumeroso sea el mismo
 ```
 Abs: estr e ➔ altaFiesta
-Abs(e) = altaFiesta / (1) ∧ (2) ∧ (3) ∧ (4)
+Abs(e) = fiesta : altaFiesta / (1) ∧ (2) ∧ (3) ∧ (4)
 
-(1) = (∀i: nat)(0 ≤ i < largo(e.presentes) ⇒ not(e.presentes[i] ∈ invitadosPendientes(altaFiesta))) ∧
-    (∀p: persona)(p ∈ invitadosPendientes(altaFiesta) ⇒ not(∃i: nat)(0 ≤ i < largo(e.presentes) ⇒ e.presentes[i] = p))
+(1) = (∀i: nat)(0 ≤ i < largo(e.presentes) ⇒ not(e.presentes[i] ∈ invitadosPendientes(fiesta))) ∧
+    (∀p: persona)(p ∈ invitadosPendientes(fiesta) ⇒ not(∃i: nat)(0 ≤ i < largo(e.presentes) ⇒ e.presentes[i] = p))
 
-(2) = (∀r: regalo)(r ∈ regalos(altaFiesta) ⇒ (∃g:grupo)(definido?(g, e.grupoDe) ∧
-    personasPorRegalo(altaFiesta,r) = significado(g, e.grupoDe)))
+(2) = (∀r: regalo)(r ∈ regalos(fiesta) ⇒ (∃g:grupo)(definido?(g, e.grupoDe) ∧
+    personasPorRegalo(fiesta,r) = significado(g, e.grupoDe)))
 
 (3) = (∀g: grupo)(definido?(g, e.grupoDe) ⇒
-    personasPorRegalo(altaFiesta, significado(g, e.regaloDeGrupo)) = significado(g, e.grupoDe))
+    personasPorRegalo(fiesta, significado(g, e.regaloDeGrupo)) = significado(g, e.grupoDe))
 
-(4) = grupoMasNumeroso(altaFiesta) = e.grupoMasNumeroso
+(4) = grupoMasNumeroso(fiesta) = e.grupoMasNumeroso
 ```
 
 simbolos × ➔ ⇒ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ```

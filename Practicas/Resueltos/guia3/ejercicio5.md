@@ -35,12 +35,12 @@ Doble inclusion en cada una
 
 ```
 Abs: estr e ➔ filaBanco
-Abs(e) = filaBanco /
-        (∀p: persona)(((p ∈ e.entraron ⇒ Entró?(p,filaBanco)) ∧ (Entró?(p,filaBanco) ⇒ p ∈ e.entraron)) ∧ 
-        ((p ∈ e.atendidos ⇒ FueAtendido?(p,filaBanco)) ∧ (FueAtendido?(p,filaBanco) ⇒ p ∈ e.atendidos)) ∧ 
-        ((seColó?(p,filaBanco) ⇒ p ∈ e.colados) ∧ (p ∈  e.colados ⇒ seColó?(p,filaBanco))) ∧L
-        (esperando(p,filaBanco) ⇒ (∃i: nat)(0 ≤ i < largo(e.fila) ∧ e.fila[i] = p ∧ i = posicion(p,filaBanco))) ∧L
-        (∀i: nat)(0 ≤ i < largo(e.fila) ⇒ esperando(e.fila[i],filaBanco) ∧ i = posicion(p,filaBanco)) )
+Abs(e) = fila : filaBanco /
+        (∀p: persona)(((p ∈ e.entraron ⇒ Entró?(p,fila)) ∧ (Entró?(p,fila) ⇒ p ∈ e.entraron)) ∧ 
+        ((p ∈ e.atendidos ⇒ FueAtendido?(p,fila)) ∧ (FueAtendido?(p,fila) ⇒ p ∈ e.atendidos)) ∧ 
+        ((seColó?(p,fila) ⇒ p ∈ e.colados) ∧ (p ∈  e.colados ⇒ seColó?(p,fila))) ∧L
+        (esperando(p,fila) ⇒ (∃i: nat)(0 ≤ i < largo(e.fila) ∧ e.fila[i] = p ∧ i = posicion(p,fila))) ∧L
+        (∀i: nat)(0 ≤ i < largo(e.fila) ⇒ esperando(e.fila[i],fila) ∧ i = posicion(p,fila)) )
 ```
 
 simbolos × ➔ ⇒ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ```

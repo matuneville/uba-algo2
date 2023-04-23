@@ -25,8 +25,8 @@ Rep(e) ≡ e.grado = largo(e.coef) - 1  ∧  e.coef[grado] ≠ 0
 ### Funcion de abstraccion
 ```
 Abs: estr e ➔ polinomio
-Abs(e) = polinomio / 
-        (∀n: nat)(Evaluar(polinomio, n) = evaluar(e.coef, n))
+Abs(e) = pol : polinomio / 
+        (∀n: nat)(Evaluar(pol, n) = evaluar(e.coef, n))
 ```
 
 ### Algoritmos
