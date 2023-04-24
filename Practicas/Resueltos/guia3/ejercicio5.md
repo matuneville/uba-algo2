@@ -14,6 +14,23 @@ Escribir invariante de representacion y funcion de abstraccion
 
 ## Resolucion:
 
+Uso una extension del TAD Cola para poder "indexar"
+
+```
+TAD Cola(α) extendido
+
+   Otras operaciones
+     •[i]: cola(α) c × nat i   ➔   α
+        {0 ≤ i < tamaño(c), not(vacia?(c))}
+
+   Axiomas
+     (∀c: cola(α))(∀i: nat)
+     •[i] ≡ if  i = 0  then  próximo(c)
+            else  desencolar(c)[i-1]
+            fi
+```
+
+
 ### Invariante de Representacion
 Tiene que cumplir:
 1. Las personas de la fila entraron
@@ -35,7 +52,7 @@ Doble inclusion en cada una
 
 ```
 Abs: estr e ➔ filaBanco
-Abs(e) = fila : filaBanco /
+Abs(e) ≡ fila : filaBanco /
         (∀p: persona)(((p ∈ e.entraron ⇒ Entró?(p,fila)) ∧ (Entró?(p,fila) ⇒ p ∈ e.entraron)) ∧ 
         ((p ∈ e.atendidos ⇒ FueAtendido?(p,fila)) ∧ (FueAtendido?(p,fila) ⇒ p ∈ e.atendidos)) ∧ 
         ((seColó?(p,fila) ⇒ p ∈ e.colados) ∧ (p ∈  e.colados ⇒ seColó?(p,fila))) ∧L

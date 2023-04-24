@@ -9,19 +9,26 @@ donde _estr_ es tupla(altura: nat, izq: puntero(estr), raiz : α, der : puntero(
 
 ### Invariante de Representacion
 Tiene que cumplir:
-1. altura es el largo de la rama mas larga del arbol
+1. si hay izq y/o der, entonces hay raiz
 2. si no hay raiz entonces no hay izq y der
 ```
 Rep: estr ➔ bool
-Rep(e) ≡ (*(e.raiz) = NULL  ⇒  e.izq = NULL ∧ e.der = NULL) ∧
-         (e.altura = max(izq.altura, der.altura)) ∧
+Rep(e) ≡ ((e.izq ≠ NULL ∨ e.der ≠ NULL) ⇒ *(e.raiz) ≠ NULL)  ∧
+         (*(e.raiz) = NULL  ⇒  e.izq = NULL ∧ e.der = NULL)
 
 ```
 
 ### Funcion de abstraccion
+Tengo que ver que:
+1. Si e.raiz es NULL entonces ab es Nil
+2. Raiz sea igual a e.raiz
+3. izq sea igual a e.izq
+4. der sea igual a e.der
 ```
 Abs: estr e ➔ Arbol Binario
 Abs(e) = ab : Arbol Binario / 
+        (*(e.raiz) = NULL  ⇔  nil?(ab)) ∧
+        (not(nil?(ab)) ⇒ *(e.izq) = izq(ab) ∧ *(e.der) = der(ab) ∧ e.raiz = raiz(ab))
         
 
 ```

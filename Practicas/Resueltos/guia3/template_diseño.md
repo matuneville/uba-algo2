@@ -13,7 +13,7 @@ Rep(e) ≡
 ### Funcion de abstraccion
 ```
 Abs: estr e ➔ t
-Abs(e) = t / 
+Abs(e) ≡ t / 
         
 
 ```
