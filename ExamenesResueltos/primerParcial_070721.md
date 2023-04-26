@@ -69,8 +69,9 @@ Tiene que cumplir:
 5. Que ninguna persona aparezca en 2 o mas ciudades en e.esperando
 6. Que ninguna persona aparezca en 2 o mas ciudades en e.residencia
 7. Que en e.esperando, e.vacunados y e.residencia esten las mismas personas
-
-Creo que con e.frascos no hay nada que chequear por ahora
+8. Que en e.frascos no haya ciudades repetidas
+9. Solo puede haber frascos disponibles si hay menos de 5 personas esperando a vacunarse
+10. Que las ciudades de e.frascos sean las mismas que las de e.vacunados
 ```
 Rep: estr ➔ bool
 Rep(e) ≡ (1) ∧ (2) ∧ (3) ∧ (4) ∧ (5) ∧ (6) ∧ (7)
@@ -90,6 +91,12 @@ Rep(e) ≡ (1) ∧ (2) ∧ (3) ∧ (4) ∧ (5) ∧ (6) ∧ (7)
 (5) y (6) ≡
       (∀c,c': ciudad)(obtener(c, e.vacunados) ∩ obtener(c', e.vacunados) = vacio  ∧ 
                       obtener(c, e.esperando) ∩ obtener(c, e.esperando) = vacio)
+
+(8) ≡ not(∃t,t': tupla(ciudad,nat))(t ≠ t' ∧  t ∈ e.frascos ∧  t' ∈ e.frascos ∧  π1.(t) = π1.(t'))
+
+(9) ≡ (∀t: tupla(ciudad,nat))(t ∈ e.frascos ⇒ #(obtener(π1.(t), e.esperando)) < 5)
+
+(10) ≡ (∀t: tupla(ciudad,nat))(t ∈ e.frascos ⇒ π1.(t) ∈ claves(e.vacunados) ∧ #(e.frascos) = #(claves(e.vacunados)))
 ```
 
 ### Funcion de abstraccion

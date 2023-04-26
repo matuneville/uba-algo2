@@ -27,6 +27,50 @@ TAD Arbol Binario Extendido
                     fi
 ```
 
+
+# Ejercicio 2
+
+```
+   Axiomas  (∀p,q,r: producto)(∀s: stock)(∀n: nat)
+      // tieneSustituto?(p, abrirTienda) // no se axiomatiza porque no cumple la restriccion de p ∈ productos
+      tieneSustituto?(p, nuevoProducto(s, q, n)) ≡ if  p = q  then false
+                                                   else tieneSustituto?(s, p)
+                                                   fi
+      tieneSustituto?(p, compra(s, q, n)) ≡  tieneSustituto?(p, s)
+      tieneSustituto?(p, venta(s, q, n)) ≡  tieneSustituto?(p, s)
+      tieneSustituto?(p, defSustituto(s, q, r)) ≡  if p = q  then true
+                                                   else tieneSustituto?(p, s)
+                                                   fi
+                                           
+      sustituto(p, nuevoProducto(s, q, n)) ≡  sustituto(p, s)
+      sustituto(p, compra(s, q, n)) ≡  sustituto(p, s)
+      sustituto(p, venta(s, q, n)) ≡  sustituto(p, s)
+      sustituto(p, defSustituto(s, q, r)) ≡  if  p = q  then r
+                                             else sustituto(p, s)
+                                             fi
+
+      #disponibles(p, nuevoProducto(s, q, n)) ≡ if p = q  then 0
+                                                else #disponibles(p, s)
+                                                fi
+      #disponibles(p, compra(s, q, n)) ≡  if p = q  then #disponibles(p, s) + n
+                                          else #disponibles(p, s)
+                                          fi
+      #disponibles(p, venta(s, q, n)) ≡  if p = q  then 
+                                             if  #disponibles(p, s) ≤ n  then 0
+                                             else  #disponibles(p, s) - n
+                                             fi
+                                         else  #disponibles(p, s)
+                                         fi
+      #disponibles(p, defSustituto(s, q, r)) ≡  #disponibles(p, s)
+
+      bajoUmbral (s) ≡ // no entiendo que pide hacer //
+
+      #disponiblesSust(s, p) ≡ if  tieneSustituto?(p, s)  then #disponibles(sustituto(p,s), s)
+                               else 0
+                               fi
+```
+
+
 # Ejercicio 3
 **Datos importantes para diferenciar dos instancias de TAD:** Materias, aulas y su capacidad, franjas horarias, reservas de cada aula con materia y franja.  
 
@@ -57,7 +101,9 @@ TAD Sistema de Aulas
       buscoAulaLibre: SA × conj(aula) × franja ➔  conj(aula)
 
     Axiomas (∀s: SA)(∀f: franja)(∀ca: conj(aula))
+
       aulasLibres(s,f) ≡ buscoAulaLibre(s, aulas(s), f)
+
       buscoAulaLibre(s, ca, f) ≡ if vacio?(ca) then {}
                                  else
                                      if not def?(f, reservas(sa, dameUno(ca)))
