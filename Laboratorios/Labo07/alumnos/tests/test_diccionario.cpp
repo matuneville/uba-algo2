@@ -29,7 +29,22 @@ TEST(diccionario, dicc_int_int) {
 
 #if EJ >= 6
 
-// Agregar un test para diccionario con clave string y valor bool.
+TEST (diccionario, dicc_string_bool){
+    Diccionario<string, bool> d;
+    ASSERT_FALSE(d.def("Berlin"));
+    ASSERT_FALSE(d.def("Tokyo"));
+    d.definir("Berlin", true);
+    ASSERT_TRUE(d.def("Berlin"));
+    ASSERT_FALSE(d.def("Tokyo"));
+    ASSERT_FALSE(d.def("Madrid"));
+    ASSERT_EQ(d.obtener("Berlin"), true);
+    d.definir("Tokyo", false);
+    ASSERT_TRUE(d.def("Tokyo"));
+    ASSERT_TRUE(d.def("Berlin"));
+    ASSERT_FALSE(d.def("Madrid"));
+    ASSERT_EQ(d.obtener("Tokyo"), false);
+    ASSERT_EQ(d.obtener("Berlin"), true);
+}
 
 #endif
 
