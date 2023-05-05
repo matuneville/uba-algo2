@@ -22,8 +22,37 @@ TAD Centro:
 
     Otras operaciones
         personaQueMasAdopto: centro  ➔  persona
-
+        // para axiomatizar este usaria #apariciones de cada persona en historialPersonasQueAdoptaron
+        // y me quedaria con el mas grande, gg ez
 
 FIN TAD
 ```
 
+# Ejercicio 2
+
+```
+    UnirMuchos: conj(dicc) ➔ dicc
+
+    UnirMuchos(cd) ≡ 
+            if  vacio?(cd)  then vacio
+            else
+                 if vacio?(sinUno(cd)) then dameUno(cd)
+                 else
+                    unoDiccionarios(dameUno(cd), UnirMuchos(sinUno(cd)))
+                 fi
+            fi
+                         
+
+    
+    unoDiccionarios: dicc × dicc ➔ dicc
+
+    unoDiccionarios(d1, d2) ≡
+            if  d1 = vacio  then d2
+            else
+                if  d2 = vacio  then d1
+                else
+                    unoDiccionarios(borrar(dameUno(claves(d1)), d1),
+                                    definir(dameUno(claves(d1)), obtener(dameUno(claves(d1)), d1), d2)) 
+                fi
+            fi
+```
