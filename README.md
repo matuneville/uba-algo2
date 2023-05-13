@@ -16,7 +16,7 @@ Repo con teóricas, prácticas, resueltos de labo, talleres y TPs
 - Labo 6: Iterators y Algoritmos
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Laboratorios/Labo06/enunciado.pdf) y [Código](https://github.com/matuneville/uba-algo2/tree/main/Laboratorios/Labo06/src)
 - Labo 7: Templates
-  - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Laboratorios/Labo07/enunciado.pdf) y [Código](https://github.com/matuneville/uba-algo2/tree/main/Laboratorios/Labo07/src)
+  - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Laboratorios/Labo07/enunciado.pdf) y [Código](https://github.com/matuneville/uba-algo2/tree/main/Laboratorios/Labo07/alumnos/src)
 - Labo 8: Binary Search Tree, implementando Conjunto
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Laboratorios/Labo08/enunciado.pdf) y [Código](https://github.com/matuneville/uba-algo2/tree/main/Laboratorios/Labo08/src)
 - Labo 9: Tries, implementando Diccionario
