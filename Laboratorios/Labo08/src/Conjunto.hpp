@@ -29,7 +29,7 @@ bool Conjunto<T>::pertenece(const T& clave) const {
         if (actual->valor == clave) return true;
         else
             actual = (clave < actual->valor) ?
-                    actual->izq : actual->der;
+                     actual->izq : actual->der;
     }
 
     return actual != nullptr;
@@ -60,7 +60,7 @@ void Conjunto<T>::insertar(const T& clave) {
                     actual = actual->der;
                 }
             }
-            // veo izquierda
+                // veo izquierda
             else {
                 if (actual->izq == nullptr) {
                     actual->izq = nuevoNodo;
@@ -85,18 +85,23 @@ void Conjunto<T>::remover(const T& clave) {
             _raiz = nullptr;
         }
         else if(_raiz->der == nullptr){
-            _raiz = _raiz->izq;
+            Nodo* temp = _raiz->izq;
+            delete _raiz;
+            this->_raiz = temp;
         }
         else if(_raiz->izq == nullptr){
-            _raiz = _raiz->der;
+            Nodo* temp = _raiz->der;
+            delete _raiz;
+            this->_raiz = temp;
         }
         else {
             Nodo* predecesor = _raiz->izq;
             while (predecesor->der != nullptr) {
                 predecesor = predecesor->der;
             }
-            predecesor->der = _raiz->der;
-            _raiz = _raiz->izq;
+            T val = predecesor->valor;
+            this->remover(predecesor->valor);
+            this->_raiz->valor = val;
         }
     }
 
@@ -125,7 +130,7 @@ void Conjunto<T>::remover(const T& clave) {
                 delete actual->der;
                 actual->der = nullptr;
             }
-            // caso 1 hijos
+                // caso 1 hijos
             else if(actual->der->der == nullptr or actual->der->izq == nullptr){
                 Nodo* temp = nullptr;
                 if(actual->der->der == nullptr)
@@ -135,7 +140,7 @@ void Conjunto<T>::remover(const T& clave) {
                 delete actual->der;
                 actual->der = temp;
             }
-            // caso 2 hijos
+                // caso 2 hijos
             else{
                 Nodo* sucesor = actual->der->der;
                 while(sucesor->izq != nullptr){
@@ -153,7 +158,7 @@ void Conjunto<T>::remover(const T& clave) {
                 delete actual->izq;
                 actual->izq = nullptr;
             }
-            // caso 1 hijos
+                // caso 1 hijos
             else if(actual->izq->der == nullptr or actual->izq->izq == nullptr){
                 Nodo* temp = nullptr;
                 if(actual->izq->der == nullptr)
@@ -163,7 +168,7 @@ void Conjunto<T>::remover(const T& clave) {
                 delete actual->izq;
                 actual->izq = temp;
             }
-            // caso 2 hijos
+                // caso 2 hijos
             else{
                 Nodo* sucesor = actual->izq->izq;
                 while(sucesor->der != nullptr){
@@ -236,4 +241,3 @@ template <class T>
 void Conjunto<T>::mostrar(std::ostream&) const {
     assert(false);
 }
-

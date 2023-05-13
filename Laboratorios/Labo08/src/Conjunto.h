@@ -10,73 +10,73 @@ using namespace std;
 template <class T>
 class Conjunto
 {
-    private:
+private:
 
-        /**
-         * Completar con lo que sea necesario...
-         **/
+    /**
+     * Completar con lo que sea necesario...
+     **/
 
-        struct Nodo
-        {
-            // El constructor, toma el elemento al que representa el nodo.
-            Nodo(const T& v): valor(v), izq(nullptr), der(nullptr){}
+    struct Nodo
+    {
+        // El constructor, toma el elemento al que representa el nodo.
+        Nodo(const T& v): valor(v), izq(nullptr), der(nullptr){}
 
-            // El elemento al que representa el nodo.
-            T valor;
-            // Puntero a la raíz del subárbol izquierdo.
-            Nodo* izq;
-            // Puntero a la raíz del subárbol derecho.
-            Nodo* der;
-        };
+        // El elemento al que representa el nodo.
+        T valor;
+        // Puntero a la raíz del subárbol izquierdo.
+        Nodo* izq;
+        // Puntero a la raíz del subárbol derecho.
+        Nodo* der;
+    };
 
-        // Puntero a la raíz de nuestro árbol.
-        Nodo* _raiz;
-    public:
+    // Puntero a la raíz de nuestro árbol.
+    Nodo* _raiz;
+public:
 
-        // Constructor. Genera un conjunto vacío.
-        Conjunto();
+    // Constructor. Genera un conjunto vacío.
+    Conjunto();
 
-        // Destructor. Debe dejar limpia la memoria.
-        ~Conjunto();
+    // Destructor. Debe dejar limpia la memoria.
+    ~Conjunto();
 
-        // Inserta un elemento en el conjunto. Si este ya existe,
-        // el conjunto no se modifica.
-        void insertar(const T&);
+    // Inserta un elemento en el conjunto. Si este ya existe,
+    // el conjunto no se modifica.
+    void insertar(const T&);
 
-        // Decide si un elemento pertenece al conjunto o no.
-        bool pertenece(const T&) const;
+    // Decide si un elemento pertenece al conjunto o no.
+    bool pertenece(const T&) const;
 
-        // Borra un elemento del conjunto. Si este no existe,
-        // el conjunto no se modifica.
-        void remover(const T& clave);
+    // Borra un elemento del conjunto. Si este no existe,
+    // el conjunto no se modifica.
+    void remover(const T& clave);
 
-        // Siguiente elemento al recibido por párametro, en orden.
-        const T& siguiente(const T& elem);
+    // Siguiente elemento al recibido por párametro, en orden.
+    const T& siguiente(const T& elem);
 
-        // Devuelve el mínimo elemento del conjunto según <.
-        const T& minimo() const;
+    // Devuelve el mínimo elemento del conjunto según <.
+    const T& minimo() const;
 
-        // Devuelve el máximo elemento del conjunto según <.
-        const T& maximo() const;
+    // Devuelve el máximo elemento del conjunto según <.
+    const T& maximo() const;
 
-        // Devuelve la cantidad de elementos que tiene el conjunto.
-        unsigned int cardinal() const;
+    // Devuelve la cantidad de elementos que tiene el conjunto.
+    unsigned int cardinal() const;
 
-        // Muestra el conjunto.
-        void mostrar(std::ostream&) const;
+    // Muestra el conjunto.
+    void mostrar(std::ostream&) const;
 
-        // AUXILIARES PARA RECURSION
+    // AUXILIARES PARA RECURSION
 
-        void destruirRecursivo(Conjunto<T>::Nodo* nodo);
+    void destruirRecursivo(Conjunto<T>::Nodo* nodo);
 
-        unsigned int cardinalAux(const Conjunto<T>::Nodo* n) const;
+    unsigned int cardinalAux(const Conjunto<T>::Nodo* n) const;
 
 };
 
 template<class T>
 std::ostream& operator<<(std::ostream& os, const Conjunto<T>& c) {
-	 c.mostrar(os);
-	 return os;
+    c.mostrar(os);
+    return os;
 }
 
 #include "Conjunto.hpp"
