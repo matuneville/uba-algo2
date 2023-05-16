@@ -1,0 +1,69 @@
+EJERCICIO 7: DISEÑO DE ARBOL BINARIO
+
+TAD Árbol binario(α)
+    observadores básicos
+        nil? : ab(α) ➔ bool
+        raiz : ab(α) a ➔ α {¬ nil?(a)}
+        izq : ab(α) a ➔ ab(α) {¬ nil?(a)}
+        der : ab(α) a ➔ ab(α) {¬ nil?(a)}
+    generadores
+        nil : ➔ ab(α)
+        bin : ab(α) × α × ab(α) ➔ ab(α)
+    otras operaciones
+        altura : ab(α) ➔ nat
+        tamaño : ab(α) ➔ nat
+        inorder : ab(α) ➔ secu(α)
+        preorder : ab(α) ➔ secu(α)
+        postorder : ab(α) ➔ secu(α)
+        esHoja? : ab(α) ➔ bool
+
+
+NIL () ➔ res: ab(α)
+Pre ≡ {true}
+Post ≡ {res = nil()}
+Complejidad: O(1)
+Descripción: Crea arbol binario vacio.
+Aliasing:
+
+
+BIN (in a1: ab(α), in e: α, in a2: ab(α)) ➔ res: ab(α)
+Pre ≡ {true}
+Post ≡ {res = bin(a1,e,a2)}
+Complejidad: O(1)
+Descripción: Crea arbol binario con a1 subarbol izq, raiz e y a2 subarbol der.
+Aliasing:
+
+
+NIL? (in a: ab(α)) ➔ res: bool
+Pre ≡ {true}
+Post ≡ {res = true ⇔ nil?(a)}
+Complejidad: O(1)
+Descripción: True si el arbol es vacio, false si no.
+Aliasing:
+
+
+RAIZ (in a: ab(α)) ➔ res: α
+Pre ≡ {¬ nil?(a)}
+Post ≡ {res = raiz(a)}
+Complejidad: O(1)
+Descripción: Devuelve la raiz del arbol.
+Aliasing:
+
+
+IZQUIERDA (in a: ab(α)) ➔ res: ab(α)
+Pre ≡ {¬ nil?(a)}
+Post ≡ {res = izq(a)}
+Complejidad: O(1)
+Descripción: Devuelve el subarbol izquierdo del arbol.
+Aliasing:
+
+
+DERECHA (in a: ab(α)) ➔ res: ab(α)
+Pre ≡ {¬ nil?(a)}
+Post ≡ {res = der(a)}
+Complejidad: O(1)
+Descripción: Devuelve el subarbol derecho del arbol.
+Aliasing:
+
+
+simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬

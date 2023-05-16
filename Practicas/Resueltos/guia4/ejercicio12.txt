@@ -1,0 +1,5 @@
+EJERCICIO 12: DISEÑO DE TAD TEXTO
+
+a) estr es tupla< ocurrenciasPalabra: dicc(),
+                  palabrasMasRepetidas: conj(palabra)
+                >
