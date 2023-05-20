@@ -1,6 +1,17 @@
 #include "gtest-1.8.1/gtest.h"
 #include "../src/string_map.h"
 
+TEST(string_map_test, testMati) {
+    string_map<int> singleton;
+    singleton.insert(make_pair("#!&", 13));
+
+    EXPECT_TRUE(singleton.count("#!&") == 1);
+
+    singleton.erase("#!&");
+
+    EXPECT_FALSE(singleton.count("#!&") == 1);
+}
+
 TEST(string_map_test, vacio) {
     string_map<int> vacio;
 

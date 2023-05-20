@@ -23,7 +23,7 @@ Pre ≡ {true}
 Post ≡ {res = nil()}
 Complejidad: O(1)
 Descripción: Crea arbol binario vacio.
-Aliasing:
+Aliasing: devuelve referencia a arbol
 
 
 BIN (in a1: ab(α), in e: α, in a2: ab(α)) ➔ res: ab(α)
@@ -31,7 +31,7 @@ Pre ≡ {true}
 Post ≡ {res = bin(a1,e,a2)}
 Complejidad: O(1)
 Descripción: Crea arbol binario con a1 subarbol izq, raiz e y a2 subarbol der.
-Aliasing:
+Aliasing: devuelve referencia a arbol
 
 
 NIL? (in a: ab(α)) ➔ res: bool
@@ -47,7 +47,7 @@ Pre ≡ {¬ nil?(a)}
 Post ≡ {res = raiz(a)}
 Complejidad: O(1)
 Descripción: Devuelve la raiz del arbol.
-Aliasing:
+Aliasing: devuelve referencia constante a raiz de arbol
 
 
 IZQUIERDA (in a: ab(α)) ➔ res: ab(α)
@@ -55,7 +55,7 @@ Pre ≡ {¬ nil?(a)}
 Post ≡ {res = izq(a)}
 Complejidad: O(1)
 Descripción: Devuelve el subarbol izquierdo del arbol.
-Aliasing:
+Aliasing: devuelve referencia a arbol
 
 
 DERECHA (in a: ab(α)) ➔ res: ab(α)
@@ -63,7 +63,7 @@ Pre ≡ {¬ nil?(a)}
 Post ≡ {res = der(a)}
 Complejidad: O(1)
 Descripción: Devuelve el subarbol derecho del arbol.
-Aliasing:
+Aliasing: devuelve referencia a arbol
 
 
 simbolos × ➔ ∀ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬

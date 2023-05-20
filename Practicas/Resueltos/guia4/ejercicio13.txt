@@ -1,0 +1,28 @@
+EJERCICIO 13: DISEÑO DE TAD TORNEO
+
+
+a)TAD Torneo se explica con estr;
+  estr es tupla<
+                 puntosPorEquipo: diccLog(equipo, puntos),
+                 posicionPorEquipo: diccLog(equipo, posicion),
+                >
+
+donde equipo, puntos, posicion son nat
+
+
+int puntos(torneo t, equipo e){                   // diccionario AVL, O(log n)
+    return significado(s.puntosPorEquipo(e));
+}
+
+
+int posicion(torneo t, equipo e){                   // diccionario AVL, O(log n)
+    return significado(s.posicionPorEquipo(e));
+}
+
+
+void regPartido(torneo t, equipo g){   // g es el ganador, debo modificar puntos y pos por equipo
+
+    definir(t.puntosPorEquipo, significado(t.puntosPorEquipo(g)) + 1);  // O(2 log n)
+
+    no se como terminarlo
+}

@@ -90,10 +90,15 @@ private:
     Nodo* _raiz;
     int _size;
 
-    // auxiliares
+    // ##### auxiliares #####
 
     // retorna nullptr si no encuentra
-    Nodo* buscoNodo(vector<Nodo*> &v, const char &c);
+
+    Nodo* buscoNodo(const vector<Nodo*> &v, const char &c) const;
+    Nodo*& buscoNodoRef(vector<Nodo*> &v, const char &c);
+
+    void destructorRecursivo(Nodo* &n);
+    void copiaRecursivo(Nodo* &n, const Nodo* copy);
 };
 
 #include "string_map.hpp"

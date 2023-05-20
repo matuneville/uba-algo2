@@ -24,7 +24,72 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d96b6077-0817-470b-97f7-36030753e08b" name="Changes" comment="" />
+    <list default="true" id="d96b6077-0817-470b-97f7-36030753e08b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/string_map.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/string_map.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/string_map.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/string_map.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/string_map_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/string_map_tests.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/.idea/Labo09.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/query/cache-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/reply/cache-v2-378e3ebc9f85f5765620.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-a4fe8d68cd049d3cef5d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-48d2a1ae1a100ece8c0f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/reply/index-2023-05-14T23-28-44-0882.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/reply/target-correrTests-Debug-9307dd49cddfbb7ddff9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/reply/target-correrTests_ext-Debug-356b3f4c9b2bff68e649.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/reply/target-correrValgrind-Debug-948138b53af8c7b92cc3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/reply/target-gtest-Debug-2f72be1619767e6815f4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/reply/target-gtest_main-Debug-cf7911dfff5052555d0c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-a68c232ca45b00aa6bba.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.ninja_deps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/.ninja_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/3.25.2/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/3.25.2/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/3.25.2/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdC/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdCXX/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/correrTests.dir/tests/string_map_tests.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/gtest.dir/tests/gtest-1.8.1/gtest-all.cc.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/gtest_main.dir/tests/gtest-1.8.1/gtest_main.cc.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/build.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/correrTests" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/libgtest.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/cmake-build-debug/libgtest_main.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/enunciado.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/src/string_map.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/src/string_map.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/tests/gtest-1.8.1/gtest-all.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/tests/gtest-1.8.1/gtest.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/tests/gtest-1.8.1/gtest_main.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labo09viejo/tests/string_map_tests.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Practicas/Resueltos/guia4/ejercicio12.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Practicas/Resueltos/guia4/ejercicio12.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Practicas/Resueltos/guia4/ejercicio7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Practicas/Resueltos/guia4/ejercicio7.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,17 +122,17 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo09viejo",
+    "last_opened_file_path": "/home/neville/GitHub/uba-algo2/Laboratorios/Labo09",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "Errors",
+    "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Google Test.correrTests">
+  <component name="RunManager" selected="CMake Application.correrValgrind">
     <configuration name="correrTests" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="taller_trie" TARGET_NAME="correrTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="taller_trie" RUN_TARGET_NAME="correrTests" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -80,22 +145,39 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="string_map_test.asignar" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="taller_trie" TARGET_NAME="correrTests" RUN_TARGET_PROJECT_NAME="taller_trie" RUN_TARGET_NAME="correrTests" TEST_CLASS="string_map_test" TEST_METHOD="asignar" TEST_MODE="SUITE_TEST">
+    <configuration name="string_map_test.asignar" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="taller_trie" TARGET_NAME="correrTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="taller_trie" RUN_TARGET_NAME="correrTests" TEST_CLASS="string_map_test" TEST_METHOD="asignar" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="string_map_test.count" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="taller_trie" TARGET_NAME="correrTests" RUN_TARGET_PROJECT_NAME="taller_trie" RUN_TARGET_NAME="correrTests" TEST_CLASS="string_map_test" TEST_METHOD="count" TEST_MODE="SUITE_TEST">
+    <configuration name="string_map_test.copiar" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="taller_trie" TARGET_NAME="correrTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="taller_trie" RUN_TARGET_NAME="correrTests" TEST_CLASS="string_map_test" TEST_METHOD="copiar" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="string_map_test.vacio" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="taller_trie" TARGET_NAME="correrTests" RUN_TARGET_PROJECT_NAME="taller_trie" RUN_TARGET_NAME="correrTests" TEST_CLASS="string_map_test" TEST_METHOD="vacio" TEST_MODE="SUITE_TEST">
+    <configuration name="string_map_test.count" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="taller_trie" TARGET_NAME="correrTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="taller_trie" RUN_TARGET_NAME="correrTests" TEST_CLASS="string_map_test" TEST_METHOD="count" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="string_map_test.obtener" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="taller_trie" TARGET_NAME="correrTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="taller_trie" RUN_TARGET_NAME="correrTests" TEST_CLASS="string_map_test" TEST_METHOD="obtener" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="string_map_test.vacio" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="taller_trie" TARGET_NAME="correrTests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="taller_trie" RUN_TARGET_NAME="correrTests" TEST_CLASS="string_map_test" TEST_METHOD="vacio" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="correrValgrind" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="taller_trie" TARGET_NAME="correrValgrind" CONFIG_NAME="Debug">
@@ -119,12 +201,16 @@
       <item itemvalue="CMake Application.gtest_main" />
       <item itemvalue="Google Test.correrTests" />
       <item itemvalue="Google Test.correrTests_ext" />
+      <item itemvalue="Google Test.string_map_test.copiar" />
+      <item itemvalue="Google Test.string_map_test.obtener" />
       <item itemvalue="Google Test.string_map_test.asignar" />
       <item itemvalue="Google Test.string_map_test.vacio" />
       <item itemvalue="Google Test.string_map_test.count" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.string_map_test.copiar" />
+        <item itemvalue="Google Test.string_map_test.obtener" />
         <item itemvalue="Google Test.string_map_test.asignar" />
         <item itemvalue="Google Test.string_map_test.count" />
         <item itemvalue="Google Test.string_map_test.vacio" />
@@ -142,9 +228,12 @@
       <workItem from="1683985278052" duration="5006000" />
       <workItem from="1683996743320" duration="12079000" />
       <workItem from="1684071294575" duration="2881000" />
-      <workItem from="1684093863909" duration="1061000" />
-      <workItem from="1684101405829" duration="4899000" />
-      <workItem from="1684106875335" duration="99000" />
+      <workItem from="1684093863909" duration="958000" />
+      <workItem from="1684106922603" duration="1998000" />
+      <workItem from="1684157244221" duration="13827000" />
+      <workItem from="1684245713119" duration="1684000" />
+      <workItem from="1684412725993" duration="29000" />
+      <workItem from="1684587231762" duration="132000" />
     </task>
     <servers />
   </component>
@@ -156,6 +245,22 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/string_map.hpp</url>
+          <line>139</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeGoogleTestRunConfigurationType">
+        <watch expression="this-&gt;_raiz-&gt;siguientes[97]-&gt;definicion" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
