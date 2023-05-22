@@ -3,10 +3,9 @@ EJERCICIO 11: TAD INGRESOSALBANCO
 TAD IngresosAlBanco es estr
 
 donde estr es tupla<
-                    cantDias: nat,
-                    ingresosPorDia: diccLineal(dia, cantidad)
+                    ingresosAcum: vector(cantidad)
                     >
 
-donde dia y cantidad son nats
+acumula la cantidad de ingresos por dia, o sea, si en el dia 0 fueron 15 personas y en el dia 1 fueron 12, entonces en ingresosAcum[1] = 27. Entonces para averiguar la cantidad de personas que fueron entre dos dias, resto el segundo dle primero y accedo a ese indice.
 
-el largo del diccionario de ingresos por dia está acotado por la cantidad de días que hayan pasado, por lo que calcular la cantidad de ingresos al banco entre dos dias dados tomaria como mucho cantDias operaciones, que está acotado, y es O(1)
+Rep: estr 
