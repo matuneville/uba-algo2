@@ -1,8 +1,5 @@
 EJERCICIO 12: DISEÑO DE TAD TEXTO
 
-Como el texto tiene un tamaño fijo, puedo usar un array de strings. Asi acceder a una posicion del texto (nat) me lleva O(1). Las palabras mas repetidas las guardo en mi estructura en forma de conjunto que solo lo voy a devolver cuando lo pida.
-Luego para reemplazar todas las apariciones de una palabra, tengo el diccionario que su cantidad de claves esta acotado por el largo del texto (eso cuenta como constante? si no esta mal jeje) y al encontrar una palabra puedo acceder directamente a sus posiciones en el array, lo que me llevaria a unas k operaciones y por lo tanto O(k).
-
 a) estr es tupla<
                  texto: secuArray(string),
                  posicionesPalabra: diccLineal(palabra, conjLineal(nat))
