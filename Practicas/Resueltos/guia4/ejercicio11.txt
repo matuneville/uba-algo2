@@ -6,6 +6,18 @@ donde estr es tupla<
                     ingresosAcum: vector(cantidad)
                     >
 
-acumula la cantidad de ingresos por dia, o sea, si en el dia 0 fueron 15 personas y en el dia 1 fueron 12, entonces en ingresosAcum[1] = 27. Entonces para averiguar la cantidad de personas que fueron entre dos dias, resto el segundo dle primero y accedo a ese indice.
+acumula la cantidad de ingresos por dia, o sea, si en el dia 1 fueron 15 personas y en el dia 2 fueron 12, entonces en ingresosAcum[2] = 27. Entonces para averiguar la cantidad de personas que fueron entre dos dias, resto el segundo dle primero y accedo a ese indice.
 
-Rep: estr 
+Rep: estr ➔ bool
+Rep(e) ≡ (∀i: nat)(0 ≤ i ≤ long(e.ingresosAcum) ➔ ¬(∃j: nat)(i ≤ j ≤ long(e.ingresosAcum) ∧ e.ingresosAcum[j] > e.ingresosAcum[i])) 
+         ∧ long(e.ingresosAcum) > 0 ∧L e.ingresosAcum[0] = 0 
+
+Abs: estr ➔ INGRESOSALBANCO
+Abs(e) ≡ ingresos: INGRESOSALBANCO /
+        totDias(ingresos) = long(e.ingresosAcum)-1 ∧
+        (∀i,j: nat)(1 ≤ i ≤ j ≤ toDias(ingresos) ➔ 
+        cantPersonas(ingresos,i,j) = (e.ingresosAcum[j] - e.ingresosAcum[i-1])) 
+
+
+
+simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬
