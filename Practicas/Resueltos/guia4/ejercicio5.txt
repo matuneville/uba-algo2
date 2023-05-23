@@ -1,0 +1,58 @@
+EJERCICIO 5: DISEÑO TAD MATRIZ FINITA
+
+MODULO MATRIZ FINITA
+
+ESTRUCTURA
+
+    TAD Matriz se representa con estr
+    donde estre es tupla<
+                        dimensiones: tupla(nat, nat),
+
+                        >
+
+INTERFAZ
+
+    CREAR(in h: nat, in w: nat) ➔ res: matriz
+        Pre ≡ {h > 0 ∧ w > 0}
+        Post ≡ {hay que usar el TAD}
+        Complejidad: 
+        Aliasing: 
+
+    DEFINIR(inout m: matriz(α), h: nat, in w: nat, in v: α)
+        Pre ≡ {que h y w esten en el rango valido}
+        Post ≡ {que el elemento este dondefue ubicado y que el resto de elementos no hayan cambiado}
+        Complejidad: 
+        Aliasing: Θ(n)
+
+    #FILAS(in m: matriz(α)) ➔ res: nat
+        Pre ≡ {true}
+        Post ≡ {}
+        Complejidad: 
+        Aliasing: 
+
+    #COLUMNAS(in m: matriz(α)) ➔ res: nat
+        Pre ≡ {true}
+        Post ≡ {}
+        Complejidad: 
+        Aliasing: 
+
+    OBTENER(in m: matriz(α), h: nat, in w: nat) ➔ res: α
+        Pre ≡ {que h y w esten en el rango valido}
+        Post ≡ {que res sea igual al elemento ubicado en h,w}
+        Complejidad: 
+        Aliasing: 
+
+    SUMAR_MATRICES(in m1: matriz(α), in m2: matriz(α)) ➔ res: matriz(α)
+        Pre ≡ {true}
+        Post ≡ {...}
+        Complejidad: 
+        Aliasing: Θ(n + m)
+
+
+    ALGORITMOS
+        
+
+
+
+
+simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬

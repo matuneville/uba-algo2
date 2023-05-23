@@ -1,7 +1,38 @@
 EJERCICIO 12: DISEÑO DE TAD TEXTO
 
-a) estr es tupla<
-                 texto: secuArray(string),
-                 posicionesPalabra: diccLineal(palabra, conjLineal(nat))
+En el texto puedo acceder en O(1) a una posicion, por lo tanto, acceder a posiciones entre i y j me va a llevar O(j-i). Luego, en posicionesPalabras, busco la palabra por el trie, que, como se sabe cual es la palabra mas larga, esta acotado y no se cuenta la complejidad del largo de la palabra (lo dice el enunciado). Con eso accedo a sus posiciones, que es igual a la cantidad de apariciones.
+
+a) TAD TEXTO se representa con estr
+  estr es tupla<
+                 texto: secuVector(string),
+                 posicionesPalabras: diccTrie(palabra, conjLineal(posiciones)),
                  palabrasMasRepetidas: conjLineal(string)
                 >
+
+b) no tengo ganas
+
+c) CAMBIAR_PALABRA(inout t: texto, in p1: string, in p2: string) {
+        it := crearIt(significado(p1, t.posicionesPalabra));
+
+        while(haySiguiente(it)){
+            t.texto[siguiente(it)] := p2;
+            it := siguiente(it);
+        }
+}
+
+d) SUBTEXTO(in t: texto, in i: nat, in j: nat) ➔ vector(string) {
+    subtext := vacía()
+
+    while(i ≤ j){
+        subtext := agregarAtras(subtext, t.texto[i]);
+    }
+
+    return subtext;
+}
+
+
+e) AGREGAR_PALABRA(inout t: texto, in p: string){
+    agregarAtras(t, p);
+}
+
+simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬
