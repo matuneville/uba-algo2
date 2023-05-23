@@ -1,58 +1,101 @@
 EJERCICIO 5: DISEÑO TAD MATRIZ FINITA
 
+simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬
+
 MODULO MATRIZ FINITA
 
-ESTRUCTURA
+    ESTRUCTURA
 
-    TAD Matriz se representa con estr
-    donde estre es tupla<
-                        dimensiones: tupla(nat, nat),
+        TAD Matriz se representa con estr
+        donde estre es tupla<
+                            #filas: nat,
+                            #columnas: nat,
+                            definidos: vector(tupla(valor: α, fila: nat, columna : nat))
+                            >
 
-                        >
+        Rep: estr ➔ bool
+        Rep(e) ≡ e.dimensiones.π1 > 0  ∧  e.dimensiones.π2 > 0  ∧
+                 (∀i: nat)(0 ≤ i < long(e.definidos) ➔ e.definidos[i].fila ≤ e.#filas 
+                 ∧ e.definidos[i].columna ≤ e.#columnas ∧ ¬(∃j: nat)(0 ≤ j < long(e.definidos)
+                 ∧ i ≠ j ∧ e.definidos[i].fila = e.definidos[j].fila ∧
+                 e.definidos[i].columna = e.definidos[j].columna))
 
-INTERFAZ
-
-    CREAR(in h: nat, in w: nat) ➔ res: matriz
-        Pre ≡ {h > 0 ∧ w > 0}
-        Post ≡ {hay que usar el TAD}
-        Complejidad: 
-        Aliasing: 
-
-    DEFINIR(inout m: matriz(α), h: nat, in w: nat, in v: α)
-        Pre ≡ {que h y w esten en el rango valido}
-        Post ≡ {que el elemento este dondefue ubicado y que el resto de elementos no hayan cambiado}
-        Complejidad: 
-        Aliasing: Θ(n)
-
-    #FILAS(in m: matriz(α)) ➔ res: nat
-        Pre ≡ {true}
-        Post ≡ {}
-        Complejidad: 
-        Aliasing: 
-
-    #COLUMNAS(in m: matriz(α)) ➔ res: nat
-        Pre ≡ {true}
-        Post ≡ {}
-        Complejidad: 
-        Aliasing: 
-
-    OBTENER(in m: matriz(α), h: nat, in w: nat) ➔ res: α
-        Pre ≡ {que h y w esten en el rango valido}
-        Post ≡ {que res sea igual al elemento ubicado en h,w}
-        Complejidad: 
-        Aliasing: 
-
-    SUMAR_MATRICES(in m1: matriz(α), in m2: matriz(α)) ➔ res: matriz(α)
-        Pre ≡ {true}
-        Post ≡ {...}
-        Complejidad: 
-        Aliasing: Θ(n + m)
+        Abs: estr ➔ matriz
+        Hay que usar el TAD y no lo tengo
 
 
-    ALGORITMOS
-        
+    INTERFAZ
+
+        CREAR(in h: nat, in w: nat) ➔ res: matriz
+            Pre ≡ {h > 0 ∧ w > 0}
+            Post ≡ {hay que usar el TAD}
+            Complejidad: 
+            Aliasing: 
+
+        DEFINIR(inout m: matriz(α), h: nat, in w: nat, in v: α)
+            Pre ≡ {que h y w esten en el rango valido}
+            Post ≡ {que el elemento este dondefue ubicado y que el resto de elementos no hayan cambiado}
+            Complejidad: 
+            Aliasing: Θ(n)
+
+        #FILAS(in m: matriz(α)) ➔ res: nat
+            Pre ≡ {true}
+            Post ≡ {}
+            Complejidad: 
+            Aliasing: 
+
+        #COLUMNAS(in m: matriz(α)) ➔ res: nat
+            Pre ≡ {true}
+            Post ≡ {}
+            Complejidad: 
+            Aliasing: 
+
+        OBTENER(in m: matriz(α), h: nat, in w: nat) ➔ res: α
+            Pre ≡ {que h y w esten en el rango valido}
+            Post ≡ {que res sea igual al elemento ubicado en h,w}
+            Complejidad: 
+            Aliasing: 
+
+        SUMAR_MATRICES(in m1: matriz(α), in m2: matriz(α)) ➔ res: matriz(α)
+            Pre ≡ {true}
+            Post ≡ {...}
+            Complejidad: 
+            Aliasing: Θ(n + m)
 
 
-
+        ALGORITMOS 
+            iCREAR(in h: nat, in w: nat) ➔ res: matriz{
+                res.#filas := h;
+                res.#columnas := w;
+                res.definidos = vacío();    // O(1)
+            }
+            
+            iDEFINIR(inout m: matriz(α), h: nat, in w: nat, in v: α){
+                m.definidos.agregarAtras({v, h, w});
+                // o(n)
+            }
+            
+            iFILAS(in m: matriz(α)) ➔ res: nat{
+                return m.#filas;
+                // O(1)
+            }
+            
+            iCOLUMNAS(in m: matriz(α)) ➔ res: nat{
+                return m.#columnas;
+                // O(1)
+            }
+            
+            iOBTENER(in m: matriz(α), h: nat, in w: nat) ➔ res: α{
+                it = crearIt(m.definidos);
+                while(haySiguiente(it)){
+                    if(siguiente(it).fila == h and siguiente(it).columna == w){
+                        return siguiente(it).valor;
+                    }
+                }
+            }
+            
+            iSUMAR_MATRICES(in m1: matriz(α), in m2: matriz(α)) ➔ res: matriz(α){
+                
+            }
 
 simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬
