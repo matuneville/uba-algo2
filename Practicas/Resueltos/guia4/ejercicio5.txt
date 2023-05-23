@@ -10,7 +10,7 @@ MODULO MATRIZ FINITA
         donde estre es tupla<
                             #filas: nat,
                             #columnas: nat,
-                            definidos: vector(tupla(valor: α, fila: nat, columna : nat))
+                            definidos: lista(tupla(valor: α, fila: nat, columna : nat))
                             >
 
         Rep: estr ➔ bool
@@ -18,7 +18,7 @@ MODULO MATRIZ FINITA
                  (∀i: nat)(0 ≤ i < long(e.definidos) ➔ e.definidos[i].fila ≤ e.#filas 
                  ∧ e.definidos[i].columna ≤ e.#columnas ∧ ¬(∃j: nat)(0 ≤ j < long(e.definidos)
                  ∧ i ≠ j ∧ e.definidos[i].fila = e.definidos[j].fila ∧
-                 e.definidos[i].columna = e.definidos[j].columna))
+                 e.definidos[i].columna = e.definidos[j].columna)) ∧ estaOrdenado(e.definidos)
 
         Abs: estr ➔ matriz
         Hay que usar el TAD y no lo tengo
@@ -57,7 +57,7 @@ MODULO MATRIZ FINITA
             Aliasing: 
 
         SUMAR_MATRICES(in m1: matriz(α), in m2: matriz(α)) ➔ res: matriz(α)
-            Pre ≡ {true}
+            Pre ≡ {m1.#filas = m2.#filas ∧ m1.#columnas = m2.#columnas}
             Post ≡ {...}
             Complejidad: 
             Aliasing: Θ(n + m)
@@ -71,7 +71,7 @@ MODULO MATRIZ FINITA
             }
             
             iDEFINIR(inout m: matriz(α), h: nat, in w: nat, in v: α){
-                m.definidos.agregarAtras({v, h, w});
+                
                 // o(n)
             }
             
