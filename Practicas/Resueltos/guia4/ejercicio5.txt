@@ -71,7 +71,32 @@ MODULO MATRIZ FINITA
             }
             
             iDEFINIR(inout m: matriz(α), h: nat, in w: nat, in v: α){
-                
+                it := crearIt(m.definidos);
+                while(haySiguiente(it)){
+                    if(siguiente(it).fila == h and siguiente(it).columna == w){
+                        siguiente(it).valor := v;
+                        siguiente(it).fila := h;
+                        siguiente(it).columna := w;
+                        break;
+                    }
+                    else{
+                        if(siguiente(it).fila > h){
+                            agregarComoAnterior(it, tupla<v, h, w>);
+                            break;
+                        }
+                        else if(siguiente(it).fila == h){
+                            if(siguiente(it).columna > w){
+                                agregarComoAnterior(it, tupla<v, h, w>);
+                                break;
+                            }
+                        }
+                        else if(not(haySiguiente(siguiente(it)))){
+                            agregarAtras(tupla<v, h, w>);
+                        }
+                    }
+
+                    avanzar(it);
+                }
                 // o(n)
             }
             
@@ -95,7 +120,48 @@ MODULO MATRIZ FINITA
             }
             
             iSUMAR_MATRICES(in m1: matriz(α), in m2: matriz(α)) ➔ res: matriz(α){
-                
+                result = lista(tupla(v: α, nat, nat))
+                it1 = crearIt(m1.definidos);
+                i21 = crearIt(m2.definidos);
+
+                while(haySiguiente(it1) and haySiguiente(it2)){  // O(min(n,m)), es una especie de merge
+
+                    if(siguiente(it1).fila == siguiente(it2).fila and siguiente(it1).columna == siguiente(it2).columna){
+                        result.agregarAtras(tupla(siguiente(it1).valor + siguiente(it2).valor, siguiente(it1).fila, siguiente(it1).columna));
+                        avanzar(it1);
+                        avanzar(it2);
+                    }
+                    else if(siguiente(it1).fila < siguiente(it2).fila){
+                        result.agregarAtras(siguiente(it2));
+                        avanzar(it2);
+                    }
+                    else if(siguiente(it2).fila < siguiente(it1).fila){
+                        result.agregarAtras(siguiente(it1));
+                        avanzar(it1);
+                    }
+                    else if(siguiente(it1).fila == siguiente(it2).fila){
+                        if(siguiente(it1).columna < siguiente(it2).columna){
+                            result.agregarAtras(siguiente(it1));
+                            avanzar(it1);
+                        }
+                        else{
+                            result.agregarAtras(siguiente(it2));
+                            avanzar(it2);
+                        }
+                    }
+                }
+
+                // agrego los que faltan, si hay. Es un while o el otro
+
+                while(haySiguiente(it1)){   // O(n)
+                    result.agregarAtras(siguiente(it1));
+                }
+
+                while(haySiguiente(it2)){   // O(n)
+                    result.agregarAtras(siguiente(it2));
+                }
+
+                return result;  // complejidad final: O(2n + m) o O(n + 2m) = O(n + m)
             }
 
 simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬
