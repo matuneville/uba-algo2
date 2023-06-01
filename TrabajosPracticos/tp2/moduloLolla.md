@@ -189,11 +189,6 @@ iHACKEAR(inout l: lolla, in a: persona, in i: item) {
     // modifico el puesto
     registrar_hackeo(puestoHack, a, i);
 
-  //  if(vacio?(significado(significado(puestoHack.comprasPorPersonaSinDesc, a),i))){
-//     borrarPuesto = borrar(significado(significado(l.puestosHackeables, a), i), puestoHack.id);
-//        definir(l.puestosHackeables, a, definir(significado(l.puestosHackeables, a),i, borrarPuesto));
-//    }
-
     // si deja de ser hackeable, lo quito
     if(!esHackeable?(puestoHack, a, i)) { 
             borrar(significado(significado(l.puestosHackeables, a), i), puestoHack);
