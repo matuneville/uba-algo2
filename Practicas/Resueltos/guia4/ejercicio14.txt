@@ -1,0 +1,5 @@
+EJERCICIO 14: DISEÑO TAD SUECO
+
+
+
+simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬

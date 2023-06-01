@@ -1,28 +1,39 @@
 EJERCICIO 13: DISEÑO DE TAD TORNEO
 
+Tenemos una lista por posicion que dice cuantos equipos hay en esa posicion, y cuantos puntos tienen. En la Rep tendriamos que estr.posciones esta ordenada por .posicion. Ej: <(1, 7, 2), (2, 6, 1), (3, 4, 3)>
 
 a)TAD Torneo se explica con estr;
   estr es tupla<
-                 puntosPorEquipo: diccLog(equipo, puntos),
-                 posicionPorEquipo: diccLog(equipo, posicion),
+                 equipos: diccLog(equipo, itLista),
+                 posiciones: lista(tupla(posicion, puntos, cantEquipos)),
                 >
 
-donde equipo, puntos, posicion son nat
+donde equipo, puntos, posicion, cantEquipos son nat
 
 
-int puntos(torneo t, equipo e){                   // diccionario AVL, O(log n)
-    return significado(s.puntosPorEquipo(e));
+iPUNTOS(in t: torneo, in e: equipo) ➔ nat {
+
+    itPos := obtener(e, t.equipos);      // O(log n)
+
+    return siguiente(itPos).puntos;
 }
 
 
-int posicion(torneo t, equipo e){                   // diccionario AVL, O(log n)
-    return significado(s.posicionPorEquipo(e));
+iPOSICION(in t: torneo, in e: equipo) ➔ nat {
+
+    itPos := obtener(e, t.equipos);      // O(log n)
+
+    return siguiente(itPos).posicion;
 }
 
 
-void regPartido(torneo t, equipo g){   // g es el ganador, debo modificar puntos y pos por equipo
+iREG_PARTIDO(inout t: torneo, in e: equipo) {
 
-    definir(t.puntosPorEquipo, significado(t.puntosPorEquipo(g)) + 1);  // O(2 log n)
+    itPos := obtener(e, t.equipos);      // O(log n)
 
-    no se como terminarlo
+    // es un dolor de huevos esto hermano
 }
+
+
+
+simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬
