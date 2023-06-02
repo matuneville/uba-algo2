@@ -43,4 +43,8 @@ Lo que hay que hacer es un counting sort con los elementos que están entre 20 y
 ```c
 typedef unsigned int uint;
 
+void sortingVeinteCuarenta(uint arr[], uint size){
+    
+}
+
 ```
