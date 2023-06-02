@@ -1,7 +1,5 @@
 # Módulo Puesto de Comida
 
-simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ `` α ¬
-
 ## Interfaz
 
 ### Parámetros formales

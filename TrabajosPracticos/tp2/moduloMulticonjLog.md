@@ -1,6 +1,5 @@
 # Módulo multiConjLog
 
-
 ## Interfaz
 
 ### Parámetros formales

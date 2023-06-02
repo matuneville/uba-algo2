@@ -1,7 +1,5 @@
 # Extensión del módulo Vector
 
-simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ `` α ¬
-
 ## Otras operaciones
 
 ```

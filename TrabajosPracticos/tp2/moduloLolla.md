@@ -1,7 +1,5 @@
 # Módulo Lolla-Patuza
 
-simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ `` α ¬
-
 ## Interfaz
 
 ### Parámetros formales
