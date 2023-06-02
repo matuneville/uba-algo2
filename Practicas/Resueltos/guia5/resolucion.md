@@ -44,7 +44,19 @@ Lo que hay que hacer es un counting sort con los elementos que están entre 20 y
 typedef unsigned int uint;
 
 void sortingVeinteCuarenta(uint arr[], uint size){
-    
+   vector<uint> outtaRange1{}, outtaRange2{};  // uso vector porque el largo esta entre 0 y raiz(n), puede variar
+   uint arrCount[21];  // para el counting sort de los elementos entre [20, 40]
+   
+   for(uint i : arr){           // O(n)
+        if(i < 20)
+            outtaRange1.pushback(i);
+        else if(i > 40)
+            outtaRange2.pushback(i);
+        else
+            arrCount[i]++;    
+   }
+   
+   vector<uint> result
 }
 
 ```
