@@ -83,6 +83,8 @@ PUESTOS (in l: lolla) ⇒ res: conjLog(puesto)
 
 ## Representación
 
+### Estructura
+
 TAD Lolla-Patuza se representa con `lolla`,  
 donde `lolla` es:
 ```
@@ -105,7 +107,7 @@ Hay que chequear que:
 Rep: lolla ➔ bool
 Rep(l) ≡ (1) ∧ (2) ∧ (3)
 
-(1) ≡ l.personas = claves(π_2(l.gastoTotal))
+(1) ≡ l.personas = claves(π₂(l.gastoTotal))
 
 (2) ≡ (∀a: persona)(∀i: item)(∀id: nat)(a ∈ claves(l.puestosHackeables) ∧ i ∈ claves(significado(l.puestosHackeables, a)) ∧L
                 id ∈ claves(obtener(obtener(l.puestosHackeables, a), i))) ➔ id ∈ claves(l.puestosPorID) ∧L
@@ -137,21 +139,21 @@ iNUEVO_LOLLA(in dp: diccLog(ID, puesto), in ca: conjLineal(persona), in ci: conj
     construir(l.gastoTotal, ca); // O(A*log A)
 
     // defino a todas las personas en primer diccLog poniendo como significado un diccLog vacío
-    it ← crearIt(ca);
+    it = crearIt(ca);
     while(haySiguiente(it)){ // O(A)
         definirRapido(l.puestosHackeables, siguiente(it), vacío()); // O(1)
-        it ← siguiente(it);	
+        it = siguiente(it);	
     }
 
     // ahora para cada persona creo un diccLog de todos los items con significado un diccLog vacio
-    itPersona ← crearIt(l.puestosHackeables);
-    itItem ← crearIt(ci);
+    itPersona = crearIt(l.puestosHackeables);
+    itItem = crearIt(ci);
     while(haySiguiente(itPersona)) { // O(A)
         while(haySiguiente(itItem)) { // O(I)
-            siguienteValor(itPersona) ← definirRapido(siguienteValor(itPersona), itItem, vacío()); // O(1)
-            itItem ← siguiente(itItem); 
+            siguienteValor(itPersona) = definirRapido(siguienteValor(itPersona), itItem, vacío()); // O(1)
+            itItem = siguiente(itItem); 
         }
-        itPersona ←siguiente(itPersona);
+        itPersona = siguiente(itPersona);
     }
 }
 ```
@@ -167,7 +169,7 @@ iCOMPRA (inout l: lolla, in a: persona, in ID: nat, in i: item, in cant: nat) {
     // tengo que modificar gastoTotal (modificar heap  e indicePersona)
 	modificar(l.gastoTotal, a, precioTotal);	
 
-	descuento ← descuento_de(p, i, cant);
+	descuento = descuento_de(p, i, cant);
 
     // modificamos puestosHackeables
     if(descuento == 0) {
@@ -216,10 +218,10 @@ iMAYOR_GASTADOR(in l: lolla) → persona {
 
 iMENOR_STOCK(in l: lolla, in i: item) -> ID {
 	// armo vector de tuplas que tengan el id del puesto y el stock de ese ítem
-	it ← crearIt(l.puestosPorID);
-	vectorIDxStock ← vacío();
+	it = crearIt(l.puestosPorID);
+	vectorIDxStock = vacío();
 	while(haySiguiente(it)) { // O(P*P)
-	    agregarAtras(vectorIDxStock, <id: siguienteClave(it), stock: stock_de(siguienteValor(it), i)>; // O(P)
+	    agregarAtras(vectorIDxStock, <id: siguienteClave(it), stock: stock_de(siguienteValor(it), i)>); // O(P)
 	    it = siguiente(it); // O(1)
     }
 
