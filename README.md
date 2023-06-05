@@ -21,6 +21,8 @@ Repo con teóricas, prácticas, resueltos de labo, talleres y TPs
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Laboratorios/Labo08/enunciado.pdf) y [Código](https://github.com/matuneville/uba-algo2/tree/main/Laboratorios/Labo08/src)
 - Labo 9: Tries, implementando Diccionario
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Laboratorios/Labo09/enunciado.pdf) y [Código](https://github.com/matuneville/uba-algo2/tree/main/Laboratorios/Labo09/src)
+- Labo 10: Priority Queue
+  - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Laboratorios/Labo10/ejercitacion_heap/enunciado.pdf) y [Código](https://github.com/matuneville/uba-algo2/tree/main/Laboratorios/Labo10/ejercitacion_heap/src)
 
 ## Prácticas
 - Práctica 1: TADs
@@ -31,3 +33,5 @@ Repo con teóricas, prácticas, resueltos de labo, talleres y TPs
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Practicas/Consignas/practica3.pdf) y [Resolucion](https://github.com/matuneville/uba-algo2/tree/main/Practicas/Resueltos/guia3)
 - Práctica 4: Eleccion de Data Structure
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Practicas/Consignas/practica4.pdf) y [Resolucion](https://github.com/matuneville/uba-algo2/tree/main/Practicas/Resueltos/guia4)
+- Práctica 5: Sorting
+  - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Practicas/Consignas/practica5.pdf) y [Resolucion](https://github.com/matuneville/uba-algo2/tree/main/Practicas/Resueltos/guia5)
