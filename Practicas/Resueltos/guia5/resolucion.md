@@ -80,17 +80,6 @@ void sortGeneroYNota(Alumno arr[], uint size) {
     char generos[2] = {'F', 'M'};
 
     uint index = 0;
-    for (uint i = 0; i < 2; i++) {  // O(1) acotado por los 2 generos
-        char c = generos[i];
-        for (uint j = 0; j < size; j++) {   // O(n)
-            if (arr[j].gen == c) {
-                sortGen[index] = arr[j];
-                index++;
-            }
-        }
-    }
-
-    index = 0;
     for (uint j = 0; j < 2; j++) {  // O(1) acotado por los 2 generos
         char c = generos[j];
         for (uint nota = 1; nota < 11; nota++) { // O(1), acotado por las 10 notas posibles
@@ -102,7 +91,6 @@ void sortGeneroYNota(Alumno arr[], uint size) {
             }
         }
     }
-
     // Actualizar el arreglo original
     for (uint i = 0; i < size; i++) {   // O(n)
         arr[i] = sortNota[i];
@@ -127,17 +115,6 @@ void sortGeneroYNota_B(Alumno arr[], uint size, char generos[], uint cantGeneros
     Alumno sortGen[size], sortNota[size];
 
     uint index = 0;
-    for (uint i = 0; i < cantGeneros; i++) {  // O(1) acotado por cantGeneros
-        char c = generos[i];
-        for (uint j = 0; j < size; j++) {   // O(n)
-            if (arr[j].gen == c) {
-                sortGen[index] = arr[j];
-                index++;
-            }
-        }
-    }
-
-    index = 0;
     for (uint j = 0; j < cantGeneros; j++){ // O(1), acotado por cantGeneros
         char c = generos[j];
         for (uint nota = 1; nota < 11; nota++) { // O(1), acotado por las 10 notas posibles
@@ -232,13 +209,41 @@ void sortingVeinteCuarenta(uint arr[], uint size){
         // Complejidad final O(n)
 ```
 
+## Ejercicio 13
+
+Lo que hay que hacer es ordenar primero las tuplas por su string en un Trie como diccionario. Ubicar cada palabra lleva O(l) ¿, y como se hace n veces lleva a una complejidad de O(nl). Luego lo ordeno respecto a sus números de cada string con algun algoritmo como Merge sort que sea estable para que mantenga el orden segun los stirngs, y que su complejidad sea de O(n log n). Luego, la complejidad final es de O(nl + n log n).  
+
+## Ejercicio 16
+
+Me fijo primero buscando el máximo elemento y el mínimo. Si max-min es mayor o igual que el tamaño del arreglo, entonces hay agujero. En el otro caso puede ser falso, pero tengo que chequear que no haya elementos repetidos. Ejemplo, [3, 1, 4, 2], cumple 4-1 < 4 y no tiene agujero, pero en el caso [3, 1, 1, 1], cumple 3-1 < 4 pero sí tiene agujero. Entonces como max-min < n, puedo hacer un counting sort con un arreglo de tamaño (max-min) pues está acotado por n. De todos modos, que tenga repetidos no quiere decir que sea falso, por lo que al hacer el counting, me fijo si en el arreglo en el que cuento apariciones hay algun elemento que no aparezca, es decir, que tenga 0 apariciones. En este caso sí hay agujero.
+
+```c
+typedef unsigned int uint;
+
+bool tieneAgujero(uint arr[], uint size){
+    uint maxElem = max(arr);    // O(n)
+    uint minElem = min(arr);    // O(n)
+
+    if (maxElem - minElem >= size) return true;
+
+    else{ // puede tener repetidos
+        uint countArr[max - min + 1];
+        for(uint n : arr){              // O(n)
+            countArr[n - minElem]++;
+        }
+
+        for(uint occurr : countArr){    // O(n)
+            if (occurr == 0) return true;
+        }
+    }
+    return false;
+}                   // Complejidad final O(n)
+```
+
 ## Ejercicio 18
 
-### a)
-Es básicamente un counting sort con elemento máximo el largo del arreglo, dando como resultado una complejidad de O(n).
+a) Es básicamente un counting sort con elemento máximo el largo del arreglo, dando como resultado una complejidad de O(n).  
 
-### b)
+b) Para expresar un numero menor a n² en base n se requieren dos cifras. Es decir, un numero de dos cifras en base n puede expresar como máximo el numero n²-1. Entonces la idea es pasar los numeros del arreglo a base n y luego hacer un Radix Sort para los 2 dígitos. Pasar cada número a base n requiere 2 operaciones pues estará escrito en 2 cifras que está acotado. Luego la complejidad final será de O(n).  
 
-### c)
-
-### d)
+c) Mismo concepto que antes pero para numeros acotados por k. Entonces la complejidad en vez de O(2n) será de O(k*n).  
