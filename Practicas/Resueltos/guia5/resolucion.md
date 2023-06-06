@@ -258,7 +258,7 @@ void sortingVeinteCuarenta(uint arr[], uint size){
 
 ## Ejercicio 13
 
-Lo que hay que hacer es ordenar primero las tuplas por su string en un Trie como diccionario. Ubicar cada palabra lleva O(l) ¿, y como se hace n veces lleva a una complejidad de O(nl). Luego lo ordeno respecto a sus números de cada string con algun algoritmo como Merge sort que sea estable para que mantenga el orden segun los stirngs, y que su complejidad sea de O(n log n). Luego, la complejidad final es de O(nl + n log n).  
+Lo que hay que hacer es ordenar primero las tuplas por su string en un Trie como diccionario. Ubicar cada palabra lleva O(l), y como se hace n veces lleva a una complejidad de O(nl). Luego lo ordeno respecto a sus números de cada string con algun algoritmo como Merge sort que sea estable para que mantenga el orden segun los strings, y que su complejidad sea de O(n log n). Luego, la complejidad final es de O(nl + n log n).  
 
 ## Ejercicio 16
 
