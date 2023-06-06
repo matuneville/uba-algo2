@@ -35,9 +35,56 @@ void sortingFrecuencia(uint arr[], uint size){
 }       // Complejidad final: O(size * max(arr))
 ```
 
+## Ejercicio 6
+
+Mi idea es: primero pense en juntar en un arreglo de arreglos todas sus escaleras, pero no es necesario, sino que se puede juntar las tuplas de indices de inicio y fin de cada escalera. Eso se hace en O(n). Luego se le mete dos sortings, primero segun el minimo elemento, y luego, una vez ordenado por minimos elementos, segun el largo de las escaleras (es decir, tupla.second - tupla.first). Lo importante es que sea estable el algoritmo, como el Merge Sort, para que luego de estar ordenado por mínimo, mantenga este orden al reordenarlo por largo. Luego se junta en un arreglo solo y listo. Entonces queda O(n + 2m log m + n), siendo n el largo del arreglo y m la cantidad de escaleras. Pero m esta acotado por n, pues como mucho pueden haber n escaleras, por lo tanto la complejidad queda O(n log n).
+
+```cpp
+#include <vector>
+using namespace std;
+
+void sortEscaleras(int arr[], int size){
+    vector<pair<int,int>> escaleras;
+
+    int i = 1;
+    while(i < size){    // O(n)
+        int j = i;
+        while(arr[j-1]-1 == arr[j]){
+            j++;
+        }
+        pair<int,int> tupla = make_pair(i, j);
+        escaleras.push_back(tupla);
+        i++;
+    }
+
+    mergesort_v1(escaleras, arr);   // O(m log m), m la cantidad de escaleras
+    // lo ordena segun el primer elemento de cada escalera, es decir, arr[t.first], siendo t cada tupla de escaleras;
+
+    mergesort_v2(escaleras);   // O(m log m), m la cantidad de escaleras
+    // lo ordena segun el largo de cada escalera, manteniendo el orden previo
+
+    int sortedArr[size];
+
+    int k = 0;
+    for(pair<int,int> t : escaleras){
+        int beginTupla = t.first; // la tupla de c++ no es modificable
+        while(beginTupla <= t.second){
+            sortedArr[k] = arr[t.first];
+            k++;
+            beginTupla++;
+        }
+    }   // este ciclo es O(n)
+
+    for (int l = 0; l < size; l++){
+        arr[l] = sortedArr[l];
+    }   // O(n) para copiar el arreglo ordenado
+
+}   // complejidad final O(n + m log m)
+```
+
 ## Ejercicio 7
 
-La idea está en ubicar cada elemento del arreglo en su debida posición del AVL, pero sin tener elementos repetidos en el árbol. Podríamos tomarlo como un diccionario AVL, que su key-value sea numero-apariciones. Recorrer el arreglo sería O(n) y ubicarlo en su debida posicion sería O(log d). Esto daría una complejidad de O(n * log d). En un caso en que el arreglo no tiene elementos repetidos, entonces d = n. Un posible algoritmo sería:
+La idea está en ubicar cada elemento del arreglo en su debida posición del AVL, pero sin tener elementos repetidos en el árbol. Podríamos tomarlo como un diccionario AVL, que su key-value sea numero-apariciones. Recorrer el arreglo sería O(n) y ubicar cada elemento en su debida posicion sería O(log d). Esto daría una complejidad de O(n * log d). En un caso en que el arreglo no tiene elementos repetidos, entonces d = n. Un posible algoritmo sería:
 
 ```cpp
 typedef unsigned int uint;
