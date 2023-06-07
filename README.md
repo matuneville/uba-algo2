@@ -35,3 +35,5 @@ Repo con teóricas, prácticas, resueltos de labo, talleres y TPs
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Practicas/Consignas/practica4.pdf) y [Resolucion](https://github.com/matuneville/uba-algo2/tree/main/Practicas/Resueltos/guia4)
 - Práctica 5: Sorting
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Practicas/Consignas/practica5.pdf) y [Resolucion](https://github.com/matuneville/uba-algo2/tree/main/Practicas/Resueltos/guia5/resolucion.md)
+- Práctica 6: Divide & Conquer
+  - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Practicas/Consignas/practica6.pdf) y [Resolucion](https://github.com/matuneville/uba-algo2/tree/main/Practicas/Resueltos/guia6/resolucion.md)
