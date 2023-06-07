@@ -3,20 +3,21 @@ using namespace std;
 
 int sumar(int arr[], int begin, int end);
 
-bool masALaIzquierda(int arr[], int size){
+bool masALaIzquierda(int arr[], int begin, int end){
 
-    if(size == 1) return true;
+    if(end-begin == 1) return true;
 
-    int sumaIzq = sumar(arr, 0, size/2);    // O(n/2)
-    int sumaDer = sumar(arr, size/2, size); // O(n/2)
+    int sumaIzq = sumar(arr, begin, (end+begin)/2);    // O(n/2)
+    int sumaDer = sumar(arr, (end+begin)/2, end); // O(n/2)
 
     if(sumaDer >= sumaIzq) return false;
-    else{
-        masALaIzquierda(arr, size/2);
-    }
+
+    else
+        return (masALaIzquierda(arr, begin, (end+begin)/2) and masALaIzquierda(arr, (end+begin)/2, end)); // O(log n + log n)
+
 }   // complejidad final O(n log n)
 
-int sumar(int arr[], int begin, int end){   // se realiza log n veces
+int sumar(int arr[], int begin, int end){
     int output = 0;
     for(int i = begin; i < end; i++){
         output += arr[i];
@@ -25,6 +26,8 @@ int sumar(int arr[], int begin, int end){   // se realiza log n veces
 }
 
 int main(){ // lo testeo 
-    int arr[8] = {8, 4, 7, 6, 5, 1, 3, 2};
-    return masALaIzquierda(arr, 8);
+    int arr[8] = {9,0,5,3,7,1,3,2};
+    if (masALaIzquierda(arr, 0, 8) == true) cout << "v";
+    else cout<< "f";
+    return 0;
 }
