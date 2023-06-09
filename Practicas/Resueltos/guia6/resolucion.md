@@ -1,8 +1,8 @@
 # Guía práctica 6: Divide & Conquer
 
-## Ejercicio 1
+simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬
 
-El algoritmo propuesto se llama a sí mismo logaritmicamente con complejidad O(2 log n) = O(log n), y su complejidad dentro es de O(2 n/2) = O(n). Por lo tanto, su complejidad temporal final es de O(n log n), siendo asi menor estricta que O(n²).
+## Ejercicio 1
 
 ```cpp
 int sumar(int arr[], int begin, int end);
@@ -30,10 +30,16 @@ int sumar(int arr[], int begin, int end){
 }
 ```
 
+### Complejidad:
+T(n) = 2*T(n/2) + O(n¹)  
+Sea a = 2, c = 2, f(n) = n    
+f(n) ∈ Θ(n^(log₂2)) = Θ(n¹) = Θ(n)  
+➔ T(n) = Θ(n^(log₂2) * log n) = **Θ(n log n)**  
+
 
 ## Ejercicio 2
 
-Se hace un algoritmo similar a la búsqueda binaria, aprovechando el dato de que el arreglo esta estríctamente ordenado. Su complejidad es O(log n), siendo n el largo del arreglo. 
+Se hace un algoritmo similar a la búsqueda binaria, aprovechando el dato de que el arreglo esta estríctamente ordenado.
 
 ```cpp
 bool coincideIndiceElemento(int arr[], int begin, int end){ // la indexación comienza en 1
@@ -51,33 +57,29 @@ bool coincideIndiceElemento(int arr[], int begin, int end){ // la indexación co
 }
 ```
 
+### Complejidad:
+T(n) = 1*T(n/2) + O(1)
+Sea a = 1, c = 2, f(n) = 1    
+f(n) = 1 ∈ Θ(n^(log₁2)) = Θ(n⁰) = Θ(1)  
+➔ T(n) = Θ(n^(log₁2) * log n) = Θ(n⁰ log n) = **Θ(log n)**  
+
 ## Ejercicio 3
 
 Lo que hay que hacer es la exponenciación binaria. Su complejidad es O(log n), con n siendo el exponente.
 
 ```cpp
-int exponenciacionBinaria(int base, int n){ // calcula base^(n)
-    int result = 1;
-    bool negativo = false;
+int exponenciacionBinaria(int base, int exp){ // calcula base^(n)
+    if(exp == 0)
+        return 1;
 
-    if (n < 0){
-        n = n * (-1);
-        negativo = true;
+    if(exp % 2 == 0){
+        int result = exponenciacionBinaria(base, exp/2);
+        return result*result;
     }
 
-    while(n > 0){
-        if(n % 2 == 1){
-            result *= base;
-            n /= 2;
-        }
-        else{
-            n /= 2;
-        }
-        base *= base;
+    else{
+        int result = exponenciacionBinaria(base, exp-1);
+        return result*base;
     }
-    
-    if (negativo) return 1/result;
-
-    return result;
 }
 ```

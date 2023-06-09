@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int exponenciacionBinaria(int base, int n){ // calcula base^(n)
+int exponenciacionBinariaCiclo(int base, int n){ // calcula base^(n)
     int result = 1;
     bool negativo = false;
 
@@ -24,6 +24,21 @@ int exponenciacionBinaria(int base, int n){ // calcula base^(n)
     if (negativo) return 1/result;
 
     return result;
+}
+
+int exponenciacionBinaria(int base, int exp){ // calcula base^(n)
+    if(exp == 0)
+        return 1;
+
+    if(exp % 2 == 0){
+        int result = exponenciacionBinaria(base, exp/2);
+        return result*result;
+    }
+
+    else{
+        int result = exponenciacionBinaria(base, exp-1);
+        return result*base;
+    }
 }
 
 int main(){
