@@ -91,10 +91,10 @@ $\rightarrow T(n) = Θ(n^{log_1 2} * log n) = Θ(n⁰ log\ n) = Θ(log\ n)$
 ## Ejercicio 5
 
 Quiero calcular la sumatoria de i a n de A^i, en complejidad menor que lineal. Entonces busco la forma de hacerlo en complejidad logarítmica. Por el Teorema Maestro, tengo que hacer una sola recursion sobre mi función para que mi complejidad quede de la forma O(n⁰ log n) = O(log n).  
-Para entender mejor cómo hacerlo, hay que desarrollar un poquito la sumatoria.  
+Para entender mejor cómo hacerlo, hay que desarrollar un poquito la sumatoria. Sea $f$ la función pedida en el ejercicio:  
 
 $$
-funcion(matriz\ A,\ nat\ n) =
+f(matriz\ A,\ nat\ n) =
 \sum_{i=1}^{n} A^i = A^1 + A^2 + ... + A^{n-1} + A^n
 $$
 
@@ -107,7 +107,7 @@ $$
 Así se ve más claro como, a partir de n/2, es la misma sumatoria previa, con cada exponente multiplicado por n/2. Por ejemplo, con n = 8:
 
 $$
-funcion(matriz\ A,\ 8) =
+f(matriz\ A,\ 8) =
 \sum_{i=1}^{8} A^i = A^1 + A^2 + A^3 + A^4 + A^5 + A^6 + A^7 + A^8 =
 $$
 $$
@@ -117,18 +117,24 @@ $$
 Luego, con la recursion de n/2, quedaría: 
 
 $$
-funcion(matriz\ A,\ 4) =
+f(matriz\ A,\ 4) =
 \sum_{i=1}^{4} A^i = A^1 + A^2 + A^3 + A^4 = A^1 + A^2 + A^{2 + 1} + A^{2 + 2} = A^1 + A^2 + A^2 (A^1 + A^2)
 $$
 
 Otra vez n/2:
 
 $$
-funcion(matriz\ A,\ 2) =
+f(matriz\ A,\ 2) =
 \sum_{i=1}^{2} A^i = A^1 + A^2 = A^1 + A^{1 + 1}= A^1 + A^1 (A^1)
 $$
 
-Entonces esto lo puedo _anidar_ todo en la sumatoria de n = 8 (no tengo ganas de hacerlo pero se entiende), y se cumple siempre porque el parámetro n de mi función debe ser una potencia de 2. Hago mi algoritmo con caso base n = 1:
+Entonces esto lo puedo _anidar_ todo en la sumatoria de n = 8 (no tengo ganas de hacerlo pero se entiende), y se cumple siempre porque el parámetro n de mi función debe ser una potencia de 2, y para todo n que cumpla esto quedará de la forma:
+
+$$
+f(matriz\ A,\ n) = f(matriz\ A,\ n/2) + A^{n/2}* f(matriz\ A,\ n/2)
+$$
+
+Hago mi algoritmo con caso base n = 1:
 
 ```cpp
 struct matriz{/*...*/}
