@@ -2,6 +2,8 @@
 
 ## Ejercicio 1
 
+Hago una recursión con ambas mitades de mi arreglo hasta que llegue al caso base. Si el arreglo es tamaño 1, entonces será másALaIzquierda. 
+
 ```cpp
 int sumar(int arr[], int begin, int end);
 
@@ -37,7 +39,7 @@ $\rightarrow T(n) = Θ(n^{log_22} * log\ n) = Θ(n\ log\ n)$
 
 ## Ejercicio 2
 
-Se hace un algoritmo similar a la búsqueda binaria, aprovechando el dato de que el arreglo esta estríctamente ordenado.
+Se hace un algoritmo similar a la búsqueda binaria, aprovechando el dato de que el arreglo esta estríctamente ordenado. Voy achicando mi problema hacia una u otra mitad, dependiendo qué numero sea el encontrado, respecto al índice en el que se encuentra:
 
 ```cpp
 bool coincideIndiceElemento(int arr[], int begin, int end){ // la indexación comienza en 1
