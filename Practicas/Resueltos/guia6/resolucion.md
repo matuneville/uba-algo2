@@ -98,7 +98,7 @@ funcion(matriz\ A,\ nat\ n) =
 \sum_{i=1}^{n} A^i = A^1 + A^2 + ... + A^{n-1} + A^n
 $$
 
-Como tengo que resolverlo por Divide & Conquer, tengo que reducir mi problema a pequeños problemas. Me fijo cómo queda viendo la sumatoria antes y despues de n/2 _(gracias Bian por la pista)_.  
+Como tengo que resolverlo por Divide & Conquer, tengo que reducir mi problema a pequeños problemas. Me fijo cómo queda viendo la sumatoria antes y despues de n/2 _(créditos a Bian por la pista)_.  
 
 $$
 A^1 + A^2 + ... + A^{n-1} + A^n = A^1 + A^2 + ... + A^{n/2} + A^{n/2\ + 1} + A^{n/2\ + 2} + ... + A^{n} 
@@ -128,7 +128,7 @@ funcion(matriz\ A,\ 2) =
 \sum_{i=1}^{2} A^i = A^1 + A^2 = A^1 + A^{1 + 1}= A^1 + A^1 (A^1)
 $$
 
-Entonces esto lo puedo _anidar_ todo en la sumatoria de n = 8 (no tengo ganas de hacerlo pero se entiende). Hago mi algoritmo con caso base n = 1:
+Entonces esto lo puedo _anidar_ todo en la sumatoria de n = 8 (no tengo ganas de hacerlo pero se entiende), y se cumple siempre porque el parámetro n de mi función debe ser una potencia de 2. Hago mi algoritmo con caso base n = 1:
 
 ```cpp
 struct matriz{/*...*/}
@@ -148,4 +148,6 @@ $T(n) = 1*T(n/2) + O(1)$
 $Sea\ a = 1,\ c = 2,\ f(n) = 1$  
 $f(n) = 1 \in Θ(n^{log_1 2}) = Θ(n^0) = Θ(1)$   
 $\rightarrow T(n) = Θ(n^{log_1 2} * log n) = Θ(n⁰ log\ n) = Θ(log\ n)$
+
+## Ejercicio 7
 
