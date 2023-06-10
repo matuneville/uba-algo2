@@ -56,12 +56,10 @@ bool coincideIndiceElemento(int arr[], int begin, int end){ // la indexación co
 ```
 
 ### Complejidad:
-$$
-T(n) = 1*T(n/2) + O(1) \newline
-Sea\ a = 1,\ c = 2,\ f(n) = 1 \newline
-f(n) = 1 \in Θ(n^{log_1 2}) = Θ(n^0) = Θ(1) \newline 
-\rightarrow T(n) = Θ(n^{log_1 2} * log n) = Θ(n⁰ log\ n) = Θ(log\ n)
-$$
+$T(n) = 1*T(n/2) + O(1)$  
+$Sea\ a = 1,\ c = 2,\ f(n) = 1$  
+$f(n) = 1 \in Θ(n^{log_1 2}) = Θ(n^0) = Θ(1)$   
+$\rightarrow T(n) = Θ(n^{log_1 2} * log n) = Θ(n⁰ log\ n) = Θ(log\ n)$
 
 ## Ejercicio 3
 
@@ -83,14 +81,12 @@ int exponenciacionBinaria(int base, int exp){ // calcula base^(n)
     }
 }
 ```
-
 ### Complejidad:
-$$
-T(n) = 1*T(n/2) + O(1) \newline
-Sea\ a = 1,\ c = 2,\ f(n) = 1 \newline
-f(n) = 1 \in Θ(n^{log_1 2}) = Θ(n^0) = Θ(1) \newline 
-\rightarrow T(n) = Θ(n^{log_1 2} * log n) = Θ(n⁰ log\ n) = Θ(log\ n)
-$$
+$T(n) = 1*T(n/2) + O(1)$  
+$Sea\ a = 1,\ c = 2,\ f(n) = 1$  
+$f(n) = 1 \in Θ(n^{log_1 2}) = Θ(n^0) = Θ(1)$   
+$\rightarrow T(n) = Θ(n^{log_1 2} * log n) = Θ(n⁰ log\ n) = Θ(log\ n)$
+
 
 ## Ejercicio 5
 
@@ -105,30 +101,51 @@ $$
 Como tengo que resolverlo por Divide & Conquer, tengo que reducir mi problema a pequeños problemas. Me fijo cómo queda viendo la sumatoria antes y despues de n/2 _(gracias Bian por la pista)_.  
 
 $$
-A^1 + A^2 + ... + A^{n-1} + A^n =\newline
-
-A^1 + A^2 + ... + A^{n/2} + A^{n/2\ + 1} + A^{n/2\ + 2} + ... + A^{n} 
+A^1 + A^2 + ... + A^{n-1} + A^n = A^1 + A^2 + ... + A^{n/2} + A^{n/2\ + 1} + A^{n/2\ + 2} + ... + A^{n} 
 $$ 
 
 Así se ve más claro como, a partir de n/2, es la misma sumatoria previa, con cada exponente multiplicado por n/2. Por ejemplo, con n = 8:
 
 $$
 funcion(matriz\ A,\ 8) =
-\sum_{i=1}^{8} A^i =\newline
-
-A^1 + A^2 + A^3 + A^4 + A^5 + A^6 + A^7 + A^8 = \newline
-
-A^1 + A^2 + A^3 + A^4 + A^{4 + 1} + A^{4+ 2} + A^{4 + 3} + A^{4 + 4}
+\sum_{i=1}^{8} A^i = A^1 + A^2 + A^3 + A^4 + A^5 + A^6 + A^7 + A^8 =
+$$
+$$
+A^1 + A^2 + A^3 + A^4 + A^{4 + 1} + A^{4+ 2} + A^{4 + 3} + A^{4 + 4} = A^1 + A^2 + A^3 + A^4 + A^4*(A^1 + A^2 + A^3 + A^4)
 $$
 
-Luego, con la recursion de n/2, quedaría 
+Luego, con la recursion de n/2, quedaría: 
 
 $$
 funcion(matriz\ A,\ 4) =
-\sum_{i=1}^{4} A^i = A^1 + A^2 + A^3 + A^4 = A^1 + A^2 + A^{2 + 1} + A^{2 + 2}
+\sum_{i=1}^{4} A^i = A^1 + A^2 + A^3 + A^4 = A^1 + A^2 + A^{2 + 1} + A^{2 + 2} = A^1 + A^2 + A^2 (A^1 + A^2)
 $$
 
-Hago mi algoritmo con caso base n = 1
+Otra vez n/2:
+
+$$
+funcion(matriz\ A,\ 2) =
+\sum_{i=1}^{2} A^i = A^1 + A^2 = A^1 + A^{1 + 1}= A^1 + A^1 (A^1)
+$$
+
+Entonces esto lo puedo _anidar_ todo en la sumatoria de n = 8 (no tengo ganas de hacerlo pero se entiende). Hago mi algoritmo con caso base n = 1:
 
 ```cpp
+struct matriz{/*...*/}
+
+matriz potenciaHastaN(matriz A, int n){
+    if(n == 1)
+        return A;
+
+    matriz potMitad = potencia(A, n/2);
+
+    return (potenciaHastaN(A, n/2) + potMitad * potenciaHastaN(A, n/2))
+}
 ```
+
+### Complejidad:
+$T(n) = 1*T(n/2) + O(1)$  
+$Sea\ a = 1,\ c = 2,\ f(n) = 1$  
+$f(n) = 1 \in Θ(n^{log_1 2}) = Θ(n^0) = Θ(1)$   
+$\rightarrow T(n) = Θ(n^{log_1 2} * log n) = Θ(n⁰ log\ n) = Θ(log\ n)$
+
