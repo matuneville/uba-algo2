@@ -1,7 +1,5 @@
 # Guía práctica 6: Divide & Conquer
 
-simbolos × ➔ ∀ ∃ ≡ ∈ π ∧ ∨ ⇔ • ◦ ≥ ≤ ≠ ``` α ¬
-
 ## Ejercicio 1
 
 ```cpp
@@ -31,12 +29,10 @@ int sumar(int arr[], int begin, int end){
 ```
 
 ### Complejidad:
-$$
-T(n) = 2T(n/2) + O(n^1)\newline  
-Sea\ a = 2,\ c = 2,\ f(n) = n\newline      
-f(n) \in Θ(n^{log_2 2}) = Θ(n¹) = Θ(n)\newline    
-\rightarrow T(n) = Θ(n^{log_22} * log\ n) = Θ(n\ log\ n)
-$$
+$T(n) = 2T(n/2) + O(n^1)$  
+$Sea\ a = 2,\ c = 2,\ f(n) = n$  
+$f(n) \in Θ(n^{log_2 2}) = Θ(n¹) = Θ(n)$   
+$\rightarrow T(n) = Θ(n^{log_22} * log\ n) = Θ(n\ log\ n)$
 
 
 ## Ejercicio 2
