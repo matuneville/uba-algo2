@@ -139,15 +139,15 @@ $$
 Hago mi algoritmo con caso base n = 1:
 
 ```cpp
-struct matriz{/*...*/}
+struct matriz{/*...*/};
 
 matriz potenciaHastaN(matriz A, int n){
     if(n == 1)
         return A;
 
-    matriz potMitad = potencia(A, n/2);
+    matriz recursionPot = potenciaHastaN(A, n/2);
 
-    return (potenciaHastaN(A, n/2) + potMitad * potenciaHastaN(A, n/2))
+    return (recursionPot + potencia(A, n/2) * recursionPot);
 }
 ```
 
@@ -159,3 +159,74 @@ $\rightarrow T(n) = Θ(n^{log_1 2} * log n) = Θ(n⁰ log\ n) = Θ(log\ n)$
 
 ## Ejercicio 7
 
+Lo que hay que plantear es una especie de Merge Sort para la parte de dividir el problema. La complejidad debe ser menor que O(n²) lo que me permite hacerlo en O(n log n). Por ejemplo, si el arreglo [5, 3] lo divido para hacerle un merge, entonces cuento +1 pareja desordenada cuando se mergean. Si tengo [7, 4, 5, 2], se divide luego en [7, 4] y [5, 2], y luego en [7][4] y [5][2]. Al mergear ambos pares, ya cuento +2 y queda [4, 7] y [2, 5]. Viendolo con pares es fácil porque solo hay que comparar dos numeros, pero ahora tenemos cuatro numeros. Entonces, con el dato de que ambos pares estan ordenados, sabemos que si uno de la izquierda es mas grande que uno de la derecha (como en este caso, 4 y 2), entonces todos los números que estén por delante del arreglo de la izquierda, serán pares desordenados respecto al de la derecha. Entonces con [4, 7] y [2, 5], al mergear ocurre lo siguiente:  
+- Teníamos +2 pares en desorden de antes en el primer Merge.
+- Comparo 4 y 2: 4 > 2, entonces el 4 y los numeros por delante (en este caso solo el 7) son pares desordenados respecto al 2.  
+- Cuento +2 y mergeo. [2, ...  
+- Sigue con 4 y 5: 4 < 5. Se mergea y no se cuenta ningún par desordenado: [2, 4, ...  
+- Sigue con 7 y 5: 7 > 5. Entonces del 7 para adelante son todos pares desordenados respecto al 5
+- Cuento solo +1 porque el 7 es el último. Nos queda [2, 4, 5, 7] y se completa. No hay más pares para contar pues el 7 es el último de la derecha.  
+
+En total conté 5, que es, efectivamente, la cantidad de pares en desorden del arreglo [7, 4, 5, 2], que son [7, 4], [7, 5], [7, 2], [4, 2] y [5, 2].  
+
+Ahora que ya hice el algoritmo en castellano, puedo hacerlo en C++
+
+```cpp
+vector<int> mergeAndCount(vector<int> vecA, vector<int> vecB, int & contador){
+    vector<int> merged;
+
+    int iA = 0, iB = 0;
+    while(iA < vecA.size() and iB < vecB.size()){ // O(n + n) = O(n)
+        if(vecA[iA] < vecB[iB]){
+            merged.push_back(vecA[iA]);
+            iA++;
+        }
+        else{ // este es el caso en el que cuento las parejas en desorden
+            merged.push_back(vecB[iB]);
+            contador += vecA.size() - iA; // ACA LO IMPORTANTE PARA EL EJERCICIO
+            iB++;
+        }
+    }
+    while(iA < vecA.size()){
+        merged.push_back(vecA[iA]);
+        iA++;
+    }
+    while(iB < vecB.size()){
+        merged.push_back(vecB[iB]);
+        iB++;
+    }
+    return merged;
+}
+
+void contarDisparejasRecursiva(vector<int> &vec, int & contador){    // se hace O(log n) veces recursivamente
+
+    if(vec.size() == 1) return;
+    
+    vector<int> vecPart1, vecPart2;
+
+    int i = 0;
+    for(; i < vec.size()/ 2; i++){      // O(n)
+        vecPart1.push_back(vec[i]);
+    }
+    for(; i < vec.size(); i++){           // O(n)
+        vecPart2.push_back(vec[i]);
+    }
+
+    contarDisparejasRecursiva(vecPart1, contador); // recursion doble aca con n/2
+    contarDisparejasRecursiva(vecPart2, contador);
+    vec = mergeAndCount(vecPart1, vecPart2, contador);    // O(n)
+}
+
+int contarDisparejas(vector<int> vec){
+    int contador = 0;
+    contarDisparejasRecursiva(vec, contador);
+    // paso contador por referencia, las recursiones le suman lo necesario
+    return contador;
+}
+```
+
+### Complejidad:
+$T(n) = 2*T(n/2) + O(n)$  
+$Sea\ a = 2,\ c = 2,\ f(n) = n$  
+$f(n) = n \in Θ(n^{log_2 2}) = Θ(n^1) = Θ(n)$   
+$\rightarrow T(n) = Θ(n^{log_2 2} * log n) = Θ(n^1 log\ n) = Θ(n\ log\ n)$
