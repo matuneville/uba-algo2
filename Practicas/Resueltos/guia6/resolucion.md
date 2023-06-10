@@ -83,3 +83,28 @@ int exponenciacionBinaria(int base, int exp){ // calcula base^(n)
     }
 }
 ```
+
+### Complejidad:
+T(n) = 1*T(n/2) + O(1)
+Sea a = 1, c = 2, f(n) = 1    
+f(n) = 1 ∈ Θ(n^(log₁2)) = Θ(n⁰) = Θ(1)  
+➔ T(n) = Θ(n^(log₁2) * log n) = Θ(n⁰ log n) = **Θ(log n)**  
+
+
+## Ejercicio 5
+
+Quiero calcular la sumatoria de i a n de A^i, en complejidad menor que lineal. Entonces busco la forma de hacerlo en complejidad logarítmica. Por el Teorema Maestro, tengo que hacer una sola recursion sobre mi función para que mi complejidad quede de la forma O(n⁰ log n) = O(log n).  
+Para entender mejor cómo hacerlo, hay que desarrollar un poquito la sumatoria.  
+
+$$
+funcion(matriz\ A,\ nat\ n) =
+\sum_{i=1}^{n} A^i = A^1 + A^2 + ... + A^{n-1} + A^n
+$$
+
+Como tengo que resolverlo por Divide & Conquer, tengo que reducir mi problema a pequeños problemas. Me fijo cómo queda viendo la sumatoria antes y despues de n/2 (gracias Bian por la pista).  
+
+$$
+A^1 + A^2 + ... + A^{n-1} + A^n =\\ 
+A^1 + A^2 + ... + A^{n/2} + A^{n/2\ + 1} + A^{n/2\ + 2} + ... + A^{n} 
+$$ 
+
