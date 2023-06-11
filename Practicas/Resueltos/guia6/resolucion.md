@@ -224,9 +224,50 @@ int contarDisparejas(vector<int> vec){
     return contador;
 }
 ```
+Usé como template del algoritmo el Merge Sorting y lo modifiqué para tener el contador de parejas en desorden, por lo que hay ciertas cosas que tal vez se podrían omitir pues no es el objetivo de este ejercicio el ordenamiento del arreglo.
 
 ### Complejidad:
 $T(n) = 2*T(n/2) + O(n)$  
 $Sea\ a = 2,\ c = 2,\ f(n) = n$  
 $f(n) = n \in Θ(n^{log_2 2}) = Θ(n^1) = Θ(n)$   
 $\rightarrow T(n) = Θ(n^{log_2 2} * log n) = Θ(n^1 log\ n) = Θ(n\ log\ n)$
+
+## Ejercicio 8
+
+Para resolverlo hay que hacer una especie de binary search doble. Veo las conjunciones de cada mitad de la matriz. Si de un lado da true, entonces quiere decir que son todos sus elementos true, por lo que debo ver la otra mitad de la matriz en la que necesariamente habrá algun false. Y si da false de ambos lados, entonces veo en cualquiera de ellos, por lo que de todas formas encontraré un false al seguir buscando.
+
+```cpp
+typedef vector<vector<int>> matriz;
+
+pair<int, int> buscarFalsoRecursivo(matriz m, int f1, int f2, int c1, int c2){
+    if(f2-f1 == 1 and c2-c1 == 1)
+        return make_pair(c1, f1); // solo llega a este caso si ESE elemento es Falso
+
+    if(f2-f1 == 1){
+        if (conjuncion(m, f1, f2, c1, (c2+c1)/2) == false)
+            return buscarFalsoRecursivo(m, f1, f2, c1, (c2+c1)/2);
+        else
+            return buscarFalsoRecursivo(m, f1, f2, (c2+c1)/2, c2);
+    }
+    else{
+        if (conjuncion(m, f1, (f2+f1)/2, c1, c2) == false)
+            return buscarFalsoRecursivo(m, f1, (f2+f1)/2, c1, c2);
+        else
+            return buscarFalsoRecursivo(m, (f2+f1)/2, f2, c1, c2);
+    }
+}
+
+pair<int, int> buscarFalso(matriz m){
+    int size = m.size();
+    return buscarFalsoRecursivo(m, 0, size, 0, size);
+}
+```
+### Complejidad:
+Para calcular esto con el Teorema Maestro hay que hacer un cambio de variables:  
+
+$Sea\ m = n^2,\ \text{siendo m la cantidad de elementos totales de la matriz}$  
+$T(m) = 1*T(m/2) + O(1)$  
+$Sea\ a = 1,\ c = 2,\ f(m) = 1$  
+$f(m) = 1 \in Θ(m^{log_2 1}) = Θ(m^0) = Θ(1)$   
+$\rightarrow T(m) = Θ(m^{log_2 1} * log m) = Θ(m^0 log\ m) = Θ(log\ m)$
+$\text{Y por el cambio de variables} \rightarrow Θ(log\ m) = Θ(log\ n^2)$
