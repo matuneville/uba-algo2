@@ -269,5 +269,5 @@ $Sea\ m = n^2,\ \text{siendo m la cantidad de elementos totales de la matriz}$
 $T(m) = 1*T(m/2) + O(1)$  
 $Sea\ a = 1,\ c = 2,\ f(m) = 1$  
 $f(m) = 1 \in Θ(m^{log_2 1}) = Θ(m^0) = Θ(1)$   
-$\rightarrow T(m) = Θ(m^{log_2 1} * log m) = Θ(m^0 log\ m) = Θ(log\ m)$
+$\rightarrow T(m) = Θ(m^{log_2 1} * log m) = Θ(m^0 log\ m) = Θ(log\ m)$  
 $\text{Y por el cambio de variables} \rightarrow Θ(log\ m) = Θ(log\ n^2)$
