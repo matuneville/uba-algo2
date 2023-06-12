@@ -92,7 +92,7 @@ $\rightarrow T(n) = Θ(n^{log_1 2} * log n) = Θ(n⁰ log\ n) = Θ(log\ n)$
 
 ## Ejercicio 5
 
-Quiero calcular la sumatoria de i a n de A^i, en complejidad menor que lineal. Entonces busco la forma de hacerlo en complejidad logarítmica. Por el Teorema Maestro, tengo que hacer una sola recursion sobre mi función para que mi complejidad quede de la forma O(n⁰ log n) = O(log n).  
+Quiero calcular la sumatoria de i a n de A^i, en complejidad menor que lineal. Entonces busco la forma de hacerlo en complejidad logarítmica. Por el Teorema Maestro, tengo que hacer una sola recursion sobre mi función para que mi complejidad quede de la forma $O(n⁰\ log\ n) = O(log\ n)$.  
 Para entender mejor cómo hacerlo, hay que desarrollar un poquito la sumatoria. Sea $f$ la función pedida en el ejercicio:  
 
 $$
@@ -159,7 +159,7 @@ $\rightarrow T(n) = Θ(n^{log_1 2} * log n) = Θ(n⁰ log\ n) = Θ(log\ n)$
 
 ## Ejercicio 7
 
-Lo que hay que plantear es una especie de Merge Sort para la parte de dividir el problema. La complejidad debe ser menor que O(n²) lo que me permite hacerlo en O(n log n). Por ejemplo, si el arreglo [5, 3] lo divido para hacerle un merge, entonces cuento +1 pareja desordenada cuando se mergean. Si tengo [7, 4, 5, 2], se divide luego en [7, 4] y [5, 2], y luego en [7][4] y [5][2]. Al mergear ambos pares, ya cuento +2 y queda [4, 7] y [2, 5]. Viendolo con pares es fácil porque solo hay que comparar dos numeros, pero ahora tenemos cuatro numeros. Entonces, con el dato de que ambos pares estan ordenados, sabemos que si uno de la izquierda es mas grande que uno de la derecha (como en este caso, 4 y 2), entonces todos los números que estén por delante del arreglo de la izquierda, serán pares desordenados respecto al de la derecha. Entonces con [4, 7] y [2, 5], al mergear ocurre lo siguiente:  
+Lo que hay que plantear es una especie de Merge Sort para la parte de dividir el problema. La complejidad debe ser menor que $O(n²)$ lo que me permite hacerlo en O(n log n). Por ejemplo, si el arreglo [5, 3] lo divido para hacerle un merge, entonces cuento +1 pareja desordenada cuando se mergean. Si tengo [7, 4, 5, 2], se divide luego en [7, 4] y [5, 2], y luego en [7][4] y [5][2]. Al mergear ambos pares, ya cuento +2 y queda [4, 7] y [2, 5]. Viendolo con pares es fácil porque solo hay que comparar dos numeros, pero ahora tenemos cuatro numeros. Entonces, con el dato de que ambos pares estan ordenados, sabemos que si uno de la izquierda es mas grande que uno de la derecha (como en este caso, 4 y 2), entonces todos los números que estén por delante del arreglo de la izquierda, serán pares desordenados respecto al de la derecha. Entonces con [4, 7] y [2, 5], al mergear ocurre lo siguiente:  
 - Teníamos +2 pares en desorden de antes en el primer Merge.
 - Comparo 4 y 2: 4 > 2, entonces el 4 y los numeros por delante (en este caso solo el 7) son pares desordenados respecto al 2.  
 - Cuento +2 y mergeo. [2, ...  
@@ -234,6 +234,7 @@ $\rightarrow T(n) = Θ(n^{log_2 2} * log n) = Θ(n^1 log\ n) = Θ(n\ log\ n)$
 
 ## Ejercicio 8
 
+### Item A
 Para resolverlo hay que hacer una especie de binary search doble. Veo las conjunciones de cada mitad de la matriz. Si de un lado da true, entonces quiere decir que son todos sus elementos true, por lo que debo ver la otra mitad de la matriz en la que necesariamente habrá algun false. Y si da false de ambos lados, entonces veo en cualquiera de ellos, por lo que de todas formas encontraré un false al seguir buscando.
 
 ```cpp
@@ -271,3 +272,7 @@ $Sea\ a = 1,\ c = 2,\ f(m) = 1$
 $f(m) = 1 \in Θ(m^{log_2 1}) = Θ(m^0) = Θ(1)$   
 $\rightarrow T(m) = Θ(m^{log_2 1} * log m) = Θ(m^0 log\ m) = Θ(log\ m)$  
 $\text{Y por el cambio de variables} \rightarrow Θ(log\ m) = Θ(log\ n^2)$
+
+### Item B
+
+Una idea para resolver esto sería realizar las veces necesarias el algoritmo previo, y cada vez que se hace, poner un False en la coordenada indicada, y contar +1 falso encontrado. Es decir, en el peor caso se realizará cinco veces el algoritmo previo y se contarán cinco falsos encontrados, por lo que su complejidad será de $O(5*log\ n) = O(log\ n)$. No sé si es esta la idea para resolverlo pues no es un algoritmo nuevo de D&C, pero es una solución eficiente.
