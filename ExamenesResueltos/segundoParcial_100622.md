@@ -1,6 +1,6 @@
 ## Ejercicio 1
 
-Una solución sería crear un diccionario implementado a través de un AVL Tree. Luego habría que recorrer el arreglo e ir insertando cada elemento en el diccAVL. Como esta estructura no permite elementos repetidos, su cantidad de nodos totales será constantemente $d$. Al recorrer el arreglo para formar el diccAVL, si no está el elemento, se inserta y se le pone de significado 1, lo que costaría $O(log\ d)$. En cambio si yá está, habría que buscarlo y sumarle +1, que también costaría $O(log\ d)$. Hasta aca ya tenemos una complejidad de $O(n\ log\ d)$. Luego para reformar el arreglo pero ordenado, puedo buscar el mínimo del diccAVL (costo $O(log\ d)$), y por cada aparición insertarlo nuevamente en el arreglo. Luego se elimina el mínimo y se vuelve a buscar el siguiente (costo $O(log\ d)$). Esto costará en total $O(n\ 2*log\ d)$, pues habrá que recorrer las $d$ claves, pero la cantidad de apariciones totales será $n$, que es su cota superior. Por lo tanto, la complejidad final del algoritmo será de $O(n\ log\ d + n\ 2*log\ d) = O(n\ log\ d)$.
+Una solución sería crear un diccionario implementado a través de un AVL Tree. Luego habría que recorrer el arreglo e ir insertando cada elemento en el diccAVL. Como esta estructura no permite elementos repetidos, su cantidad de nodos totales será constantemente $d$. Al recorrer el arreglo para formar el diccAVL, si no está el elemento, se inserta y se le pone de significado 1, lo que costaría $O(log\ d)$. En cambio si yá está, habría que buscarlo y sumarle +1, que también costaría $O(log\ d)$. Hasta aca ya tenemos una complejidad de $O(n\ log\ d)$. Luego para reformar el arreglo pero ordenado, puedo buscar el mínimo del diccAVL (costo $O(log\ d)$ ), y por cada aparición insertarlo nuevamente en el arreglo. Luego se elimina el mínimo y se vuelve a buscar el siguiente (costo $O(log\ d)$ ). Esto costará en total $O(n\ 2log\ d)$, pues habrá que recorrer las $d$ claves, pero la cantidad de apariciones totales será $n$, que es su cota superior. Por lo tanto, la complejidad final del algoritmo será de $O(n\ log\ d + n\ 2*log\ d) = O(n\ log\ d)$.
 
 ```cpp
 class diccAVL{};
@@ -138,9 +138,9 @@ La parte de Unir los subproblemas sería también cuando se pushean los huecos, 
 
 Si k = 1, pueden pasar dos cosas: que el único hueco se encuentre en el medio, por lo que se encontrará y se añadirá a la lista de huecos, sin entrar en ninguna recursión o ciclo, por lo que su complejidad será de $\Theta(1) \in O(log\ n)$.  
 En otro caso, se encontrará solo en un lado del arreglo, es decir, o en la izquierda o en la derecha, y se harán las recursiones dividiendo al arreglo entre 2 hasta que, o bien llegue al caso base, o tenga el hueco justo en el medio. Lo importante es que siempre se hará como máximo una recursion, nunca serán dos hacia cada lado del arreglo. Su complejidad por Teorema Maestro sería:  
-$T(n) = 1*T(n/2)+O(1), \text{sea a = 1 (sería k), c = 2, f(n) = 1}$  
+$T(n) = 1\cdot T(n/2)+O(1), \text{sea a = 1 (sería k), c = 2, f(n) = 1}$  
 $f(n) = 1 \in \Theta(n^{log_c(a)}) = \Theta(n^{log_2(1)}) = \Theta(n^{0}) = \Theta(1)$  
-$\Rightarrow T(n) \in \Theta(n^{log_c(a)}*log\ n) = \Theta(n^0*log\ n) = \Theta(log\ n)$  
+$\Rightarrow T(n) \in \Theta(n^{log_c(a)}\ log\ n) = \Theta(n^0*log\ n) = \Theta(log\ n)$  
 
 Esta solución cumple con la complejidad pedida pues $\Theta(log\ n) \in O(k\ log\ n)$
 
