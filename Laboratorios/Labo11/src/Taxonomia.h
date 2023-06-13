@@ -113,7 +113,8 @@ public:
         // (Nota: puede construir un iterador inválido).
         iterator();
 
-        // COMPLETAR
+        Nodo* _raizIt;
+        Nodo* _nodoActualIt;
     };
 
     // Devuelve un iterador válido al principio de la taxonomía.

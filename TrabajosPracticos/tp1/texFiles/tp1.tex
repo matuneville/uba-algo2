@@ -1,0 +1,214 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[paper=a4paper, left=1.5cm, right=1.5cm, bottom=1.5cm, top=3.5cm]{geometry}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{aed2-symb,aed2-itef,aed2-tad,aed2-diseno}
+\usepackage{caratula}
+
+
+\author{Algoritmos y Estructuras de Datos II, DC, UBA.}
+\date{}
+\title{Arboloneta TP AED2}
+
+
+\begin{document}
+	\thispagestyle{empty}
+    \integrante{Rivero, Bárbara}{1206/22}{barbara.m.rivero@gmail.com}
+	\integrante{Sanguinetti, Iván}{331/22}{ivan.sanguinetti18@gmail.com}
+	\integrante{Neville, Matu}{88/22}{nevillematias@gmail.com}
+	\integrante{Ruz, Luciano}{589/22}{luciruzveloso@gmail.com}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+        \textbf{TAD} cantidad es nat\
+        
+        \textbf{TAD} porcentaje es nat\
+
+        \textbf{TAD} persona es nat\
+        
+        \textbf{TAD} venta es multiconj(tupla(item, cantidad))    
+        
+
+        
+		\section{TAD \tadNombre{LOLLAPATUZA}}
+		\begin{tad}{LOLLAPATUZA}
+
+        \tadGeneros{lolla}
+        \tadExporta{lolla, generadores, observadores, otras operaciones}
+        \tadUsa{\tadNombre{multiconj, conj, item, persona, puesto, nat, cantidad, venta}}
+
+        \tadIgualdadObservacional{l}{l'}{lolla}{  puestos(l) $\igobs$ puestos(l') $\wedge$ personasHabilitadas(l) $\igobs$ personasHabilitadas(l')} \
+
+        \tadAlinearFunciones{\IF \argumento THEN \argumento ELSE \argumento FI}{lolla, conj(puesto), conj(persona), venta}
+
+
+		\tadObservadores
+		\tadOperacion{puestos}{lolla}{multiconj(puesto)}{}
+		\tadOperacion{personasHabilitadas}{lolla}{conj(persona)}{} \
+		
+		\tadGeneradores
+		\tadOperacion{nuevoLolla}{multiconj(puesto)\ cq, conj(persona)\ cp}{lolla}{(\paratodo{persona}{p})(\paratodo{puesto}{q,q'}) ($p\in$cp $\wedge$ $q\in$cq $\wedge$ $q'\in$cq) $\implies_L$ def(p, historialVentas(q)) $\wedge_L$ cp = claves(historialVentas(q)) $\wedge_L$ obtener(p, historialVentas(q) $= \emptyset$ $\wedge_L$ $\neg$(\existe{item}{i,i'})(i $\in$ menu(q) $\wedge$ i' $\in$ menu(q') $\wedge$ q $\neq$ q' $\wedge$ i $=$ i' $\wedge$ precio(i) $\neq$ precio(i')}
+        \tadOperacion{personaCompra}{lolla\ l, puesto\ q, persona\ p, venta\ v}{lolla}{p$\in$personasHabilitadas(l) $\wedge$ q$\in$puestos(l) $\wedge$ (\paratodo{tupla(item, cantidad}{tv, tv'}) tv$\in$v $\wedge \pi_1$(tv) $\in$menu(q) $\wedge_L$ $\pi_2$(tv) $\leq$ obtener($\pi_1$(tv), stock(q)) $\wedge$ (tv $\neq$ tv' $\implies$ $\pi_1$(tv) $\neq$ $\pi_1$(tv'))}
+        \tadOperacion{hackeo}{lolla\ l, persona\ p, item\ i}{lolla}{($\exists$q: puesto) q$\in$puestos(l) $\wedge$ esHackeable?(q, p, i)} \
+
+        \tadOtrasOperaciones
+        \tadOperacion{puestoHackeado}{lolla\ l, item\ i, persona\ p}{puesto}{($\exists$q: puesto) q$\in$puestos(l) $\wedge$ esHackeable?(q, p, i)}
+        \tadOperacion{buscoPuestoAHackear}{multiconj(puestos)\ cq, persona\ p, item\ i}{puesto}{($\existe$q:puesto)(q$\in$ cq $\wedge$ esHackeable(q,p,i)}
+        
+        \tadOperacion{maxQueSeGasto}{lolla \ l}{nat}{}\
+        \tadOperacion{buscoMontoMax}{conj(puesto), conj(persona)\ cp}{nat}{$\#$(cp) $>$ 0}
+        \tadOperacion{cuantoGastoEnLolla}{conj(puesto)\ cq, persona\ p}{nat}{$\#$(cq) $>$ 0 $\wedge$ (\paratodo{puesto}{q}) q $\in$ cq $\implies_L$ def?(p, historialVentas(q)) }
+        \tadOperacion{cuantoGastoEn}{puesto\ q, persona\ p}{nat}{def?(p, historialVentas(q))}
+        \tadOperacion{sumoTodasLasVentas}{venta, puesto}{nat}{}
+        \tadOperacion{precioTotal}{tupla(item, cantidad), conj(tupla(cantidad, porcentaje))}{nat}{}
+        \tadOperacion{buscoCant}{conj(tupla(cantidad, porcentaje)), nat}{nat}{}
+        \tadOperacion{buscoDescDeEsaCant}{n, conj(tupla(cantidad, porcentaje))\ cd}{nat}{(\existe {tupla(cantidad, porcentaje)} {t} (t $\in$ cd $\wedge$ n = $\pi_1$(dameUno(cd)))}
+        \tadOperacion{mayorGastador}{lolla \ l}{persona}{}
+        \tadOperacion{veoQuienGastoMax}{conj(persona)\ cp, conj(puesto), nat\ n}{persona}{\#cp $>$ 0}
+        
+        
+        
+        \tadAxiomas[(\paratodo{conj(puesto)}{cq}), (\paratodo{conj(persona)}{cp}), (\paratodo{lola}{l}), (\paratodo{puesto}{q}), (\paratodo{venta}{v}), (\paratodo{persona}{p}), (\paratodo{item}{i}), (\paratodo{puesto}{q}), (\paratodo{nat}{n}), (\paratodo{conj(tupla(cantidad,porcentaje)))}{cd}), (\paratodo{tupla(item,cantidad)}{tv})]\
+
+        \tadAxioma{puestos(nuevoLolla(cq,cp))}{cq} 
+        \tadAxioma{puestos(personaCompra(l,q,v))}{Ag(vender(q,v), puestos(l)-q)}
+        \tadAxioma{puestos(hackeo(l,p,i))}{Ag(sufreHackeoPuesto(puestoHackeado(l,p,i),p,i), puestos(l) - puestoHackeado(l,p,i))}\
+
+        \tadAxioma{personasHabilitadas(nuevoLolla(cq, cp))}{cp}
+        \tadAxioma{personasHabilitadas(personaCompra(l, q, p, v))}{personasHabilitadas(l)}
+        \tadAxioma{personasHabilitadas(hackeo(l,p,i))}{personasHabilitadas(l)}\
+
+        \tadAxioma{puestoHackeado(l, p, i)}{buscoPuestoAHackear(puestos(l), p, i)}
+        
+        \tadAxioma{buscoPuestoAHackear(cq, p, i)}{\IF esHackeable?(dameUno(cq), p, i) THEN dameUno(cq) ELSE buscoPuestoAHackear(sinUno(cq), p, i) FI}
+        
+        
+        
+        \tadAxioma{maxQueSeGasto(l)}{buscoMontoMax(puestos(l), personas(l))}
+        
+        \tadAxioma{buscoMontoMax(cq, cp)}{\IF $\#$(cp) $= 1$ THEN cuantoGastoEnLolla(cq, dameUno(cp)) ELSE max(cuantoGastoEnLolla(cq, dameUno(cp)), buscoMontoMax(cq, sinUno(cp))) FI}
+        
+        \tadAxioma{cuantoGastoEnLolla(cq, p)}{\IF $\#$(cq) $= 1$ THEN cuantoGastoEn(dameUno(cq), p) ELSE cuantoGastoEn(dameUno(cq), p) $+$ cuantoGastoEnLolla(sinUno(cq), p) FI}
+        
+        \tadAxioma{cuantoGastoEn(q, p)}{sumoTodasLasVentas(q, obtener(p, historialVentas(q)))}
+        
+         \tadAxioma{sumoTodasLasVentas(v, q)}{\IF $\emptyset$?(v) THEN 0 ELSE precioTotal(dameUno(v), obtener($\pi_1$(dameUno(v)), descuentos(q)) + sumoTodasLasVentas(sinUno(v), q) FI}
+        \tadAxioma{precioTotal(tv, cd)}{aplicarDescuento(precio($\pi_1$(tv))*$\pi_2$(tv), buscoDescDeEsaCant(buscoCant(cd, $\pi_2$(tv)), cd)}
+        \tadAxioma{buscoCant(cd, n)}{\IF $\emptyset$?(cd) THEN 0 ELSE {\IF $\pi_1$(dameUno(cd)) $\leq n$ THEN max($\pi_1$(dameUno(cd)), buscoCant(sinUno(cd), n)) ELSE buscoCant(sinUno(cd), n) FI} FI}
+        \tadAxioma{buscoDescDeEsaCant(n, cd)}{\IF n $= \pi_1$(dameUno(cd)) THEN $\pi_2$(dameUno(cd)) ELSE buscoDescDeEsaCanta(n, sinUno(cd)) FI}
+        \tadAxioma{mayorGastador(l)}{veoQuienGastoMax(personasHabilitadas(l), puestos(l), maxQueSeGasto(l)}
+        \tadAxioma{veoQuienGastoMax(cp, cq, n)}{\IF $\#$(cp) $= 1$ THEN dameUno(p) ELSE {\IF cuantoGastoEnLolla(cq, dameUno(p)) $= n$ THEN dameUno(p) ELSE veoQuienGastoMax(sinUno(cp), cq, n) FI} FI}
+        
+        
+	\end{tad}
+    
+	\section{TAD \tadNombre{PUESTO DE COMIDA}}
+    \begin{tad}{PUESTO DE COMIDA}
+        
+        \tadGeneros{puesto}
+        \tadExporta{puesto, generadores, observadores, otras operaciones}
+        \tadUsa{\tadNombre{multiconj, conj, item, persona, nat, dicc, tupla, porcentaje, cantidad, venta}}
+
+        \tadIgualdadObservacional{p}{p'}{item}{  menú(p) $\igobs$ menú(p') $\wedge$ stock(p)$\igobs$stock(p') $\wedge$ descuentos(p)$\igobs$descuentos(p') $\wedge$ historialVentas(p)$\igobs$historialVentas(p')}
+
+        \tadAlinearFunciones{\IF \argumento THEN \argumento ELSE \argumento FI}{puesto, conj(item), dicc(item, nat)}
+
+        \tadObservadores
+		\tadOperacion{menú}{puesto}{conj(item)}{}
+		\tadOperacion{stock}{puesto}{dicc(item,cantidad)}{}
+		\tadOperacion{descuentos}{puesto}{dicc(item,conj(tupla(cantidad, porcentaje)))}{}
+        \tadOperacion{historialVentas}{puesto}{dicc(persona, venta)}{}
+
+        \tadGeneradores
+        
+	\tadOperacion{abrirPuesto}{conj(item)\ m, dicc(item,cantidad)\ s,        dicc(item,conj(tupla(cantidad, porcentaje)))\ dd}{puesto}{claves(s) 
+        = m  $\wedge$ claves(dd) $=$ m $\wedge$ (\paratodo{item}{i})(def?(s) $\rightarrow$ (\paratodo{tupla(cantidad, porcentaje)}{t}(t $\in$ obtener(i,s) $\rightarrow$ $\pi_2$ $<$ 100 $\wedge$ $\neg$(\existe {tupla(cantidad, porcentaje}{t`})(t' $\in$ obtener(i,s) $\wedge$ t $\neq$ t' $\wedge$ $\pi_1$(t') $<$ $\pi_1$(t) $\wedge$ $\pi_2$(t') $>$ $\pi_2$(t)))))}
+  
+	\tadOperacion{vender}{puesto\ q, persona\ p, venta\ v }{puesto}{(\paratodo{tupla(item,cantidad)}{tv})(tv $\in$ v $\wedge$ $\pi_2$(tv) $\leq$ obtener($\pi_1$(tv),stock(p)))}
+  
+        \tadOperacion{sufreHackeoPuesto}{puesto\ q, persona\ p, item\ i}{puesto}{esHackeable?(q, p, i)}\
+
+        \tadOtrasOperaciones
+        \tadOperacion{esHackeable?}{puesto\ q, persona\ p, item\ i}{bool}{def?(p, historialVentas(q)) $\wedge$ def?(i, descuentos(q))}
+        \tadOperacion{existeCompraSinDesc?}{venta, nat}{bool}{}
+        
+        \tadOperacion{modificarStock}{dicc(item,cantidad)\ s, persona, venta\ v }{puesto}{(\paratodo{tupla(item,cantidad)}{tv})(tv $\in$ v $\wedge$ $\pi_2$(tv) $\leq$ obtener($\pi_1$(tv),s))}
+        
+        \tadOperacion{buscaVentaHackeada}{dicc(persona, venta)\ dv, dicc(item,conj(tupla(cantidad, porcentaje))\ dd, persona\ p, item\ i}{puesto}{(\existe{persona}{p})(def?(p,dv) $\wedge$ (\existe {tupla(item,cantidad)} {tv} (tv $\in$ obtener(i,dv) $\wedge$ (\paratodo{item}{i})(def?(i,dd)) $\rightarrow$ (\paratodo{tupla(cantidad,porcentaje)}{tc})(tc $\in$ obtener(i,dd) $\rightarrow$ $\pi_1$(tv) = i $\wedge$ $\pi_2$ $<$ $\pi_1$(tc) ))))}
+        
+        \tadOperacion{cantidadMinDesc}{dicc(item,conj(tupla(cantidad, porcentaje))\ dd, item\ i}{nat}{def?(i,dd) $\wedge$ \#(obtener(i,dd)) $>$ 0)}
+        
+        \tadOperacion{buscoElMinimo}{conj(tupla(cantidad, porcentaje))\ d}{nat}{\#d $>$ 0)}
+        
+        \tadAxiomas[(\paratodo{conj(item)}{m}), (\paratodo{dicc(item,cantidad}{s}), (\paratodo{dicc(item,conj(tupla(cantidad, porcentaje)))}{dd}), (\paratodo{puesto}{q}), (\paratodo{persona}{p}), (\paratodo{item}{i}), (\paratodo{venta}{v}), (\paratodo{dicc(persona, venta}{dv}), (\paratodo{conj(tupla(cantidad, porcentaje))}{dd})]\
+
+        \tadAxioma{menú(abrirPuesto(m, s, dd))}{m}
+        \tadAxioma{menú(vender(q, p, v))}{menú(q)}
+        \tadAxioma{menú(sufreHackeoPuesto(q, p, i))}{menú(q)}\
+
+        \tadAxioma{stock(abrirPuesto(m, s, dd))}{s}
+        \tadAxioma{stock(vender(q, p, v))}{modificarStock(stock(q), v)}
+        \tadAxioma{stock(sufreHackeoPuesto(q, p, i))} {definir(i,obtener(i,stock(q)) $+$ \\ $\pi_2$(buscaVentaHackeada(historialVentas(q), descuentos(q),p,i), stock(q)) } \
+        
+        \tadAxioma{descuentos(abrirPuesto(m, s, dd))}{dd}
+        \tadAxioma{descuentos(vender(q, p, v))}{descuentos(q)}
+        \tadAxioma{descuentos(sufreHackeoPuesto(q, p, i))}{descuentos(q)}\
+
+        \tadAxioma{historialVentas(abrirPuesto(m, s, dd))}{$\emptyset$}
+        \tadAxioma{historialVentas(vender(q, p, v))}{definir(p, v $\cup$ obtener(p,historialVentas(q)), historialVentas(q))}
+        \tadAxioma{historialVentas(sufreHackeoPuesto(q, p, i))}{definir(p, obtener(p, historialVentas(q)) - buscarVentaHackeada(historialVentas(q), descuentos(q), p, i), historialVentas(q))}\
+
+        \tadAxioma{esHackeable?(q, p, i)}{existeCompraSinDesc?(obtener(p, historialVentas(q)), buscoElMinimo(obtener(i, descuentos(q))))}
+        
+        \tadAxioma{existeCompraSinDesc?(v, n)}{\IF $\emptyset$?(dameUno(v)) THEN false ELSE {\IF $\pi_2$(dameUno(v)) $< n$ THEN true ELSE existeCompraSinDesc?(sinUno(v), n) FI} FI}
+        
+        \tadAxioma{modificarStock(s, v)}{\IF $\#v = 1$ THEN definir($\pi_1$(dameUno(v)), obtener($\pi_1$(dameUno(v)), s) $- \pi_2$(dameUno(v)), s) ELSE modificarStock(definir($\pi_1$(dameUno(v)), obtener($\pi_1$(dameUno(v)), s) $- $ $\pi_2$(dameUno(v)), s), sinUno(v)) FI}
+
+        \
+        
+        \tadAxioma{buscaVentaHackeada(dv, dd, p, i)}{buscoVentaSinDesc(obtener(p, dv), cantidadMinDesc(dd, i))}
+        
+        \tadAxioma{buscoVentaSinDesc(v,n)}{\IF $\#$v$= 1$ THEN dameUno(v) ELSE {\IF $\pi_2$(dameUno(v)) $< n$ THEN dameUno(v) ELSE buscoVentaSinDesc(sinUno(v),n) FI} FI}
+        \tadAxioma{cantidadMinDesc(dd,i)}{buscoElMinimo(obtener(i, dd))}
+        \tadAxioma{buscoElMinimo(cd)}{\IF $\#$(cd)$= 1$ THEN $\pi_1$(dameUno(cd)) ELSE min($\pi_1$(dameUno(cd)), buscoElminimo(sinUno(cd))) FI}
+        
+    
+	 
+                
+	\end{tad}
+	
+	\newpage
+    \section{TAD \tadNombre{ITEMS}}
+    
+	\begin{tad}{ITEMS}
+
+        \tadGeneros{item}
+        \tadExporta{item, generadores, observadores}
+        \tadUsa{\tadNombre{string, nat}}
+
+        \tadIgualdadObservacional{i}{i'}{item}{  precio(i) $\igobs$ precio(i) $\wedge$ \\ nombre(i)  $\igobs$ nombre(i')}
+
+        \tadAlinearFunciones{\IF \argumento THEN \argumento ELSE \argumento FI}{item, nat, string}
+  
+		\tadObservadores
+		\tadOperacion{precio}{item}{nat}{}
+		\tadOperacion{nombre}{item}{string}{}
+		
+		\tadGeneradores
+		\tadOperacion{prepararItem}{string\ s, nat\ n}{item}{}
+		
+		
+        \tadAxiomas[(\paratodo{nat}{n})(\paratodo{string}{s})]
+
+        \tadAxioma{precio(prepararItem(s, n))}{n}
+        \tadAxioma{nombre(prepararItem(s, n))}{s}
+
+
+        
+	\end{tad}
+ 
+		
+\end{document}

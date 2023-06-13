@@ -81,7 +81,7 @@ void Taxonomia<T>::mostrar(ostream& os) const {
 // Devuelve un iterador válido al principio de la taxonomía.
 template<class T>
 typename Taxonomia<T>::iterator Taxonomia<T>::begin() {
-    return Taxonomia<T>::iterator();
+
 }
 
 // Devuelve un iterador válido al final de la taxonomía.
@@ -93,7 +93,8 @@ typename Taxonomia<T>::iterator Taxonomia<T>::end() {
 // Constructor por defecto del iterador.
 // (Nota: puede construir un iterador inválido).
 template<class T>
-Taxonomia<T>::iterator::iterator() {
+Taxonomia<T>::iterator::iterator(): _raizIt(), _nodoActualIt() {
+    Nodo* it = new Nodo(_raiz);
 }
 
 // Referencia mutable al nombre de la categoría actual.
