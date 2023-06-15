@@ -52,4 +52,3 @@ vector<Tupla> OrdenEntregas(int z, vector<Tupla> pedidos) {
 
 ## Ejercicio 2
 
-Creo que no se puede en O(n), debe ser un error
