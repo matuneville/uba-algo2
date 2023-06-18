@@ -1,3 +1,7 @@
+## Ejercicio 2
+
+Primero armo un arreglo fijo de largo 365 con booleanos false. Luego recorro mi arreglo de intervalos y por cada uno, escribo en su índice de principio y fin true. Hasta aca va una complejidad O(n). Luego, creo un arreglo del largo de mi arreglo de intervalos original, y por cada intervalo que recorro, me fijo en el arreglo de largo 365 entre su principio y fin cuantos true hay, y luego añado al arreglo nuevo una tupla con la info <principio, fin, #conflictos>. Esto tiene una complejidad de O(365*n) = O(n). Luego, como la maxima cantidad de conflictos que puede tener un intervalo de 365, puedo hacer un Bucket Sort con un arreglo de listas vacías, con largo 365, en el que añadiré las tuplas según su cantidad de conflictos. Esto tiene una complejidad de O(n). Luego simplemente recorro los buckets adecuadamente, en reversa, para que quede ordenado crecientemente según su cantidad de conflictos. Complejidad final: O(n). Me da fiaca hacer el algoritmo pero en esencia es esto que expliqué, _easy peacy bruh_.
+
 ## Ejercicio 3
 
 Si justo en el medio es donde se corta un subarreglo CO, entonces calculo la suma de los dos subarreglos crecientes contiguos y hago la recursion. Ej: en [0, 1, 2, 4, 3, 7, 0, 1], en el medio es donde termina [0, 1, 2, 4] y luego empieza [3, 7].  
@@ -58,10 +62,9 @@ int mayorCO_recursivo(int arr[], int begin, int end){
     return max(COalMedio, recursion);
 }
 ```
-Lo programé bien y lo testeé bastante y funciona piola, soy crack.
 
 ### Complejidad
-La complejidad del algoritmo sin contar las recursiones es de O(n), cuando calculo el largo de subarreglos. Después hago una doble recursión separando el arreglo en dos. La complejidad queda:  
+La complejidad del algoritmo sin contar las recursiones es de O(n), cuando calculo el largo de subarreglos. Después hago una doble recursión separando el arreglo en dos. Por Teorema Maestro, cumple el segundo caso, y la complejidad queda:  
 $T(n) = 2T(n/2) + O(n)$  
 $Sea\ a = 2,\ c = 2,\ f(n) = n$  
 $f(n) = n \in Θ(n^{log_2 2}) = Θ(n^1) = Θ(n)$   
