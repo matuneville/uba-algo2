@@ -111,10 +111,10 @@ public:
     private:
         // Constructor por defecto del iterador.
         // (Nota: puede construir un iterador inválido).
-        iterator();
+        iterator(Nodo* n);
 
-        Nodo* _raizIt;
-        Nodo* _nodoActualIt;
+        Nodo* actual;
+
     };
 
     // Devuelve un iterador válido al principio de la taxonomía.

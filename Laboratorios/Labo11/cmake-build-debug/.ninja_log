@@ -4,3 +4,9 @@
 0	3405	1686497623473290995	CMakeFiles/gtest.dir/tests/gtest-1.8.1/gtest-all.cc.o	85f900f55c9468b9
 1	99	1686524566909137243	libgtest_main.a	a4bc3edcee0a9852
 1	156	1686524566961136837	libgtest.a	c9ccbd70d83eee60
+2	1678	1686950402465505227	CMakeFiles/correrTests.dir/tests/tests_taxonomia.cpp.o	85ec1031c3ed864
+1678	2056	1686950402841515709	correrTests	b5da48d84dedf27a
+2	1402	1686950968845297942	CMakeFiles/correrTests.dir/tests/tests_taxonomia.cpp.o	85ec1031c3ed864
+1402	1580	1686950969021291967	correrTests	b5da48d84dedf27a
+2	1430	1686951677601164098	CMakeFiles/correrTests.dir/tests/tests_vector.cpp.o	374991d1eb85eb27
+1430	1607	1686951677777163722	correrTests	b5da48d84dedf27a
