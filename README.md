@@ -23,6 +23,8 @@ Repo con teóricas, prácticas, resueltos de labo, talleres y TPs
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Laboratorios/Labo09/enunciado.pdf) y [Código](https://github.com/matuneville/uba-algo2/tree/main/Laboratorios/Labo09/src)
 - Labo 10: Priority Queue
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Laboratorios/Labo10/ejercitacion_heap/enunciado.pdf) y [Código](https://github.com/matuneville/uba-algo2/tree/main/Laboratorios/Labo10/ejercitacion_heap/src)
+- Labo 11: Creando Iteradores de clases (incompleto)
+  - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Laboratorios/Labo11/enunciado.pdf) y [Código](https://github.com/matuneville/uba-algo2/tree/main/Laboratorios/Labo11/src)
 
 ## Prácticas
 - Práctica 1: TADs
@@ -37,3 +39,9 @@ Repo con teóricas, prácticas, resueltos de labo, talleres y TPs
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Practicas/Consignas/practica5.pdf) y [Resolucion](https://github.com/matuneville/uba-algo2/tree/main/Practicas/Resueltos/guia5/resolucion.md)
 - Práctica 6: Divide & Conquer
   - [Enunciado](https://github.com/matuneville/uba-algo2/blob/main/Practicas/Consignas/practica6.pdf) y [Resolucion](https://github.com/matuneville/uba-algo2/tree/main/Practicas/Resueltos/guia6/resolucion.md)
+
+## Exámenes resueltos para practicar
+
+Los exámenes están en la web de algo2 de CubaWiki, en la sección de parciales y compilados. [Link acá](https://www.cubawiki.com.ar/index.php/Algoritmos_y_Estructuras_de_Datos_II). Cada uno tiene su fecha en el nombre del archivo, como `parcial_DDMMYY`.
+- [Primeros parciales resueltos](/ExamenesResueltos/primerosParciales/)
+- [Segundos parciales resueltos](/ExamenesResueltos/segundosParciales/)
