@@ -48,10 +48,13 @@ Para cada algoritmo, se define $t(i)$ la funcion que mide la cantidad de operaci
 Luego, tomamos $T(i)$ como el tiempo que tarda el algoritmo en ser ejecutado para su instancia $i$. Definimos sus cálculos como:
 
 - Condiciones:  
-$T(if\ C\ then\ S_1\ else\ S_2\ end) = T(C) + max{(T(S_1), T(S_2))}$
+$$T(if\ C\ then\ S_1\ else\ S_2\ end) = T(C) + max{(T(S_1), T(S_2))}$$
 - Loops:  
-$T(while\ C\ do\ S\ end) = T(C) +$ # $iteraciones\ \times (T(S) + T(C))$  
-- Llamadas: $T(F(P_1, P_2,...\ , P_n)) = 1 + \sum_{i=1}^{n}{T(P_i) + T(F)}$  
+$$T(while\ C\ do\ S\ end) = T(C) + cantIteraciones\ \times (T(S) + T(C))$$  
+- Llamadas:
+$$
+T(F(P_1, P_2,...\ , P_n)) = 1 + \sum_{i=1}^{n}{T(P_i) + T(F)}
+$$  
 
 Utilizamos las notaciones $T_{peor}(n)$,$T_{mejor}(n)$,$T_{prom}(n)$ para definir las complejidades temporales de peor, mejor y caso promedio, para cada algoritmo $A$:  
 
@@ -330,7 +333,10 @@ La solución típica es dividir en $a$ subproblemas, de tamaño máximo $n/c$; e
 
 #### Análisis por casos
 
-La complejidad es de la forma: $T(n)=bn^d(\sum_{i=0}^{log_cn}(a/{c^d})^i)$  
+La complejidad es de la forma:
+$$
+T(n)=bn^d(\sum_{i=0}^{log_cn}(a/{c^d})^i)
+$$  
 
 Se tienen los siguientes casos:  
 1. $Si\ f(n) \in O(n^{log_c(a)-\epsilon})\ para\ \epsilon > 0 \rightarrow T(n) \in \Theta(n^{log_c(a)})$
