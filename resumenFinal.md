@@ -50,9 +50,8 @@ Luego, tomamos $T(i)$ como el tiempo que tarda el algoritmo en ser ejecutado par
 - Condiciones:  
 $T(if\ C\ then\ S_1\ else\ S_2\ end) = T(C) + max{(T(S_1), T(S_2))}$
 - Loops:  
-$T(while\ C\ do\ S\ end) = T(C) + \# iteraciones\ \times (T(S) + T(C))$  
-- Llamadas:  
-$T(F(P_1, P_2,...\ , P_n)) = 1 + \sum_{i=1}^{n}{T(P_i) + T(F)}$  
+$T(while\ C\ do\ S\ end) = T(C) +$ # $iteraciones\ \times (T(S) + T(C))$  
+- Llamadas: $T(F(P_1, P_2,...\ , P_n)) = 1 + \sum_{i=1}^{n}{T(P_i) + T(F)}$  
 
 Utilizamos las notaciones $T_{peor}(n)$,$T_{mejor}(n)$,$T_{prom}(n)$ para definir las complejidades temporales de peor, mejor y caso promedio, para cada algoritmo $A$:  
 
@@ -60,7 +59,7 @@ $T_{peor}(n) = max({t(i) | I ∈ I_A, |I| = n})$
 $T_{mejor}(n) = min({t(i) | I ∈ I_A, |I| = n})$  
 
 ### 2.3 - Principio de Invarianza
-Dado un algoritmo y dos máquinas $M_1$ y $M_2$ que tardan $T_1(n)$ y $T_2(n)$ en ejecutarlo, respectivamente, sobre inputs de tamaño $n$, existe una constante $c$ tal que $c > 0$ y un $n_0 \in \N$ tales que:  
+Dado un algoritmo y dos máquinas $M_1$ y $M_2$ que tardan $T_1(n)$ y $T_2(n)$ en ejecutarlo, respectivamente, sobre inputs de tamaño $n$, existe una constante $c$ tal que $c > 0$ y un $n_0 \in N$ tales que:  
 $\forall n \geq n_o \rightarrow T_1(n) \leq c\ T_2(n)$  
 Es decir, dos ejecuciones distintas del mismo algoritmo solo difieren en eficiencia en un factor constante para valores de entrada suficientemente grandes.  
 
@@ -199,7 +198,7 @@ Es una generalización del concepto de array, en la que se le asocia a cada valo
 
 ### 6.1 - Hashing
 
-Para lograr indexar la estructura utilizando otros tipos de datos, se aplica una **funcion de correspondencia** entre el tipo y un entero. Esta transformación depende de la implementación, pero _debe_ ser una función, y es ideal que sea inyectiva ($x=y \iff f(x)=f(y)$).  
+Para lograr indexar la estructura utilizando otros tipos de datos, se aplica una **funcion de correspondencia** entre el tipo y un entero. Esta transformación depende de la implementación, pero _debe_ ser una función, y es ideal que sea inyectiva, es decir, $x=y \iff f(x)=f(y)$.  
 
 Esta función, llamada _hash_, tiene la forma $h\ :\ K \rightarrow{0,1,...,n-1}$ donde $K$ es el género que contiene a las posibles claves del diccionario y $n$ es el tamaño de la tabla de hash.  
 
