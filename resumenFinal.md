@@ -7,12 +7,12 @@ Un TAD es un modelo formal matemático definido por un conjunto de valores con s
 ### 1.1 - Partes de un TAD
 
 - **Parámetros formales**: Son los tipos y operaciones requeridas por los TADs paramétricos.
-- **Igualdad Observacional**: Define el criterio bajo el cual las instancias de un TAD son indistinguibles. Es parte del metalenguaje, y como tal no puede ser utilizado dentro de los axiomas. Se define con los observadores básicos; dos instancias de TAD son iguales si y solo si coinciden observacionalmente.
+- **Igualdad Observacional**: Define el criterio bajo el cual las instancias de un TAD son indistinguibles. Es parte del metalenguaje, y como tal no puede ser utilizado dentro de los axiomas; se considera que _vive_ fuera del TAD, a diferencia de los observadores básicos, que sí _viven_ dentro del TAD. Se define con los observadores básicos; dos instancias de TAD son iguales si y solo si coinciden observacionalmente. La relación de igualdad que queda definida en el modelo es una _congruencia_ (esto es, cosas que están en la misma _clase de equivalencia_, van a la misma clase de equivalencia sin importar qué función se les aplique).
 - **Género**: Es el nombre que recibe el conjunto de valores del tipo.
 - **Usa**: Incluye los géneros y operaciones externas con las que interactúa el TAD.
 - **Exporta**: Las operaciones y géneros que quedan a disposicion de usuarios del tipo.
-- **Generadores**: Son las operaciones que permiten construir valores del tipo. Para ser adecuadas, debe ser posible construir cualquier instancia posible a traves de ellas.
-- **Observadores Básicos**: Son las operaciones que permiten obtener informacion acerca de las instancias de un tipo.
+- **Generadores**: Son las operaciones que permiten construir valores del tipo. Para ser adecuadas, debe ser posible construir cualquier instancia posible a traves de ellas. Tienen la particularidad de que a partir de una aplicación finita de ellos se pueden construir (o generar, de ahí su nombre) absolutamente todas las instancias del TAD. Contrariamente, nada impide que definamos generadores de más, es decir, que solamente generen instancias que ya podían ser generadas a partir de los otros. Sin embargo, no es recomendable esta práctica, ya que dificultaría bastante la axiomatización de las funciones
+- **Observadores Básicos**: Son las operaciones que permiten obtener informacion acerca de las instancias de un tipo. Nos permiten distinguir cuando dos instancias de un TAD se comportan de la misma manera a los efectos de nuestro estudio. Deben ser minimales, es decir, no deberían existir observadores que sólo identifiquen aspectos de la instancia que ya han sido identificado por los otros observadores.
 - **Otras Operaciones**: Las operaciones que no son generadores ni observadores.
 - **Axiomas**: Son las reglas que definen el comportamiento de las funciones.
 
@@ -22,15 +22,26 @@ Un TAD es un modelo formal matemático definido por un conjunto de valores con s
 - La **axiomatización**, en la que se definen los axiomas de los observadores básicos sobre los generadores no restringidos, cubriendo todo su dominio. Las otras operaciones se axiomatizan respecto a los observadores
 - La **minimalidad** en la especificación del TAD es fundamental, para evitar las inconsistencias y redundancia
 
-### 1.2.1 - Otros conceptos importantes en la creación del TAD
+#### 1.2.1 - Otros conceptos importantes en la creación del TAD
 
 La **brecha semántica**, o semantic gap, se refiere a la diferencia que existe entre el lenguaje natural en el que se describe un problema, y su especificación formal y rigurosa en el TAD.  
 
 Algunos aspectos a tener en cuenta en la especificación de TAD son:
 - La **congruencia** es importante de mantener en los observadores de un TAD. Dos instancias iguales, al aplicarles un observador básico, deberían devolver el mismo resultado. Si no, rompería su congruencia.   
 - El **comportamiento automático** se refiere a aquellas acciones de un problema que se realizan de forma automática o implícita, y **no** deben ser axiomatizados.  
-- Evitar la **sobre** o **sub-especificación**. La primera se da cuando hay varias formas de obtener un resultado para ciertos determinados valores; esto es un problema pues puede romper la congruencia. La segunda se da cuando no hay axiomas bien definidos sobre el comportamiento de una función del TAD.
+- Evitar la **sobre** o **sub-especificación**. La primera se da cuando hay varias formas de saber cuál es su resultado para unos valores dados de sus parámetros; esto es un problema pues puede romper la congruencia. La segunda se da cuando no hay axiomas bien definidos sobre el comportamiento de una función del TAD. 
+- No axiomatizar sobre casos restringidos.  
+- No axiomatizar sobre generadores de otros TADs; esto puede ir en contra de la igualdad observacional definida.
 
+Es importante notar que al aplicar un generador recursivo a una instancia de un TAD (e.g.: “Ag(1, ∅)”) no se está modificando la instancia que recibe como parámetro, ya que en nuestro lenguaje abstracto no existe la noción de _cambio de estado_, sino que lo que se está haciendo es generar una nueva instancia basada en la anterior, y cuyo comportamiento podrá ser descripto cuando se apliquen los observadores básicos sobre ella. Recordar el concepto de **transparencia referencial** del paradigma funcional, que indica que los resultados de las funciones sólo dependen de sus argumentos.  
+
+Los axiomas son fórmulas bien formadas según ciertas reglas gramaticales, aplicacadas a los **términos**. Los términos son las variables, constantes y símbolos de funciones aplicadas a términos. Una fórmula bien formada será cerrada si todas sus variables están cuantificadas.  
+
+### 1.3 - Recursión
+
+La idea es que al ir simplificando se llega a un punto donde no se puede simplificar más: el caso base, tal como existe en inducción. Allí la definición (o axioma, para decirlo de acuerdo al contexto donde usaremos recursión) se resuelve directamente sin usar el concepto que se está definiendo, lo importante es que para resolver el caso base nos basta con saber qué tiene que devolver la función para ese caso particular, lo cual es relativamente sencillo.  
+
+Ahora bien, la autoreferencia que hemos dicho caracteriza a las definiciones bien puede darse de manera indirecta. Lo que encontramos en estos casos es recursión mutua; donde una definición no hace autoreferencia directamente sino lo hace a través de otra definición. Claramente, la recursión mutua puede darse en más de dos niveles.
 
 ## 2 - Complejidad Computacional
 
@@ -74,7 +85,9 @@ Interesa calcular el orden de magnitud que tiene el tiempo de ejecución de cada
 
 ## 3 - Diseño de TADs
 
-Hay que pasar de las descripciones formales y abstractas del TAD, hechas con lenguaje de especificación, a la implementación de estos comportamientos, valores, operaciones y demás características de los TADs. Se pasa del paradigma funcional al paradigma imperativo, más cercano a la programación habitual.  
+Hay que pasar de las descripciones formales y abstractas del TAD, hechas con lenguaje de especificación, a la implementación de estos comportamientos, valores, operaciones y demás características de los TADs. Se pasa del paradigma funcional al paradigma imperativo, más cercano a la programación habitual. El objetivo en la especificación de TADs fue describir el comportamiento del problema a resolver, pero no interesaba determinar cómo lo resolveríamos. Al especificar estamos describiendo el problema, recién al diseñar comenzamos a resolverlo.  
+
+En el paradigma funcional los datos solo tienen sentido en cuanto sean argumentos o resultados de funciones, sin embargo, en el paradigma imperativo, los datos son tratados como entidades independientes de las funciones que los utilizan. Es usual que se trabaje con una instancia de un objeto que se va modificando y cuyos valores anteriores no interesen. Por lo tanto, por cuestiones de optimización y uso, no tiene sentido construir cada vez un objeto nuevo para devolverlo como resultado de una función como sí se hacía en la especificación de TADs.  
 
 Se deben respetar aspectos como la eficiencia en tiempo y espacio, encapsulamiento, ocultamiento de la información privada, ectétera. Para esto hay que discriminar según el **contexto de uso**, lo cual llevará a una determinada solución.  
 
@@ -82,7 +95,10 @@ Se lleva a cabo un diseño jerárquico, es decir, la definición de als represen
 
 ### 3.1 - Metodología
 
-Desde una manera abstracta, diseñar implica la vinculación entre la abstracción del TAD y su representación a través de una **estructura de datos** y la definición de sus funciones de tipo, asi como también la introducción de los elementos _no funcionales_.  
+Desde una manera abstracta, diseñar implica la vinculación entre la abstracción del TAD y su representación a través de una **estructura de datos** y la definición de sus funciones de tipo, asi como también la introducción de los elementos _no funcionales_.  Con el propósito de implementar un _tipo_, deberemos:
+- Proveer una representacion para sus valores,
+- Definir las funciones del tipo en funcion de las de su representacion,
+- Demostrar que las funciones implementadas satisfacen las relaciones especificadas en los axiom
 
 Se deben tener en cuenta los aspectos de la **interfaz** y los servicios exportados, que explican las complejidades de cada función, sus condiciones, aliasing, implementaciones, etc. También son importantes las pautas de implementación, es decir, todo aspecto referido a los medios a través de los cuales el TAD garantiza los aspectos de uso.
 
@@ -94,27 +110,55 @@ El **aliasing** se refiere a la posibilidad de tener un mismo nombre para más d
 
 Cuando se habla de ocultamiento de información, en realidad se está hablando indirectamente del **encapsulamiento** o **modularización**. Esto tiene como ventaja que ayuda a la comprensión de la interfaz para el usuario, dando algo más limpio. También alienta al reuso.
 
-### 3.3 - Pasaje de paradigma abstracto a imperativo
+### 3.3 - Pasaje de paradigma imperativo a abstracto
 
-Como el lenguaje de implementación es diferente al de especificación en los TADs, es necesario formular algo que indique cuándo algo pasa de un paradigma al otro. Se define para esto la funcion _sombrerito_, $\hat{•}: G_1 \rightarrow G_T$, que indica que, para cada valor imperativo, devuelve el término lógico correspondiente.
+Como el lenguaje de implementación es diferente al de especificación en los TADs, es necesario formular algo que indique cuándo algo pasa de un paradigma al otro. Se define para esto la funcion _sombrerito_, $\hat{•}: G_1 \rightarrow G_T$, que indica que, para cada valor imperativo, devuelve el término lógico correspondiente en su paradigma funcional, como el de especificación de TADs.
 
-### 3.4 - Representación y Abstracción
+### 3.4 - Representación
 
-#### 3.4.1 - Representación e Invariante
+El objetivo de este paso es definir la forma en que representaremos el tipo que estamos diseñando en esta iteración. La elección de una forma de representación está dada por la elección de una o mas estructuras, las cuales deberan estar debidamente justificadas. Ademas de elegir la estructura de representacion, es necesario definir cual es la relación entre la estructura de representacion y el tipo representado. Por ultimo, se deberan proveer los algoritmos que operan sobre la estructura y que resuelven cada una de las operaciones.  
 
 Definir la representación de un módulo implica tener en cuenta:
 - Estructura interna sobre la cual se aplican las operaciones
 - Relación entre representación y abstracción
 - Definición de algoritmos y servicios usados
 
-El **invariante de representación** es un predicado que determina si la instancia de la estructura representa un elemento válido del género. Garantiza un estado que se cumple constantemente en cada cambio realizado en la estructura, garantizando que no se rompa en su utilización. Se define como $Rep\ :\ \hat{estr} \rightarrow bool$.
+Un módulo de diseño debe tener la siguiente estructura:
+1. Especificación (puede omitirse si es uno de los TADs provistos por la catedra, o incluirse solo los cambios si es una
+extension de un TAD ya conocido).
+2. Aspectos de la interfaz
+     - Servicios exportados: órdenes de complejidad, aspectos de aliasing, efectos secundarios, todo lo que el usuario necesite saber.
+     - Interfaz
+3. Pautas de implementación
+     - Estructura de representación: estructura elegida, justificación, estructuras alternativas, etc.
+     - Invariante de Representación
+     - Función de Abstracción
+     - Algoritmos
+4. Servicios usados
+     - Ordenes de complejidad, aspectos de aliasing, etc., requeridos de los tipos soporte.
 
-#### 3.4.2 - Función de Abstracción
+#### 3.4.1 - Estructura de representación
 
-Esta herramienta permite vincular una estructura con algún valor abstracto que representa. Si $T$ es un género abstracto que representa con la estructura $estr$, la función de abstracción se denota como $Abs\ :\ \hat{estr} \rightarrow \hat{T}(Rep(e))$.  
+La estructura de representación de las instancias de los tipos sólo será accesible (modificable, consultable) a través de las operaciones que se hayan detallado en la interfaz del módulo de abstracción respectivo, pues sino se **rompería el encapsulamiento**.  
+
+Las variables en un programa referencian valores. Será imposible el acceso a la representación interna de estos, como veremos más adelante, y esto redundará en la _modularidad_ de nuestro diseño y en el _ocultamiento de información_, que nos permite hacer invisibles algunos aspectos que serán encapsulados. Esto es util para aumentar el nivel de abstracción y diseñar código que sea mas facilmente modificable, mantenible y extensible. Al acceder a los objetos solo a través de su interfaz no nos atamos a su implementación, solo a su funcionalidad. 
+
+#### 3.4.2 - Invariante de representación
+
+El invariante de representación es un predicado que determina si la instancia de la estructura representa un elemento válido del género. Determina un estado que se cumple constantemente en cada cambio realizado en la estructura, garantizando que no se rompa en su utilización. Se define como $Rep\ :\ \hat{genero.representado} \rightarrow boolean$.  
+
+Quedan expresados en el las restricciones de coherencia de la estructura, surgidas de la redundancia de informacion que pueda haber. Notemos que su dominio es la imagen funcional del tipo que estamos implementando. Esto es necesario para que podamos “tratar” los elementos del dominio en logica de primer orden. Su imagen no es el genero bool, sino los valores logicos Verdadero y Falso
+
+### 3.5 -  Abstracción
+
+Esta herramienta permite vincular una estructura con algún valor abstracto que representa. Si $T$ es un género abstracto que representa con la estructura $estr$, la función de abstracción se denota como $Abs\ :\ \hat{estr} \rightarrow \hat{T}(Rep(genero.del.tipo))$.  
+
+Es decir, tiene por dominio al conjunto de instancias que son la imagen abstracta del tipo de representación, y devuelve una imagen abstracta de la instancia del tipo representado. Debemos tener en cuenta que:
+
 - Su dominio está restringido a las instancias de la estructura que cumplen el invariante de representación, y es total sobre este dominio.
 - No necesita ser inyectiva: dos instancias válidas pueden representar al mismo término de un TAD.
-- Debe ser sobreyectiva sobre las clases de equivalencia de la igualdad observacional.
+- Debe ser sobreyectiva sobre las clases de equivalencia de la igualdad observacional, al menos con respecto al universo que nos ha restringido nuestro contexto de uso. Si no lo fuera, significaría que hay elementos del tipo que queremos representar que no podrán ser efectivamente representados.
+- No necesariamente es sobreyectiva sobre el conjunto de términos de un TAD. Por la forma en la que _Abs_ es construida no es posible diferenciar entre instancias de un TAD que son observacionalmente iguales y por lo tanto no es posible garantizar que todo término del TAD es imagen de _Abs_ para alguna estructura de representación.
 - La funcion _Abs_ debe ser un homomorfismo respecto de la estructura del TAD cuando se le aplican algoritmos.
 
 ## 4 - Diseño de Conjuntos y Diccionarios
