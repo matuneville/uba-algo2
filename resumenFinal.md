@@ -93,6 +93,21 @@ Se deben respetar aspectos como la eficiencia en tiempo y espacio, encapsulamien
 
 Se lleva a cabo un diseño jerárquico, es decir, la definición de als representaciones de los tipos en funcion de otras representaciones más simples, separando las responsabilidades en el diseño del TAD.
 
+
+Un módulo de diseño debe tener la siguiente estructura:
+1. Especificación (puede omitirse si es uno de los TADs provistos por la catedra, o incluirse solo los cambios si es una
+extension de un TAD ya conocido).
+2. Aspectos de la interfaz
+     - Servicios exportados: órdenes de complejidad, aspectos de aliasing, efectos secundarios, todo lo que el usuario necesite saber.
+     - Interfaz
+3. Pautas de implementación
+     - Estructura de representación: estructura elegida, justificación, estructuras alternativas, etc.
+     - Invariante de Representación
+     - Función de Abstracción
+     - Algoritmos
+4. Servicios usados
+     - Ordenes de complejidad, aspectos de aliasing, etc., requeridos de los tipos soporte.
+
 ### 3.1 - Metodología
 
 Desde una manera abstracta, diseñar implica la vinculación entre la abstracción del TAD y su representación a través de una **estructura de datos** y la definición de sus funciones de tipo, asi como también la introducción de los elementos _no funcionales_.  Con el propósito de implementar un _tipo_, deberemos:
@@ -122,20 +137,6 @@ Definir la representación de un módulo implica tener en cuenta:
 - Estructura interna sobre la cual se aplican las operaciones
 - Relación entre representación y abstracción
 - Definición de algoritmos y servicios usados
-
-Un módulo de diseño debe tener la siguiente estructura:
-1. Especificación (puede omitirse si es uno de los TADs provistos por la catedra, o incluirse solo los cambios si es una
-extension de un TAD ya conocido).
-2. Aspectos de la interfaz
-     - Servicios exportados: órdenes de complejidad, aspectos de aliasing, efectos secundarios, todo lo que el usuario necesite saber.
-     - Interfaz
-3. Pautas de implementación
-     - Estructura de representación: estructura elegida, justificación, estructuras alternativas, etc.
-     - Invariante de Representación
-     - Función de Abstracción
-     - Algoritmos
-4. Servicios usados
-     - Ordenes de complejidad, aspectos de aliasing, etc., requeridos de los tipos soporte.
 
 #### 3.4.1 - Estructura de representación
 
