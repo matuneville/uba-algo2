@@ -35,8 +35,6 @@ Algunos aspectos a tener en cuenta en la especificación de TAD son:
 
 Es importante notar que al aplicar un generador recursivo a una instancia de un TAD (e.g.: “Ag(1, ∅)”) no se está modificando la instancia que recibe como parámetro, ya que en nuestro lenguaje abstracto no existe la noción de _cambio de estado_, sino que lo que se está haciendo es generar una nueva instancia basada en la anterior, y cuyo comportamiento podrá ser descripto cuando se apliquen los observadores básicos sobre ella. Recordar el concepto de **transparencia referencial** del paradigma funcional, que indica que los resultados de las funciones sólo dependen de sus argumentos.  
 
-Los axiomas son fórmulas bien formadas según ciertas reglas gramaticales, aplicacadas a los **términos**. Los términos son las variables, constantes y símbolos de funciones aplicadas a términos. Una fórmula bien formada será cerrada si todas sus variables están cuantificadas.  
-
 ### 1.3 - Recursión
 
 La idea es que al ir simplificando se llega a un punto donde no se puede simplificar más: el caso base, tal como existe en inducción. Allí la definición (o axioma, para decirlo de acuerdo al contexto donde usaremos recursión) se resuelve directamente sin usar el concepto que se está definiendo, lo importante es que para resolver el caso base nos basta con saber qué tiene que devolver la función para ese caso particular, lo cual es relativamente sencillo.  
@@ -162,6 +160,18 @@ Es decir, tiene por dominio al conjunto de instancias que son la imagen abstract
 - No necesariamente es sobreyectiva sobre el conjunto de términos de un TAD. Por la forma en la que _Abs_ es construida no es posible diferenciar entre instancias de un TAD que son observacionalmente iguales y por lo tanto no es posible garantizar que todo término del TAD es imagen de _Abs_ para alguna estructura de representación.
 - La funcion _Abs_ debe ser un homomorfismo respecto de la estructura del TAD cuando se le aplican algoritmos.
 
+Se entiende como _términos_ a las funciones aplicadas sobre un género, i.e: Ag(1, Ag(3, {2}))
+
+### 3.5.1 - Probando corrección
+
+Para toda operación $f$ que implementa una operación del TAD y toda $x$ instancia del género de representación, debemos ver que el siguiente diagrama conmuta:
+
+![imagen](SortingAlgorithms/Screenshot%20from%202023-07-13%2014-24-14.png)
+
+Abs debe ser un homomorfismo respecto de la signatura del TAD, o sea, para toda operación ●,  
+$Abs(i●(p_1, ..., p_n)) =_{obs} ●(Abs(p_1), ..., Abs(p_n))$
+
+
 ## 4 - Diseño de Conjuntos y Diccionarios
 
 Estos son algunos de los TADs mas importantes de la computación. Podriamos tomar al conjunto como un tipo de diccionario donde no hay valor, sino solo claves. La implementación de estos TADs sobre estructuras secuenciales llevaría a complejidades lineales para operaciones como _borrar()_, _buscar()_ o _añadir()_ elementos. Una buena solución es implementarlos sobre otras estructuras de datos.
@@ -200,6 +210,10 @@ El reequilibrio del AVL se produce de abajo hacia arriba sobre los nodos en los 
 - **LR**: Inserción en el subarbol izquierdo de un hijo derecho.
 - **RL**: Inserción en el subarbol derecho de un hijo izquierdo.
 - **LL**: Inserción en el subarbol izquierdo de un hijo izquierdo.
+
+
+![rotaciones](SortingAlgorithms/AVLrotations.jpeg)
+
 
 Su complejidad está dada por:
 
@@ -250,7 +264,7 @@ Esta función, llamada _hash_, tiene la forma $h\ :\ K \rightarrow{0,1,...,n-1}$
 
 ### 6.2 - Problema principal: Colisiones
 
-Una función de hash ideal es aquella en la que no hay un mismo índice para dos claves distintas; es decir, una función **inyectiva**, lo cual implicaría que $|K| \leq n$. Esto no es factible en la oráctica, pues toda tabla de hash debería tener que manejar las **colisiones** entre distintas claves con el mismo hash.  
+Una función de hash ideal es aquella en la que no hay un mismo índice para dos claves distintas; es decir, una función **inyectiva**, lo cual implicaría que $|K| \leq n$. Esto no es factible en la práctica, pues toda tabla de hash debería tener que manejar las **colisiones** entre distintas claves con el mismo hash.  
 
 Más allá de la resolución de las colisiones, una función de hash ideal debería cumplir la propiedad de _uniformidad simple_, que implica que cada elemento de su imagen tiene probabilidad igual o similar a otra de ser resultado de alguna clave. Debido a la dificultad de estimar la distribución de las claves, esta propiedad no suele cumplirse en la práctica, por lo que se intenta encontrar una función independiente de la distribución.
 
@@ -261,6 +275,8 @@ Los métodos de resolución de colisiones en funciones de hash siguientes se dif
 #### 6.3.1 - Direccionamiento cerrado
 
 El direccionamiento cerrado funciona mediante la **concatenación**: a cada posición $i$ del arreglo se le asigna una lista que contiene las claves $k$ (y sus significados asociados). Es decir, cumple que $h(k)=i$.  
+
+![imagen](SortingAlgorithms/direccCerrado.png)  
 
 La búsqueda e inserción de una clave $k$ entonces requerirá recorrer la lista asociada a $h(k)$ para encontrarla (o verificar que no esté), por lo que la complejidad será lineal. Es decir, las complejidades son de la forma:
 
@@ -280,13 +296,15 @@ En este método, todos los elementos se guardarán directamente en la tabla, y l
 
 Se redefine la función de hashing como $h(k,i)$, que representa la dirección del $i$-ésimo intento de guardar el nuevo elemento. Cuando se intenta añadir un elemento en una posición previamente ocupada, entonces se sigue intentando hasta encontras una posición libre. Una posición libre puede dar _overflow_ si la tabla se llena.  
 
-La forma en la que se relaciona $h(k,i)$ con $h(k,i+1)$ se denomina _método de barrido_, con los que recorreremos la tabla:
+![imagen](SortingAlgorithms/direccAbierto.png)  
+
+La forma en la que se relaciona $h(k,i)$ con $h(k,i+1)$, para resolver las colisiones, se denomina _método de barrido_, con los que recorreremos la tabla:
 
 - **Barrido lineal**: para recorrer la tabla linealmente usamos $h(k,i) = (h'(k,i)+i)\ mod\ |T|$, donde $h'$ es otra función hash. Es simple, pero propensa a la _aglomeración primaria_: si dos secuencias de barrido tienen una colisión, siguen colisionando, y se producen largos tramos de aglomeración.
 
 - **Barrido cuadrático**: usamos $h(k,i)=(h'(k)+i \times c_1 + i² \times c_2)\ mod\ |T|$, con $c_1$ y $c_2$ constantes. Hay posibilidad de _aglomeración secundaria_: si dos claves colisionan en el primer intento, colisionan siempre.
 
-- **Hashing doble**: la idea es qie el barrido ahora dependa también de la clave. Se define $h(k,i) = (h_1(k)+i h_2(k))\ mod\ |T|$. Reduce los fenómenos de aglomeración secundaria, y no tiene algomeración proimaria. El problema de este barrido es que es ineficiente en su uso del caché de la CPU, debido a que las claves colisionadas podrían quedar en posiciones distantes.
+- **Hashing doble**: la idea es que el barrido ahora dependa también de la clave. Se define $h_1(k,i) = (h_1(k)+i h_2(k))\ mod\ |T|$. El intervalo entre intentos es constante para cada registro pero es calculado por otra función hash. El doble hasheo tiene pobre rendimiento en el caché pero elimina el problema de aglomeramiento. Este puede requerir más cálculos que las otras formas de sondeo.
 
 ### 6.4 - Funciones hash
 
