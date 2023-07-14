@@ -304,7 +304,7 @@ La forma en la que se relaciona $h(k,i)$ con $h(k,i+1)$, para resolver las colis
 
 - **Barrido cuadrático**: usamos $h(k,i)=(h'(k)+i \times c_1 + i² \times c_2)\ mod\ |T|$, con $c_1$ y $c_2$ constantes. Hay posibilidad de _aglomeración secundaria_: si dos claves colisionan en el primer intento, colisionan siempre.
 
-- **Hashing doble**: la idea es que el barrido ahora dependa también de la clave. Se define $h_1(k,i) = (h_1(k)+i h_2(k))\ mod\ |T|$. El intervalo entre intentos es constante para cada registro pero es calculado por otra función hash. El doble hasheo tiene pobre rendimiento en el caché pero elimina el problema de aglomeramiento. Este puede requerir más cálculos que las otras formas de sondeo.
+- **Hashing doble**: la idea es que el barrido ahora dependa también de la clave. Se define $h(k,i) = (h_1(k)+i h_2(k))\ mod\ |T|$. El intervalo entre intentos es constante para cada registro pero es calculado por otra función hash. El doble hasheo tiene pobre rendimiento en el caché pero elimina el problema de aglomeramiento. Este puede requerir más cálculos que las otras formas de sondeo.
 
 ### 6.4 - Funciones hash
 
