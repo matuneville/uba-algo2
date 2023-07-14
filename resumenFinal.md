@@ -77,7 +77,7 @@ Es decir, dos ejecuciones distintas del mismo algoritmo solo difieren en eficien
 Interesa calcular el orden de magnitud que tiene el tiempo de ejecución de cada algoritmo. A mayor tamaño de input, mayor costo. Las medidas de comportamiento asintótico son:  
 
 - Notación Big $O$, cota superior
-- Notación Big $\Omega$, cota superior
+- Notación Big $\Omega$, cota inferior
 - Notación Big $\Theta$, orden exacto
 
 
@@ -310,7 +310,7 @@ La forma en la que se relaciona $h(k,i)$ con $h(k,i+1)$, para resolver las colis
 
 Su objetivo es la distribución más uniforme posible de claves.  
 
-El _prehashing_ es la etapa del hashing en la qur se pasa del tipo utilizado como clave a un entero. El método debe definirse para cada tipo deseado, y, como siempre, es deseable que la función tenga pocas colisiones, es decir, que sea inyectiva.
+El _prehashing_ es la etapa del hashing en la que se pasa del tipo utilizado como clave a un entero. Por ejemplo, si la clave es un _char_, podemos utilizar la codificación ASCII o UTF-8. El método debe definirse para cada tipo deseado, y, como siempre, es deseable que la función tenga pocas colisiones, es decir, que sea inyectiva.
 
 Una vez que se tiene un número, hay distintos métodos de hashing, como:
 
@@ -326,11 +326,11 @@ Una priority queue es un TAD que representa a una cola en la que el próximo ele
 
 ### 7.1 - Heap
 
-Es una estructura de datos en forma de montículo. Tiene forma de árbol binario balanceado, y, usualmente, es _izquierdista_ (no va a hacer piquetes a la 9 de Julio ni tampoco corta el puente Pueyrredón, sino que en el último nivel del árbol, los nodos estarán hacia la izquierda). Cuando las prioridades son mayores a las de los hijos, se tiene un max-heap, mientras que cuando son menores se tiene un min-heap.
+Es una estructura de datos en forma de montículo. Tiene forma de árbol binario balanceado, y, usualmente, es _izquierdista_ (en el último nivel del árbol, los nodos se "acomodan" hacia la izquierda). Cuando las prioridades son mayores a las de los hijos, se tiene un max-heap, mientras que cuando son menores se tiene un min-heap.
 
 #### 7.1.1 - Implementación y algoritmos
 
-Una implementación eficiente en tiempo y espacio de un heap es con un **array**, en el que se puede acceder a los hijos de una raiz accediendo a las posiciones $2i + 1$ o $2i + 2$, siendo $i$ la posición del nodo padre. Si queremos agrear o eliminar elementos en vez de solo modificarlos, deberíamos usar un arreglo dinámico.  
+Una implementación eficiente en tiempo y espacio de un heap es con un **array**, en el que se puede acceder a los hijos de una raiz accediendo a las posiciones $2i + 1$ o $2i + 2$, siendo $i$ la posición del nodo padre. Si queremos agregar o eliminar elementos en vez de solo modificarlos, deberíamos usar un arreglo dinámico.  
 
 Otra implementación sería utilizando un arbol binario, donde cada nodo posee un puntero a sus hijos, lo tradicional en estas estructuras.  
 
@@ -367,7 +367,7 @@ Son aquellos que ordenan los elementos manteniendo el orden inicial en el arregl
 
 - Selection Sort: Selection sort es un algoritmo simple, que se basa en tomar para cada posición el mínimo del subarreglo desordenado y intercambiarlo con el primero. Al finalizar el ciclo anidado, en cada iteración los primeros elementos quedarán ordenados. Podría ser estable, solo si se lo modifica, haciendo que se inserte el elemento mínimo, en vez de swappearlo.
   - Complejidad: $O(n²)$
-- Heap Sort: Se basa en aprovechar la estructura de heap. Podr´ıa pensarse como una versión del selection sort, donde primero se heapifica el arreglo (a través del algoritmo de Floyd) y luego se obtiene el elemento m´ınimo en cada iteración desencolando en el heap. 
+- Heap Sort: Se basa en aprovechar la estructura de heap. Podría pensarse como una versión del selection sort, donde primero se heapifica el arreglo (a través del algoritmo de Floyd) y luego se obtiene el elemento m´ınimo en cada iteración desencolando en el heap. 
   - Complejidad: $O(n\ log\ n)$
 - Quick Sort: Sigue la metodología de Divide & Conquer, como el Merge Sort. Para cada recursión, se elige un pivote, se van poniendo al principio del arreglo todos los elementos menores al pivote y luego el pivote, haciendo que queden de la derecha todos los mayores y de la izquierda todos los menores.
   - Complejidad: $O(n²)$
@@ -396,6 +396,10 @@ La solución típica es dividir en $a$ subproblemas, de tamaño máximo $n/c$; e
 
 La complejidad es de la forma:
 $$T(n)=bn^d(\sum_{i=0}^{log_cn}(a/{c^d})^i)$$  
+
+La podemos reescribir para utilizar el **Teorema Maestro** de la siguiente forma:  
+
+$$T(n) = aT(\frac{n}{c})+f(n)$$
 
 Se tienen los siguientes casos:  
 1. $Si\ f(n) \in O(n^{log_c(a)-\epsilon})\ para\ \epsilon > 0 \rightarrow T(n) \in \Theta(n^{log_c(a)})$
