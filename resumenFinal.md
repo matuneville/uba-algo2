@@ -373,6 +373,8 @@ Son aquellos que ordenan los elementos manteniendo el orden inicial en el arregl
   - Complejidad: $O(n²)$
   - Complejidad promedio: $O(n\ log\ n)$
 
+![imagen](SortingAlgorithms/sortingResumen.jpeg)
+
 ### 8.2 - Optimalidad
 
 Para el problema de ordenamiento, se puede demostrar un _lower bound_ de $\Omega(n\ log\ n)$, es decir, la complejidad mínima que tiene que cumplir un algoritmo que lo resuelve. En realidad, la cota vale para algoritmos que están basados en comparaciones: si se cuenta con alguna hipótesis adicional (como elementos acotados por un rango), se pueden implementar algoritmos más rápidos (como counting sort o bucket sort).  
