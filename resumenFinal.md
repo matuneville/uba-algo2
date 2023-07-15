@@ -401,7 +401,9 @@ $$T(n)=bn^d(\sum_{i=0}^{log_cn}(a/{c^d})^i)$$
 
 La podemos reescribir para utilizar el **Teorema Maestro** de la siguiente forma:  
 
-$$T(n) = aT(\frac{n}{c})+f(n)$$
+$$T(n) = aT(\frac{n}{c})+f(n)$$  
+
+Siendo $a$ la cantidad de recursiones que realizo con mis particiones, $c$ la cantidad de particiones en las que separo mi problema, y $f(n)$ la funcion de complejidad del resto del algoritmo (sin contar la recursion).
 
 Se tienen los siguientes casos:  
 1. $Si\ f(n) \in O(n^{log_c(a)-\epsilon})\ para\ \epsilon > 0 \rightarrow T(n) \in \Theta(n^{log_c(a)})$
