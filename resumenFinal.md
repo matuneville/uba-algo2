@@ -212,8 +212,9 @@ El reequilibrio del AVL se produce de abajo hacia arriba sobre los nodos en los 
 - **LL**: Inserción en el subarbol izquierdo de un hijo izquierdo.
 
 
-![rotaciones](SortingAlgorithms/AVLrotations.jpeg)
+![imagen](/SortingAlgorithms/Screenshot%20from%202023-07-16%2016-10-36.png) 
 
+![imagen](/SortingAlgorithms/Screenshot%20from%202023-07-16%2016-10-23.png)
 
 Su complejidad está dada por:
 
