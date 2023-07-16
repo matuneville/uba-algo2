@@ -12,8 +12,8 @@ Un TAD es un modelo formal matemático definido por un conjunto de valores con s
 - **Usa**: Incluye los géneros y operaciones externas con las que interactúa el TAD.
 - **Exporta**: Las operaciones y géneros que quedan a disposicion de usuarios del tipo.
 - **Generadores**: Son las operaciones que permiten construir valores del tipo. Para ser adecuadas, debe ser posible construir cualquier instancia posible a traves de ellas. Tienen la particularidad de que a partir de una aplicación finita de ellos se pueden construir (o generar, de ahí su nombre) absolutamente todas las instancias del TAD. Contrariamente, nada impide que definamos generadores de más, es decir, que solamente generen instancias que ya podían ser generadas a partir de los otros. Sin embargo, no es recomendable esta práctica, ya que dificultaría bastante la axiomatización de las funciones
-- **Observadores Básicos**: Son las operaciones que permiten obtener informacion acerca de las instancias de un tipo. Nos permiten distinguir cuando dos instancias de un TAD se comportan de la misma manera a los efectos de nuestro estudio. Deben ser minimales, es decir, no deberían existir observadores que sólo identifiquen aspectos de la instancia que ya han sido identificado por los otros observadores.
-- **Otras Operaciones**: Las operaciones que no son generadores ni observadores.
+- **Observadores Básicos**: Son las operaciones que permiten obtener informacion acerca de las instancias de un tipo. Nos permiten distinguir cuando dos instancias de un TAD se comportan de la misma manera a los efectos de nuestro estudio. Deben ser minimales, es decir, no deberían existir observadores que sólo identifiquen aspectos de la instancia que ya han sido identificado por los otros observadores. Permiten particionar el universo de sus instancias en clases de equivalencia, con la idea de agrupar en cada clase a las instancias que posean un comportamiento similar. 
+- **Otras Operaciones**: Las operaciones que no son generadores ni observadores. No debería ocurrir que una función que aparezca en esta sección devuelva valores distintos cuando se aplique sobre dos instancias observacionalmente iguales del TAD. Si esto ocurre, habrá que replantearse el conjunto elegido de observadores básicos, ya que no están cumpliendo con el fin requerido.
 - **Axiomas**: Son las reglas que definen el comportamiento de las funciones. Son funciones totales, y como tal son determinísticas.
 
 ### 1.2 - Creación de un TAD
@@ -211,11 +211,6 @@ El reequilibrio del AVL se produce de abajo hacia arriba sobre los nodos en los 
 - **RL**: Inserción en el subarbol derecho de un hijo izquierdo.
 - **LL**: Inserción en el subarbol izquierdo de un hijo izquierdo.
 
-
-![imagen](/SortingAlgorithms/Screenshot%20from%202023-07-16%2016-10-36.png) 
-
-![imagen](/SortingAlgorithms/Screenshot%20from%202023-07-16%2016-10-23.png)
-
 Su complejidad está dada por:
 
 1. Complejidad de buscar la posición del nodo dada: $O(log(n))$
@@ -224,7 +219,22 @@ Su complejidad está dada por:
 
 Debido a esto, la complejidad de aplicar operaciones como _borrar()_, _buscar()_ y _añadir()_ será logarítmica. Cuando hay que buscar al nodo dado, se busca su posición, cuyo costo es de $O(log(n))$.  
 
-En cambio, cuando hay que modificar el árbol, ya sea eliminando o agregando un nodo (o modificando el valor de un nodo, que puede tomarse como eliminarlo y agregar el nuevo), luego de buscar la posición correspondiente, si aparece un FDB de ±2, se debe aplicar una rotación para balancear nuevamente el AVL. La complejidad así será de $O(2\ log(n)) = O(log(n))$.
+En cambio, cuando hay que modificar el árbol, ya sea eliminando o agregando un nodo (o modificando el valor de un nodo, que puede tomarse como eliminarlo y agregar el nuevo), luego de buscar la posición correspondiente, si aparece un FDB de ±2, se debe aplicar una rotación para balancear nuevamente el AVL. La complejidad así será de $O(2\ log(n)) = O(log(n))$.  
+
+
+Las rotaciones simples y dobles en la inserción se ven de la siguiente forma:  
+
+![imagen](/SortingAlgorithms/Screenshot%20from%202023-07-16%2016-10-36.png) 
+
+![imagen](/SortingAlgorithms/Screenshot%20from%202023-07-16%2016-10-23.png)
+
+Las rotaciones simples y dobles por el borrado se ven de la siguiente forma:  
+
+![imagen](/SortingAlgorithms/borrado1.png)  
+
+![imagen](/SortingAlgorithms/borrado2.png)  
+
+![imagen](/SortingAlgorithms/borrado3.png)
 
 ### 4.4 - Algunas formalidades
 
