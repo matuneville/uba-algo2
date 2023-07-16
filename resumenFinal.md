@@ -14,7 +14,7 @@ Un TAD es un modelo formal matemático definido por un conjunto de valores con s
 - **Generadores**: Son las operaciones que permiten construir valores del tipo. Para ser adecuadas, debe ser posible construir cualquier instancia posible a traves de ellas. Tienen la particularidad de que a partir de una aplicación finita de ellos se pueden construir (o generar, de ahí su nombre) absolutamente todas las instancias del TAD. Contrariamente, nada impide que definamos generadores de más, es decir, que solamente generen instancias que ya podían ser generadas a partir de los otros. Sin embargo, no es recomendable esta práctica, ya que dificultaría bastante la axiomatización de las funciones
 - **Observadores Básicos**: Son las operaciones que permiten obtener informacion acerca de las instancias de un tipo. Nos permiten distinguir cuando dos instancias de un TAD se comportan de la misma manera a los efectos de nuestro estudio. Deben ser minimales, es decir, no deberían existir observadores que sólo identifiquen aspectos de la instancia que ya han sido identificado por los otros observadores.
 - **Otras Operaciones**: Las operaciones que no son generadores ni observadores.
-- **Axiomas**: Son las reglas que definen el comportamiento de las funciones.
+- **Axiomas**: Son las reglas que definen el comportamiento de las funciones. Son funciones totales, y como tal son determinísticas.
 
 ### 1.2 - Creación de un TAD
 - Se comienza con la **abstracción** de un problema descripto en un lenguaje informal, para poder identificar sus aspectos importantes
@@ -29,7 +29,7 @@ La **brecha semántica**, o semantic gap, se refiere a la diferencia que existe 
 Algunos aspectos a tener en cuenta en la especificación de TAD son:
 - La **congruencia** es importante de mantener en los observadores de un TAD. Dos instancias iguales, al aplicarles un observador básico, deberían devolver el mismo resultado. Si no, rompería su congruencia.   
 - El **comportamiento automático** se refiere a aquellas acciones de un problema que se realizan de forma automática o implícita, y **no** deben ser axiomatizados.  
-- Evitar la **sobre** o **sub-especificación**. La primera se da cuando hay varias formas de saber cuál es su resultado para unos valores dados de sus parámetros; esto es un problema pues puede romper la congruencia. La segunda se da cuando no hay axiomas bien definidos sobre el comportamiento de una función del TAD. 
+- Evitar la **sobre** o **sub-especificación**. La primera se da cuando hay varias formas de saber cuál es su resultado para unos valores dados de sus parámetros; esto es un problema pues puede romper la congruencia. La segunda se da cuando no hay axiomas bien definidos sobre el comportamiento de una función del TAD. Un uso lícito de la sub-especificación consiste en no axiomatizar sobre restricciones, o también el dejar aspectos poco definidos, como lo es el caso del dameUno().
 - No axiomatizar sobre casos restringidos.  
 - No axiomatizar sobre generadores de otros TADs; esto puede ir en contra de la igualdad observacional definida.
 
@@ -225,6 +225,52 @@ Debido a esto, la complejidad de aplicar operaciones como _borrar()_, _buscar()_
 
 En cambio, cuando hay que modificar el árbol, ya sea eliminando o agregando un nodo (o modificando el valor de un nodo, que puede tomarse como eliminarlo y agregar el nuevo), luego de buscar la posición correspondiente, si aparece un FDB de ±2, se debe aplicar una rotación para balancear nuevamente el AVL. La complejidad así será de $O(2\ log(n)) = O(log(n))$.
 
+### 4.4 - Algunas formalidades
+
+#### 4.4.1 - Altura logarítmica de árbol balanceado
+
+Un arbol binario _perfectamente balanceado_ tiene altura $\lfloor log_2n\rfloor+1$. ¿Por qué?  
+Hay que partir de la base de que la mita de nodos del árbol son nodos hoja. Si cada nodo tiene 0 o 2 hijos, entonces:  
+
+$n_h = n_i + 1$, siendo $n_h$ la cantidad de nodos hojas, y  $n_i$ la cantidad de nodos internos. Entonces:  
+
+$n = n_h + n_i\ \iff n = n_h + n_h - 1\ \iff \frac{n-1}{2} = n_h$  
+
+Por lo tanto, más de la mitad de los nodos del árbol son nodos hoja. Con esto sabemos que si podamos un árbol (quitándole las hojas), entonces la cantidad de nodos se reducirá a la mitad. Es decir, si podamos una vez tendrémos $n/2$ nodos, y si podamos 2 veces, tendremos $n/4$ nodos.  
+
+Con esto podemos hacer una inducción matemática, teniendo como HI: al podar $k$ veces, nos quedan $n/2^k$ nodos. Quiero ver entonces que al podar $k+1$ veces, quedarán  $n/2^{k+1}$ nodos.  
+
+Como con cada poda la cantidad de nodos se reduce a la mitad, pues estamos quitando los nodos hoja, que ocupan al menos la mitad de nodos totales, entonces, si podamos el arbol que fue podado $k$ veces, sería como restarle a su cantidad de nodos la mitad de su misma cantidad de nodos, es decir, $n/2^k - (n/2^k)/2 = n/2^k - n/2^{k+1} = n/2^{k+1}$. En el último paso me salteé un poco del desarrollo, pero se puede comprobar fácilmente que el resultado es $n/2^{k+1}$, que será la cantidad de nodos final luego de volverlo a podar, cumpliendo así lo que yo quería comprobar.  
+
+Esto quiere decir que haciendo una cantidad de podadas necesaria, llamemosla $i$, llegaremos al nodo hoja:  
+
+$n/2^i = 1 \iff n = 2^i \iff log_2n = i$, siendo así $i$ la altura del árbol.
+
+#### 4.4.2 - Árbol de Fibonacci
+
+Un árbol de Finonacci es un árbol AVL que tiene la mínima cantidad de nodos. Una de sus características, por lo tanto, es que no tiene ningún subárbol completo. Es decir, el FDB de cada nodo es +-1. Fue demostrado por  Adelson-Velskii & Landis que la altura de un árbol de Fibonacci es $1.44\ log(n +2) – 0.328$.
+
+#### 4.4.3 - Altura logarítmica de AVL
+
+Sea $AVL_i$ la cantidad de nodos que tiene un AVL de altura $i$, y $f_i$ el $i$-ésimo resultado de la sucesión de Fibonacci. Sabemos que $AVL_{i+2} = AVL_{i+1} + AVL_i + 1$ y $f_{i+2} = f_{i+1} + f_i$.  
+
+Quiero comprobar que $AVL_i = f_{i+2} - 1$ para ver que la cantidad de nodos es exponencial en $i$, pues $f_i$ es exponencial en $i$, siendo $i$ la altura.  
+
+Casos base: si i = 0,  
+$AVL_0 = f_2 - 1 = 1 - 1 = 0$, correcto (la cantidad de nodos en un AVL fibonacci de altura 0 es 0)  
+
+si i = 1,  
+$AVL_1 = f_3 - 1 = 2 - 1 = 1$, correcto (la cantidad de nodos en un AVL fibonacci de altura 1 es 1)  
+
+HI: vale para $k$ y $k+1$, es decir,  
+$AVL_k = f_{k+2} - 1$,  
+$AVL_{k+1} = f_{k+3} - 1$  
+
+Quiero ver que: $AVL_{k+2} = f_{k+4} - 1$  
+Sé que por regla general de los AVL,  
+$AVL_{k+2} = AVL_{k+1} + AVL_{k} + 1$, y por mi HI, $AVL_{k+2} = f_{k+2} - 1 + f_{k+3} - 1 + 1\ \iff$  
+
+$AVL_{k+2} = f_{k+2} + f_{k+3} - 1 = f_{k+4} - 1$, que es lo que quería comprobar.
 
 ## 5 - Tries, búsqueda digital
 
